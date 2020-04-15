@@ -88,7 +88,7 @@
               label: "岗位类型",
               prop: "category",
               type: "select",
-              dicUrl: "/api/blade-system/dict/dictionary?code=post",
+              dicUrl: "/api/blade-system/dict/dictionary?code=post_category",
               props: {
                 label: "dictValue",
                 value: "dictKey"

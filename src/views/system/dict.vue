@@ -58,7 +58,6 @@
               :option="optionChild"
               :table-loading="loadingChild"
               :data="dataChild"
-              :page="pageChild"
               ref="crudChild"
               v-model="formChild"
               :permission="permissionList"
@@ -438,9 +437,7 @@
           this.parentId,
           Object.assign(params, this.query)
         ).then(res => {
-          const data = res.data.data;
-          this.pageChild.total = data.total;
-          this.dataChild = data.records;
+          this.dataChild = res.data.data;
           this.loadingChild = false;
           this.selectionClear();
         });

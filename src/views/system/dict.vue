@@ -211,6 +211,7 @@
           });
       },
       handleRowClick(row) {
+        this.query = {};
         this.parentId = row.id;
         this.dictValue = row.dictValue;
         this.$refs.crudChild.value.code = row.code;

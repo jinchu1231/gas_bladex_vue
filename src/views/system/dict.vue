@@ -63,6 +63,7 @@
               v-model="formChild"
               :permission="permissionList"
               :before-open="beforeOpenChild"
+              :before-close="beforeCloseChild"
               @row-del="rowDelChild"
               @row-update="rowUpdateChild"
               @row-save="rowSaveChild"
@@ -83,6 +84,16 @@
                   plain
                   @click="handleDelete"
                 >删 除
+                </el-button>
+              </template>
+              <template slot-scope="scope" slot="menu">
+                <el-button
+                  type="text"
+                  icon="el-icon-circle-plus-outline"
+                  size="small"
+                  @click.stop="handleAdd(scope.row,scope.index)"
+                  v-if="userInfo.role_name.includes('admin')"
+                >新增子项
                 </el-button>
               </template>
               <template slot-scope="{row}" slot="isSealed">
@@ -139,7 +150,7 @@
       };
     },
     computed: {
-      ...mapGetters(["permission"]),
+      ...mapGetters(["userInfo", "permission"]),
       permissionList() {
         return {
           addBtn: this.vaildData(this.permission.dict_add, false),
@@ -157,12 +168,24 @@
       }
     },
     mounted() {
-      getDictTree().then(res => {
-        const column = this.findObject(this.optionChild.column, "parentId");
-        column.dicData = res.data.data;
-      });
+      this.initData();
     },
     methods: {
+      initData() {
+        getDictTree().then(res => {
+          const column = this.findObject(this.optionChild.column, "parentId");
+          column.dicData = res.data.data;
+        });
+      },
+      handleAdd(row) {
+        this.$refs.crudChild.value.parentId = row.id;
+        this.$refs.crudChild.option.column.filter(item => {
+          if (item.prop === "parentId") {
+            item.value = row.id;
+          }
+        });
+        this.$refs.crudChild.rowAdd();
+      },
       rowSave(row, done, loading) {
         const form = {
           ...row,
@@ -365,11 +388,23 @@
           });
       },
       beforeOpenChild(done, type) {
+        if (["add", "edit"].includes(type)) {
+          this.initData();
+        }
         if (["edit", "view"].includes(type)) {
           getDict(this.formChild.id).then(res => {
             this.formChild = res.data.data;
           });
         }
+        done();
+      },
+      beforeCloseChild(done) {
+        this.$refs.crudChild.value.parentId = this.parentId;
+        this.$refs.crudChild.option.column.filter(item => {
+          if (item.prop === "parentId") {
+            item.value = this.parentId;
+          }
+        });
         done();
       },
       currentChangeChild(currentPage) {

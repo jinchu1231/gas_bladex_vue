@@ -99,7 +99,7 @@ export const optionChild = {
   index: true,
   selection: true,
   viewBtn: true,
-  menuWidth: 150,
+  menuWidth: 220,
   dialogWidth: 880,
   dialogClickModal: false,
   column: [
@@ -107,7 +107,6 @@ export const optionChild = {
       label: "字典编号",
       prop: "code",
       addDisabled: true,
-      editDisabled: true,
       search: true,
       span: 24,
       rules: [

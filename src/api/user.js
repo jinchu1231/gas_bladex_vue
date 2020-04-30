@@ -19,6 +19,22 @@ export const loginByUsername = (tenantId, username, password, type, key, code) =
   }
 });
 
+export const loginBySocial = (tenantId, source, code, state) => request({
+  url: '/api/blade-auth/oauth/token',
+  method: 'post',
+  headers: {
+    'Tenant-Id': tenantId
+  },
+  params: {
+    tenantId,
+    source,
+    code,
+    state,
+    grant_type: "social",
+    scope: "all",
+  }
+})
+
 export const refreshToken = (refresh_token, tenantId) => request({
   url: '/api/blade-auth/oauth/token',
   method: 'post',
@@ -30,6 +46,18 @@ export const refreshToken = (refresh_token, tenantId) => request({
     refresh_token,
     grant_type: "refresh_token",
     scope: "all",
+  }
+});
+
+export const registerGuest = (form, oauthId) => request({
+  url: '/api/blade-user/register-guest',
+  method: 'post',
+  params: {
+    tenantId: form.tenantId,
+    name: form.name,
+    account: form.account,
+    password: form.password,
+    oauthId
   }
 });
 

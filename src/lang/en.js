@@ -73,6 +73,8 @@ export default {
     password: 'Please input a password',
     wechat: 'Wechat',
     qq: 'QQ',
+    github: 'github',
+    gitee: 'gitee',
     phone: 'Please input a phone',
     code: 'Please input a code',
     submit: 'Login',

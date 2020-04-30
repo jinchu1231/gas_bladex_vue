@@ -4,7 +4,7 @@ import {setStore, getStore} from '@/util/store'
 import {isURL, validatenull} from '@/util/validate'
 import {deepClone} from '@/util/util'
 import website from '@/config/website'
-import {loginByUsername, getUserInfo, logout, refreshToken, getButtons} from '@/api/user'
+import {loginByUsername, loginBySocial, getUserInfo, logout, refreshToken, getButtons} from '@/api/user'
 import {getTopMenu, getRoutes} from '@/api/system/menu'
 import md5 from 'js-md5'
 
@@ -69,15 +69,6 @@ const user = {
         })
       })
     },
-    GetButtons({commit}) {
-      return new Promise((resolve) => {
-        getButtons().then(res => {
-          const data = res.data.data;
-          commit('SET_PERMISSION', data);
-          resolve();
-        })
-      })
-    },
     //根据手机号登录
     LoginByPhone({commit}, userInfo) {
       return new Promise((resolve) => {
@@ -90,6 +81,28 @@ const user = {
         })
       })
     },
+    //根据第三方信息登录
+    LoginBySocial({ commit }, userInfo) {
+      return new Promise((resolve) => {
+        loginBySocial(userInfo.tenantId, userInfo.source, userInfo.code, userInfo.state).then(res => {
+          const data = res.data;
+          if (data.error_description) {
+            Message({
+              message: data.error_description,
+              type: 'error'
+            })
+          } else {
+            commit('SET_TOKEN', data.access_token);
+            commit('SET_REFRESH_TOKEN', data.refresh_token);
+            commit('SET_USER_INFO', data);
+            commit('DEL_ALL_TAG');
+            commit('CLEAR_LOCK');
+          }
+          resolve();
+        })
+      })
+    },
+    //获取用户信息
     GetUserInfo({commit}) {
       return new Promise((resolve, reject) => {
         getUserInfo().then((res) => {
@@ -170,6 +183,16 @@ const user = {
           commit('SET_MENU', menu)
           dispatch('GetButtons');
           resolve(menu)
+        })
+      })
+    },
+    //获取系统按钮
+    GetButtons({commit}) {
+      return new Promise((resolve) => {
+        getButtons().then(res => {
+          const data = res.data.data;
+          commit('SET_PERMISSION', data);
+          resolve();
         })
       })
     },

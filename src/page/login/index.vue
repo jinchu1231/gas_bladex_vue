@@ -1,8 +1,7 @@
 <template>
   <div class="login-container"
-       ref="login"
        @keyup.enter.native="handleLogin">
-    <top-color v-show="false"/>
+    <top-color v-show="false"></top-color>
     <div class="login-weaper animated bounceInDown">
       <div class="login-left">
         <div class="login-time">
@@ -17,11 +16,11 @@
         <div class="login-main">
           <h4 class="login-title">
             {{ $t('login.title') }}{{website.title}}
-            <top-lang/>
+            <top-lang></top-lang>
           </h4>
-          <userLogin v-if="activeName==='user'"/>
-          <codeLogin v-else-if="activeName==='code'"/>
-          <thirdLogin v-else-if="activeName==='third'"/>
+          <userLogin v-if="activeName==='user'"></userLogin>
+          <codeLogin v-else-if="activeName==='code'"></codeLogin>
+          <thirdLogin v-else-if="activeName==='third'"></thirdLogin>
           <div class="login-menu">
             <a href="#"
                @click.stop="activeName='user'">{{ $t('login.userLogin') }}</a>
@@ -45,6 +44,7 @@
   import {validatenull} from "@/util/validate";
   import topLang from "@/page/index/top/top-lang";
   import topColor from "@/page/index/top/top-color";
+  import {getQueryString, getTopUrl} from "@/util/util";
 
   export default {
     name: "login",
@@ -58,43 +58,60 @@
     data() {
       return {
         time: "",
-        activeName: "user"
+        activeName: "user",
+        socialForm: {
+          tenantId: "000000",
+          source: "",
+          code: "",
+          state: "",
+        }
       };
     },
     watch: {
       $route() {
-        const params = this.$route.query;
-        this.socialForm.state = params.state;
-        this.socialForm.code = params.code;
-        if (!validatenull(this.socialForm.state)) {
-          const loading = this.$loading({
-            lock: true,
-            text: `${
-              this.socialForm.state === "WX" ? "微信" : "QQ"
-            }登录中,请稍后。。。`,
-            spinner: "el-icon-loading"
-          });
-          setTimeout(() => {
-            loading.close();
-          }, 2000);
-        }
+        this.handleLogin();
       }
     },
     created() {
+      this.handleLogin();
       this.getTime();
-      setInterval(() => {
-        this.getTime();
-      }, 1000);
     },
     mounted() {
     },
     computed: {
-      ...mapGetters(["website"])
+      ...mapGetters(["website", "tagWel"])
     },
     props: [],
     methods: {
       getTime() {
-        this.time = dateFormat(new Date());
+        setInterval(() => {
+          this.time = dateFormat(new Date());
+        }, 1000);
+      },
+      handleLogin() {
+        const topUrl = getTopUrl();
+        const redirectUrl = "/oauth/redirect/";
+        if (topUrl.includes(redirectUrl)) {
+          let source = topUrl.split("?")[0];
+          source = source.split(redirectUrl)[1];
+          this.socialForm.source = source;
+          this.socialForm.code = getQueryString("code");
+          this.socialForm.state = getQueryString("state");
+        }
+        if (!validatenull(this.socialForm.source) && !validatenull(this.socialForm.code) && !validatenull(this.socialForm.state)) {
+          const loading = this.$loading({
+            lock: true,
+            text: '第三方系统登录中,请稍后。。。',
+            spinner: "el-icon-loading"
+          });
+          this.$store.dispatch("LoginBySocial", this.socialForm).then(() => {
+            window.location.href = topUrl.split(redirectUrl)[0];
+            this.$router.push({path: this.tagWel.value});
+            loading.close();
+          }).catch(() => {
+            loading.close();
+          });
+        }
       }
     }
   };

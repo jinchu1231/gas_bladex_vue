@@ -7,9 +7,7 @@
         <div class="login-time">
           {{time}}
         </div>
-        <img class="img"
-             src="/img/logo.png"
-             alt="">
+        <img class="img" src="/img/logo.png" alt="">
         <p class="title">{{ $t('login.info') }}</p>
       </div>
       <div class="login-border">
@@ -91,12 +89,13 @@
       handleLogin() {
         const topUrl = getTopUrl();
         const redirectUrl = "/oauth/redirect/";
-        if (topUrl.includes(redirectUrl)) {
+        this.socialForm.source = getQueryString("source");
+        this.socialForm.code = getQueryString("code");
+        this.socialForm.state = getQueryString("state");
+        if (validatenull(this.socialForm.source) && topUrl.includes(redirectUrl)) {
           let source = topUrl.split("?")[0];
           source = source.split(redirectUrl)[1];
           this.socialForm.source = source;
-          this.socialForm.code = getQueryString("code");
-          this.socialForm.state = getQueryString("state");
         }
         if (!validatenull(this.socialForm.source) && !validatenull(this.socialForm.code) && !validatenull(this.socialForm.state)) {
           const loading = this.$loading({

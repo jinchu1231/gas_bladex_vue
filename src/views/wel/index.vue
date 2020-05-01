@@ -27,7 +27,7 @@
             </el-form-item>
           </el-form>
           <span slot="footer" class="dialog-footer">
-              <el-button type="primary" @click="handleRegister">确 定</el-button>
+              <el-button type="primary" :loading="loading" @click="handleRegister">确 定</el-button>
             </span>
         </el-dialog>
       </el-col>
@@ -463,6 +463,7 @@
           password: '',
           password2: '',
         },
+        loading: false,
         tenantMode: true,
         accountBox: false,
         activeNames: ['1', '2', '3', '5'],
@@ -501,14 +502,16 @@
           this.$message.warning("两次密码输入不一致");
           return;
         }
+        this.loading = true;
         registerGuest(this.form, this.userInfo.oauth_id).then(res => {
+          this.loading = false;
           const data = res.data;
           if (data.success) {
+            this.accountBox = false;
             this.$alert("注册申请已提交,请耐心等待管理员通过!", '注册提示')
           } else {
             this.$message.error(data.msg || '提交失败');
           }
-          this.accountBox = false;
         });
       },
       getTenant() {

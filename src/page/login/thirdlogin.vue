@@ -1,7 +1,7 @@
 <template>
   <div class="social-container">
     <div class="box" @click="handleClick('github')">
-      <span class="container" :style="{backgroundColor:'#6ba2d6'}">
+      <span class="container" :style="{backgroundColor:'#61676D'}">
         <i icon-class="github" class="iconfont icongithub"></i>
       </span>
       <p class="title">{{$t('login.github')}}</p>
@@ -11,6 +11,18 @@
         <i icon-class="gitee" class="iconfont icongitee2"></i>
       </span>
       <p class="title">{{$t('login.gitee')}}</p>
+    </div>
+    <div class="box" @click="handleClick('wechat_open')">
+      <span class="container" :style="{backgroundColor:'#8dc349'}">
+        <i icon-class="wechat" class="iconfont icon-weixin"/>
+      </span>
+      <p class="title">{{$t('login.wechat')}}</p>
+    </div>
+    <div class="box" @click="handleClick('qq')">
+      <span class="container" :style="{backgroundColor:'#6ba2d6'}">
+        <i icon-class="qq" class="iconfont icon-qq"/>
+      </span>
+      <p class="title">{{$t('login.qq')}}</p>
     </div>
   </div>
 </template>
@@ -23,7 +35,6 @@
     methods: {
       handleClick(source) {
         window.location.href = `${website.authUrl}/${source}`;
-        //openWindow(authUrl, source, 540, 540);
       }
     }
   };

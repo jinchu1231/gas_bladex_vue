@@ -166,7 +166,7 @@ export const optionChild = {
       prop: "sort",
       type: "number",
       align: "right",
-      width: 80,
+      hide: true,
       rules: [
         {
           required: true,

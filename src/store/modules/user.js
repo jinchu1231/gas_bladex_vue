@@ -221,6 +221,9 @@ const user = {
       setStore({name: 'tenantId', content: state.tenantId, type: 'session'})
     },
     SET_USER_INFO: (state, userInfo) => {
+      if (validatenull(userInfo.avatar)) {
+        userInfo.avatar = "/img/bg/img-logo.png";
+      }
       state.userInfo = userInfo;
       setStore({name: 'userInfo', content: state.userInfo})
     },

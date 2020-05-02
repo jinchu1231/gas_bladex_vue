@@ -452,12 +452,14 @@
   import {registerGuest} from "@/api/user";
   import {getTopUrl} from "@/util/util";
   import {info} from "@/api/system/tenant";
+  import {validatenull} from "@/util/validate";
 
   export default {
     name: "wel",
     data() {
       return {
         form: {
+          tenantId: '',
           name: '',
           account: '',
           password: '',
@@ -478,7 +480,7 @@
     },
     mounted() {
       // 若未登录则弹出框进行绑定
-      if (this.userInfo.user_id === undefined || this.userInfo.user_id < 0) {
+      if (validatenull(this.userInfo.user_id) || this.userInfo.user_id < 0) {
         this.form.name = this.userInfo.user_name;
         this.form.account = this.userInfo.user_name;
         this.accountBox = true;
@@ -512,6 +514,9 @@
           } else {
             this.$message.error(data.msg || '提交失败');
           }
+        }, error => {
+          window.console.log(error);
+          this.loading = false;
         });
       },
       getTenant() {

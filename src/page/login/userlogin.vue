@@ -81,7 +81,7 @@
           username: "admin",
           //密码
           password: "admin",
-          //账户类型
+          //账号类型
           type: "account",
           //验证码的值
           code: "",

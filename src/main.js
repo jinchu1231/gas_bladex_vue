@@ -18,6 +18,7 @@ import i18n from './lang' // Internationalization
 import './styles/common.scss';
 import basicBlock from './components/basic-block/main'
 import basicContainer from './components/basic-container/main'
+import thirdRegister from './components/third-register/main'
 import website from '@/config/website';
 
 Vue.use(router);
@@ -31,6 +32,7 @@ Vue.use(window.AVUE, {
 //注册全局容器
 Vue.component('basicContainer', basicContainer);
 Vue.component('basicBlock', basicBlock);
+Vue.component('thirdRegister', thirdRegister);
 // 加载相关url地址
 Object.keys(urls).forEach(key => {
   Vue.prototype[key] = urls[key];

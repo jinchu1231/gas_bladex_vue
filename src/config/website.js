@@ -38,7 +38,7 @@ export default {
       children: 'children'
     }
   },
-  // 授权地址
+  // 第三方系统授权地址
   authUrl: 'http://localhost/blade-auth/oauth/render',
   // 流程设计器地址
   flowDesignUrl: 'http://localhost:9999',

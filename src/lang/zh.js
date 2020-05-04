@@ -78,7 +78,7 @@ export default {
     phone: '请输入手机号',
     code: '请输入验证码',
     submit: '登录',
-    userLogin: '账号密码登陆',
+    userLogin: '账号密码登录',
     phoneLogin: '手机号登录',
     thirdLogin: '第三方系统登录',
     msgText: '发送验证码',

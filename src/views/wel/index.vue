@@ -159,7 +159,7 @@
                 <div>18.新增CacheUtil租户缓存隔离功能</div>
                 <div>19.优化CacheUtil缓存重载逻辑，返回bean不为null但数据全为空将不入缓存</div>
                 <div>20.优化缓存清除逻辑，@CacheEvict统一修改为CacheUtil.clear</div>
-                <div>21.优化登陆逻辑，前端对密码加密后再传递至鉴权接口</div>
+                <div>21.优化登录逻辑，前端对密码加密后再传递至鉴权接口</div>
                 <div>22.优化Oss上传接口，返回domain字段</div>
                 <div>23.优化BladeRedisCache命名为BladeRedis</div>
                 <div>24.优化控制台日志打印功能，规避MultipartFile读取报错</div>
@@ -209,8 +209,8 @@
                 <div>16.修复业务字典缓存bug，增加租户过滤</div>
                 <div>17.修复占位符解析器的bug</div>
               </el-collapse-item>
-              <el-collapse-item title="2.3.1.RELEASE发布，流程增加租户定制，登陆增加验证码" name="13">
-                <div>1.新增登陆验证码功能</div>
+              <el-collapse-item title="2.3.1.RELEASE发布，流程增加租户定制，登录增加验证码" name="13">
+                <div>1.新增登录验证码功能</div>
                 <div>2.新增Oauth2自定义TokenGranter</div>
                 <div>3.新增工作流绑定租户功能，支持通用流程和定制流程</div>
                 <div>4.新增Condition类的自定义参数排除入口</div>

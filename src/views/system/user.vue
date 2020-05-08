@@ -1,9 +1,13 @@
 <template>
   <el-row>
     <el-col :span="5">
-      <basic-container>
-        <avue-tree :option="treeOption" :data="treeData" @node-click="nodeClick"/>
-      </basic-container>
+      <div class="box">
+        <el-scrollbar>
+          <basic-container>
+            <avue-tree :option="treeOption" :data="treeData" @node-click="nodeClick"/>
+          </basic-container>
+        </el-scrollbar>
+      </div>
     </el-col>
     <el-col :span="19">
       <basic-container>
@@ -730,4 +734,15 @@
 </script>
 
 <style>
+  .box {
+    height: 800px;
+  }
+
+  .el-scrollbar {
+    height: 100%;
+  }
+
+  .box .el-scrollbar__wrap {
+    overflow: scroll;
+  }
 </style>

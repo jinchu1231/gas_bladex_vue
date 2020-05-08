@@ -1,18 +1,23 @@
 <template>
   <el-row>
     <el-col :span="9">
-      <basic-container>
-        <avue-tree :option="treeOption" :data="treeData" @node-click="nodeClick"/>
-      </basic-container>
+      <div class="box">
+        <el-scrollbar>
+          <basic-container>
+            <avue-tree :option="treeOption" :data="treeData" @node-click="nodeClick"/>
+          </basic-container>
+        </el-scrollbar>
+      </div>
     </el-col>
     <el-col :span="15">
       <basic-container>
         <el-button-group>
-          <el-button type="primary" size="medium" icon="el-icon-circle-plus-outline" @click="addChildren">新增下级
+          <el-button type="primary" size="small" icon="el-icon-circle-plus-outline" @click="addChildren">新增下级
           </el-button>
-          <el-button type="primary" size="medium" icon="el-icon-delete" @click="handleDelete">删除</el-button>
-          <el-button type="primary" size="medium" icon="el-icon-upload2">导入</el-button>
-          <el-button type="primary" size="medium" icon="el-icon-download">导出</el-button>
+          <el-button type="primary" size="small" icon="el-icon-delete" @click="handleDelete">删除</el-button>
+          <el-button type="primary" size="small" icon="el-icon-upload2">导入</el-button>
+          <el-button type="primary" size="small" icon="el-icon-download">导出</el-button>
+          <el-button type="primary" size="small" icon="el-icon-video-play">调试</el-button>
         </el-button-group>
       </basic-container>
       <basic-container>
@@ -36,6 +41,9 @@
   export default {
     data() {
       return {
+        topCode: '00',
+        treeCode: '',
+        treeParentCode: '',
         treeData: [],
         treeOption: {
           nodeKey: 'id',
@@ -69,12 +77,18 @@
               label: "父区划编号",
               prop: "parentCode",
               span: 24,
-              disabled: false,
+              disabled: true,
               rules: [{
                 required: true,
                 message: "请输入父区划编号",
                 trigger: "blur"
               }]
+            },
+            {
+              label: "父区划名称",
+              prop: "parentName",
+              span: 24,
+              disabled: true,
             },
             {
               label: "区划编号",
@@ -168,7 +182,7 @@
     methods: {
       initTree() {
         this.treeData = [];
-        getLazyTree("00").then(res => {
+        getLazyTree(this.topCode).then(res => {
           this.treeData = res.data.data.map(item => {
             return {
               ...item,
@@ -180,25 +194,28 @@
       nodeClick(data) {
         const column = this.findObject(this.regionOption.column, "parentCode");
         column.disabled = true;
-        getDetail(data.id).then(res => {
+        this.treeCode = data.id;
+        this.treeParentCode = data.parentId;
+        getDetail(this.treeCode).then(res => {
           this.regionForm = res.data.data;
-          debugger
           this.regionForm.subCode = this.regionForm.code.replace(this.regionForm.parentCode, '');
         })
       },
       addChildren() {
-        if (validatenull(this.regionForm.code)) {
+        if (validatenull(this.regionForm.code) || validatenull(this.regionForm.name)) {
           this.$message.warning("请先选择一项区划");
           return;
         }
         this.regionForm.parentCode = this.regionForm.code;
+        this.regionForm.parentName = this.regionForm.name;
         this.regionForm.code = '';
         this.regionForm.subCode = '';
         this.regionForm.name = '';
         this.regionForm.level = (this.regionForm.level === 5) ? 5 : this.regionForm.level + 1;
       },
       handleSubmit(form, done, loading) {
-        form.code = form.parentCode + form.subCode;
+        const parentCode = form.parentCode === this.topCode ? '' : form.parentCode;
+        form.code = parentCode + form.subCode;
         submit(form).then(() => {
           this.$message({
             type: "success",
@@ -224,7 +241,7 @@
           type: "warning"
         })
           .then(() => {
-            return remove(this.regionForm.code);
+            return remove(this.treeCode);
           })
           .then(() => {
             this.$message({
@@ -241,4 +258,15 @@
 </script>
 
 <style>
+  .box {
+    height: 800px;
+  }
+
+  .el-scrollbar {
+    height: 100%;
+  }
+
+  .box .el-scrollbar__wrap {
+    overflow: scroll;
+  }
 </style>

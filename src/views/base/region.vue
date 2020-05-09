@@ -15,19 +15,37 @@
           <el-button type="primary" size="small" icon="el-icon-circle-plus-outline" @click="addChildren">新增下级
           </el-button>
           <el-button type="primary" size="small" icon="el-icon-delete" @click="handleDelete">删除</el-button>
-          <el-button type="primary" size="small" icon="el-icon-upload2">导入</el-button>
-          <el-button type="primary" size="small" icon="el-icon-download">导出</el-button>
-          <el-button type="primary" size="small" icon="el-icon-video-play">调试</el-button>
+          <el-button type="primary" size="small" icon="el-icon-upload2" @click="handleImport">导入</el-button>
+          <el-button type="primary" size="small" icon="el-icon-download" @click="handleExport">导出</el-button>
+          <el-button type="primary" size="small" icon="el-icon-video-play" @click="handleDebug">调试</el-button>
         </el-button-group>
       </basic-container>
       <basic-container>
         <avue-form ref="form" :option="regionOption" v-model="regionForm" @submit="handleSubmit">
           <template slot="code" slot-scope="{}">
-            <el-input placeholder="请输入区划子编号" v-model="regionForm.subCode">
+            <el-input placeholder="请输入 区划子编号" v-model="regionForm.subCode">
               <template slot="prepend">{{regionForm.parentCode}}</template>
             </el-input>
           </template>
         </avue-form>
+        <el-dialog title="行政区划数据导入"
+                   append-to-body
+                   :visible.sync="excelBox"
+                   width="555px">
+          <avue-form :option="excelOption" v-model="excelForm" :upload-after="uploadAfter">
+            <template slot="excelTemplate">
+              <el-button type="primary" @click="handleTemplate()">
+                点击下载<i class="el-icon-download el-icon--right"></i>
+              </el-button>
+            </template>
+          </avue-form>
+        </el-dialog>
+        <el-dialog title="行政区划数据调试"
+                   append-to-body
+                   :visible.sync="debugBox"
+                   width="350px">
+          <avue-form :option="debugOption" v-model="debugForm"/>
+        </el-dialog>
       </basic-container>
     </el-col>
   </el-row>
@@ -37,6 +55,7 @@
   import {getLazyTree, getDetail, submit, remove} from "@/api/base/region";
   import {mapGetters} from "vuex";
   import {validatenull} from "@/util/validate";
+  import {getToken} from "@/util/auth";
 
   export default {
     data() {
@@ -153,12 +172,115 @@
             },
           ]
         },
-        data: []
+        excelBox: false,
+        excelForm: {},
+        excelOption: {
+          submitBtn: false,
+          emptyBtn: false,
+          column: [
+            {
+              label: '模板上传',
+              prop: 'excelFile',
+              type: 'upload',
+              drag: true,
+              loadText: '模板上传中，请稍等',
+              span: 24,
+              propsHttp: {
+                res: 'data'
+              },
+              tip: '请上传 .xls,.xlsx 标准格式文件',
+              action: "/api/blade-system/region/import-region"
+            },
+            {
+              label: "数据覆盖",
+              prop: "isCovered",
+              type: "switch",
+              align: "center",
+              width: 80,
+              dicData: [
+                {
+                  label: "否",
+                  value: 0
+                },
+                {
+                  label: "是",
+                  value: 1
+                }
+              ],
+              value: 0,
+              slot: true,
+              rules: [
+                {
+                  required: true,
+                  message: "请选择是否覆盖",
+                  trigger: "blur"
+                }
+              ]
+            },
+            {
+              label: '模板下载',
+              prop: 'excelTemplate',
+              formslot: true,
+              span: 24,
+            }
+          ]
+        },
+        debugBox: false,
+        debugForm: {},
+        debugOption: {
+          labelWidth: 50,
+          submitBtn: false,
+          emptyBtn: false,
+          column: [
+            {
+              label: '省份',
+              prop: 'province',
+              type: 'select',
+              props: {
+                label: 'name',
+                value: 'code'
+              },
+              cascaderItem: ['city', 'district'],
+              dicUrl: '/api/blade-system/region/select',
+              span: 24,
+            },
+            {
+              label: '地市',
+              prop: 'city',
+              type: 'select',
+              props: {
+                label: 'name',
+                value: 'code'
+              },
+              dicFlag: false,
+              dicUrl: '/api/blade-system/region/select?code={{key}}',
+              span: 24,
+            },
+            {
+              label: '区县',
+              prop: 'district',
+              type: 'select',
+              props: {
+                label: 'name',
+                value: 'code'
+              },
+              dicFlag: false,
+              dicUrl: '/api/blade-system/region/select?code={{key}}',
+              span: 24,
+            }
+          ]
+        }
       };
     },
     watch: {
       'regionForm.subCode'() {
         this.regionForm.code = this.regionForm.parentCode + this.regionForm.subCode;
+      },
+      'excelForm.isCovered'() {
+        if (this.excelForm.isCovered !== '') {
+          const column = this.findObject(this.excelOption.column, "excelFile");
+          column.action = `/api/blade-system/region/import-region?isCovered=${this.excelForm.isCovered}`;
+        }
       }
     },
     computed: {
@@ -252,6 +374,30 @@
             this.regionForm.subCode = '';
             this.$refs.form.resetForm();
           });
+      },
+      uploadAfter(res, done, loading, column) {
+        window.console.log(column);
+        this.excelBox = false;
+        this.initTree();
+        done();
+      },
+      handleDebug() {
+        this.debugBox = true;
+      },
+      handleImport() {
+        this.excelBox = true;
+      },
+      handleExport() {
+        this.$confirm("是否导出行政区划数据?", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }).then(() => {
+          window.open(`/api/blade-system/region/export-region?Blade-Auth=${getToken()}`);
+        });
+      },
+      handleTemplate() {
+        window.open(`/api/blade-system/region/export-template?Blade-Auth=${getToken()}`);
       },
     }
   };

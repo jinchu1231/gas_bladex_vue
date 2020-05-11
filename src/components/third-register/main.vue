@@ -35,6 +35,7 @@
   import {registerGuest} from "@/api/user";
   import {getTopUrl} from "@/util/util";
   import {info} from "@/api/system/tenant";
+  import {resetRouter} from "@/router/router";
 
   export default {
     name: "thirdRegister",
@@ -90,7 +91,12 @@
           const data = res.data;
           if (data.success) {
             this.accountBox = false;
-            this.$alert("注册申请已提交,请耐心等待管理员通过!", '注册提示')
+            this.$alert("注册申请已提交,请耐心等待管理员通过!", '注册提示').then(() => {
+              this.$store.dispatch("LogOut").then(() => {
+                resetRouter();
+                this.$router.push({path: "/login"});
+              });
+            })
           } else {
             this.$message.error(data.msg || '提交失败');
           }

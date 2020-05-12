@@ -12,12 +12,11 @@
     <el-col :span="15">
       <basic-container>
         <el-button-group>
-          <el-button type="primary" size="small" icon="el-icon-circle-plus-outline" @click="addChildren">新增下级
-          </el-button>
-          <el-button type="primary" size="small" icon="el-icon-delete" @click="handleDelete">删除</el-button>
-          <el-button type="primary" size="small" icon="el-icon-upload2" @click="handleImport">导入</el-button>
-          <el-button type="primary" size="small" icon="el-icon-download" @click="handleExport">导出</el-button>
-          <el-button type="primary" size="small" icon="el-icon-video-play" @click="handleDebug">调试</el-button>
+          <el-button v-if="permission.region_add" type="primary" size="small" icon="el-icon-circle-plus-outline" @click="addChildren">新增下级</el-button>
+          <el-button v-if="permission.region_delete" type="primary" size="small" icon="el-icon-delete" @click="handleDelete">删除</el-button>
+          <el-button v-if="permission.region_import" type="primary" size="small" icon="el-icon-upload2" @click="handleImport">导入</el-button>
+          <el-button v-if="permission.region_export" type="primary" size="small" icon="el-icon-download" @click="handleExport">导出</el-button>
+          <el-button v-if="permission.region_debug" type="primary" size="small" icon="el-icon-video-play" @click="handleDebug">调试</el-button>
         </el-button-group>
       </basic-container>
       <basic-container>

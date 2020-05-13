@@ -12,6 +12,7 @@
 <script>
   import option from "@/const/user/info";
   import {getUserInfo, updateInfo, updatePassword} from "@/api/system/user";
+  import md5 from 'js-md5';
 
 
   export default {
@@ -42,7 +43,7 @@
             }
           })
         } else {
-          updatePassword(this.form.oldPassword, this.form.newPassword, this.form.newPassword1).then(res => {
+          updatePassword(md5(this.form.oldPassword), md5(this.form.newPassword), md5(this.form.newPassword1)).then(res => {
             if (res.data.success) {
               this.$message({
                 type: "success",

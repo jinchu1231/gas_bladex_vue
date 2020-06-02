@@ -250,7 +250,6 @@
                 {
                   label: "登录账号",
                   prop: "account",
-                  search: true,
                   rules: [{
                     required: true,
                     message: "请输入登录账号",
@@ -271,7 +270,6 @@
                   addDisplay: website.tenantMode,
                   editDisplay: website.tenantMode,
                   viewDisplay: website.tenantMode,
-                  search: website.tenantMode,
                   rules: [{
                     required: true,
                     message: "请输入所属租户",
@@ -314,7 +312,6 @@
                 {
                   label: "用户姓名",
                   prop: "realName",
-                  search: true,
                   rules: [{
                     required: true,
                     message: "请输入用户姓名",
@@ -698,11 +695,11 @@
           type: "warning"
         }).then(() => {
           const searchForm = this.$refs.crud.searchForm;
-          window.open(`/api/blade-user/export-user?Blade-Auth=${getToken()}&account=${searchForm.account}&realName=${searchForm.realName}`);
+          window.open(`/api/blade-user/export-user?${this.website.tokenHeader}=${getToken()}&account=${searchForm.account}&realName=${searchForm.realName}`);
         });
       },
       handleTemplate() {
-        window.open(`/api/blade-user/export-template?Blade-Auth=${getToken()}`);
+        window.open(`/api/blade-user/export-template?${this.website.tokenHeader}=${getToken()}`);
       },
       beforeOpen(done, type) {
         if (["edit", "view"].includes(type)) {

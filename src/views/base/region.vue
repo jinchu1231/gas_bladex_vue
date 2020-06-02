@@ -392,11 +392,11 @@
           cancelButtonText: "取消",
           type: "warning"
         }).then(() => {
-          window.open(`/api/blade-system/region/export-region?Blade-Auth=${getToken()}`);
+          window.open(`/api/blade-system/region/export-region?${this.website.tokenHeader}=${getToken()}`);
         });
       },
       handleTemplate() {
-        window.open(`/api/blade-system/region/export-template?Blade-Auth=${getToken()}`);
+        window.open(`/api/blade-system/region/export-template?${this.website.tokenHeader}=${getToken()}`);
       },
     }
   };

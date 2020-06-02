@@ -13,7 +13,8 @@ export default {
   captchaMode: true, // 是否开启验证码模式
   lockPage: '/lock',
   tokenTime: 3000,
-  //http的status默认放行不才用统一处理的,
+  tokenHeader: 'Blade-Auth',
+  //http的status默认放行列表
   statusWhiteList: [],
   //配置首页不可关闭
   isFirstPage: false,

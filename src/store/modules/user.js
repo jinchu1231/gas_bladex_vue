@@ -137,6 +137,7 @@ const user = {
           commit('SET_MENU_ID', {});
           commit('SET_MENU_ALL', []);
           commit('SET_ROLES', []);
+          commit('SET_TAG_LIST', []);
           commit('DEL_ALL_TAG');
           commit('CLEAR_LOCK');
           removeToken();
@@ -155,6 +156,7 @@ const user = {
         commit('SET_MENU_ALL', []);
         commit('SET_MENU', []);
         commit('SET_ROLES', []);
+        commit('SET_TAG_LIST', []);
         commit('DEL_ALL_TAG');
         commit('CLEAR_LOCK');
         removeToken();
@@ -180,6 +182,7 @@ const user = {
           menu.forEach(ele => {
             addPath(ele, true);
           });
+          commit('SET_MENU_ALL', menu)
           commit('SET_MENU', menu)
           dispatch('GetButtons');
           resolve(menu)
@@ -201,35 +204,19 @@ const user = {
     SET_TOKEN: (state, token) => {
       setToken(token);
       state.token = token;
-      setStore({name: 'token', content: state.token, type: 'session'})
+      setStore({name: 'token', content: state.token})
     },
     SET_MENU_ID(state, menuId) {
       state.menuId = menuId;
-      setStore({name: 'menuId', content: state.menuId, type: 'session'})
+      setStore({name: 'menuId', content: state.menuId})
     },
     SET_MENU_ALL: (state, menuAll) => {
       state.menuAll = menuAll
-      setStore({name: 'menuAll', content: state.menuAll, type: 'session'})
-    },
-    SET_REFRESH_TOKEN: (state, refreshToken) => {
-      setRefreshToken(refreshToken)
-      state.refreshToken = refreshToken;
-      setStore({name: 'refreshToken', content: state.refreshToken, type: 'session'})
-    },
-    SET_TENANT_ID: (state, tenantId) => {
-      state.tenantId = tenantId;
-      setStore({name: 'tenantId', content: state.tenantId, type: 'session'})
-    },
-    SET_USER_INFO: (state, userInfo) => {
-      if (validatenull(userInfo.avatar)) {
-        userInfo.avatar = "/img/bg/img-logo.png";
-      }
-      state.userInfo = userInfo;
-      setStore({name: 'userInfo', content: state.userInfo})
+      setStore({name: 'menuAll', content: state.menuAll})
     },
     SET_MENU: (state, menu) => {
       state.menu = menu
-      setStore({name: 'menu', content: state.menu, type: 'session'})
+      setStore({name: 'menu', content: state.menu})
       if (validatenull(menu)) return;
       //合并动态路由去重
       let menuAll = state.menuAll;
@@ -238,14 +225,32 @@ const user = {
       for (let item1 of menuAll) {
         let flag = true;
         for (let item2 of newMenu) {
-          if (item1.label === item2.label || item1.path === item2.path) {
+          if (item1.name === item2.name || item1.path === item2.path) {
             flag = false;
           }
         }
-        if (flag) newMenu.push(item1);
+        if (flag) {
+          newMenu.push(item1);
+        }
       }
       state.menuAll = newMenu;
-      setStore({name: 'menuAll', content: state.menuAll, type: 'session'})
+      setStore({name: 'menuAll', content: state.menuAll})
+    },
+    SET_REFRESH_TOKEN: (state, refreshToken) => {
+      setRefreshToken(refreshToken)
+      state.refreshToken = refreshToken;
+      setStore({name: 'refreshToken', content: state.refreshToken})
+    },
+    SET_TENANT_ID: (state, tenantId) => {
+      state.tenantId = tenantId;
+      setStore({name: 'tenantId', content: state.tenantId})
+    },
+    SET_USER_INFO: (state, userInfo) => {
+      if (validatenull(userInfo.avatar)) {
+        userInfo.avatar = "/img/bg/img-logo.png";
+      }
+      state.userInfo = userInfo;
+      setStore({name: 'userInfo', content: state.userInfo})
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles;
@@ -272,7 +277,7 @@ const user = {
       result.forEach(ele => {
         state.permission[ele] = true;
       });
-      setStore({name: 'permission', content: state.permission, type: 'session'})
+      setStore({name: 'permission', content: state.permission})
     }
   }
 

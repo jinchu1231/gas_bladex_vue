@@ -27,7 +27,7 @@ const dict = {
           routeValue: item.remark,
         };
       });
-      setStore({name: 'flowRoutes', content: state.flowRoutes, type: 'session'})
+      setStore({name: 'flowRoutes', content: state.flowRoutes})
     },
   }
 

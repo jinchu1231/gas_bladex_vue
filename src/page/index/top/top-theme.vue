@@ -43,6 +43,10 @@ export default {
           value: "theme-white"
         },
         {
+          name: "黑色主题",
+          value: "theme-dark"
+        },
+        {
           name: "炫彩主题",
           value: "theme-star"
         },

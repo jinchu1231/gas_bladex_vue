@@ -328,6 +328,7 @@
         done();
       },
       beforeClose(done) {
+        this.$refs.crud.tableForm = {};
         this.$refs.crud.value.parentId = "";
         this.$refs.crud.value.addDisabled = false;
         this.$refs.crud.option.column.filter(item => {

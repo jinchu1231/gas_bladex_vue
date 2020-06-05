@@ -33,7 +33,7 @@
                    width="555px">
           <avue-form :option="excelOption" v-model="excelForm" :upload-after="uploadAfter">
             <template slot="excelTemplate">
-              <el-button type="primary" @click="handleTemplate()">
+              <el-button type="primary" @click="handleTemplate">
                 点击下载<i class="el-icon-download el-icon--right"></i>
               </el-button>
             </template>

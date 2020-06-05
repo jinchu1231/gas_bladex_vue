@@ -33,11 +33,13 @@
                    plain>菜单配置
         </el-button>
       </template>
-      <template slot-scope="{row}"
-                slot="source">
+      <template slot-scope="{row}" slot="source">
         <div style="text-align:center">
           <i :class="row.source"></i>
         </div>
+      </template>
+      <template slot="sort" slot-scope="{row}" >
+        <el-input-number v-model="row.sort" @change="sortChange(row)" :min="1" :max="100"></el-input-number>
       </template>
     </avue-crud>
     <el-dialog title="下级菜单配置"
@@ -88,7 +90,7 @@
         menuGrantList: [],
         menuTreeObj: [],
         option: {
-          height:'auto',
+          height: 'auto',
           calcHeight: 30,
           tip: false,
           searchShow: true,
@@ -138,6 +140,7 @@
               label: "菜单排序",
               prop: "sort",
               type: "number",
+              slot: true,
               rules: [{
                 required: true,
                 message: "请输入菜单排序",
@@ -266,6 +269,13 @@
           });
         }
         done();
+      },
+      sortChange(row) {
+        update(row).then(() => {
+          this.onLoad(this.page);
+        }, error => {
+          window.console.log(error);
+        });
       },
       searchReset() {
         this.query = {};

@@ -314,6 +314,7 @@
         done();
       },
       beforeClose(done) {
+        this.$refs.crud.tableForm = {};
         this.$refs.crud.value.code = "";
         this.$refs.crud.value.parentId = "";
         this.$refs.crud.value.addDisabled = false;

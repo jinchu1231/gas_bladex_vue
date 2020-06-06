@@ -35,6 +35,7 @@
       </template>
     </avue-crud>
     <el-drawer :title="`[${scopeMenuName}] 接口权限配置`" :visible.sync="drawerVisible" :direction="direction"
+               append-to-body
                :before-close="handleDrawerClose" size="1000px">
       <basic-container>
         <avue-crud :option="optionScope"

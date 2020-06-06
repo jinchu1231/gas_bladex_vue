@@ -19,6 +19,7 @@ import './styles/common.scss';
 import basicBlock from './components/basic-block/main'
 import basicContainer from './components/basic-container/main'
 import thirdRegister from './components/third-register/main'
+import avueUeditor from 'avue-plugin-ueditor';
 import website from '@/config/website';
 
 Vue.use(router);
@@ -27,12 +28,15 @@ Vue.use(Element, {
   i18n: (key, value) => i18n.t(key, value)
 });
 Vue.use(window.AVUE, {
+  size: 'small',
+  tableSize: 'small',
   i18n: (key, value) => i18n.t(key, value)
 });
 //注册全局容器
 Vue.component('basicContainer', basicContainer);
 Vue.component('basicBlock', basicBlock);
 Vue.component('thirdRegister', thirdRegister);
+Vue.component('avueUeditor', avueUeditor);
 // 加载相关url地址
 Object.keys(urls).forEach(key => {
   Vue.prototype[key] = urls[key];

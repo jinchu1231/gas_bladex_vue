@@ -36,14 +36,10 @@
 </template>
 
 <script>
-  import AvueUeditor from 'avue-plugin-ueditor';
   import {getList, remove, update, add, getNotice} from "@/api/desk/notice";
   import {mapGetters} from "vuex";
 
   export default {
-    comments: {
-      AvueUeditor
-    },
     data() {
       return {
         form: {},
@@ -58,7 +54,7 @@
         option: {
           height: 'auto',
           calcHeight: 30,
-          dialogWidth: 900,
+          dialogWidth: 950,
           tip: false,
           searchShow: true,
           searchMenuSpan: 6,
@@ -132,7 +128,7 @@
             {
               label: "通知内容",
               prop: "content",
-              component: 'ueditor',
+              component: 'AvueUeditor',
               options: {
                 action: '/api/blade-resource/oss/endpoint/put-file',
                 props: {

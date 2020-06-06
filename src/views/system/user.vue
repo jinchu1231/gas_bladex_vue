@@ -119,6 +119,7 @@
 <script>
   import {
     getList,
+    getUser,
     remove,
     update,
     add,
@@ -154,6 +155,7 @@
         form: {},
         roleBox: false,
         excelBox: false,
+        initFlag: true,
         selectionList: [],
         query: {},
         loading: true,
@@ -200,7 +202,7 @@
         },
         option: {
           height: 'auto',
-          calcHeight: 80,
+          calcHeight: 180,
           tip: false,
           searchShow: true,
           searchMenuSpan: 6,
@@ -208,7 +210,7 @@
           index: true,
           selection: true,
           viewBtn: true,
-          dialogType: 'drawer',
+          //dialogType: 'drawer',
           dialogClickModal: false,
           column: [
             {
@@ -490,7 +492,7 @@
     },
     watch: {
       'form.tenantId'() {
-        if (this.form.tenantId !== '') {
+        if (this.form.tenantId !== '' && this.initFlag) {
           this.initData(this.form.tenantId);
         }
       },
@@ -561,6 +563,7 @@
         row.roleId = row.roleId.join(",");
         row.postId = row.postId.join(",");
         add(row).then(() => {
+          this.initFlag = false;
           this.onLoad(this.page);
           this.$message({
             type: "success",
@@ -577,6 +580,7 @@
         row.roleId = row.roleId.join(",");
         row.postId = row.postId.join(",");
         update(row).then(() => {
+          this.initFlag = false;
           this.onLoad(this.page);
           this.$message({
             type: "success",
@@ -704,8 +708,20 @@
       },
       beforeOpen(done, type) {
         if (["edit", "view"].includes(type)) {
-          //预留
+          getUser(this.form.id).then(res => {
+            this.form = res.data.data;
+            if(this.form.hasOwnProperty("deptId")){
+              this.form.deptId = this.form.deptId.split(",");
+            }
+            if(this.form.hasOwnProperty("roleId")){
+              this.form.roleId = this.form.roleId.split(",");
+            }
+            if(this.form.hasOwnProperty("postId")){
+              this.form.postId = this.form.postId.split(",");
+            }
+          });
         }
+        this.initFlag = true;
         done();
       },
       currentChange(currentPage) {

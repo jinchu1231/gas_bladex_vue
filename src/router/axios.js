@@ -12,9 +12,9 @@ import {serialize} from '@/util/util';
 import {getToken} from '@/util/auth';
 import {Message} from 'element-ui';
 import website from '@/config/website';
+import {Base64} from 'js-base64';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import {Base64} from 'js-base64';
 
 //默认超时时间
 axios.defaults.timeout = 10000;
@@ -35,9 +35,13 @@ axios.interceptors.request.use(config => {
   const meta = (config.meta || {});
   const isToken = meta.isToken === false;
   config.headers['Authorization'] = `Basic ${Base64.encode(`${website.clientId}:${website.clientSecret}`)}`;
+  //让每个请求携带token
   if (getToken() && !isToken) {
-    //让每个请求携带token--['Authorization']为自定义key 请根据实际情况自行修改
     config.headers[website.tokenHeader] = 'bearer ' + getToken()
+  }
+  //headers中配置text请求
+  if (config.text === true) {
+    config.headers["Content-Type"] = "text/plain";
   }
   //headers中配置serialize为true开启序列化
   if (config.method === 'post' && meta.isSerialize === true) {

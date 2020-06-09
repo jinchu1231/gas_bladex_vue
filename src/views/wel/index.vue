@@ -9,10 +9,10 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V2.5.0-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V2.5.1-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR5-blue.svg" alt="Coverage Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Boot-2.1.13.RELEASE-blue.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR6-blue.svg" alt="Coverage Status"/>
+            <img src="https://img.shields.io/badge/Spring%20Boot-2.1.14.RELEASE-blue.svg" alt="Downloads"/>
             <a target="_blank" href="https://bladex.vip">
               <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
             </a>
@@ -138,6 +138,41 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="2.5.1.RELEASE发布，增加第三方登录、行政区划、API报文加密" name="16">
+                <div>1.升级 Avue 至 2.6.1、ElementUI 至 2.13.2</div>
+                <div>2.升级 SpringBoot 至 2.1.14.RELEASE</div>
+                <div>3.升级 SpringCloud 至 Greenwich.SR6</div>
+                <div>4.升级 SpringCloud Alibaba 至 2.1.2.RELEASE</div>
+                <div>5.升级 Seata 至 1.2.0</div>
+                <div>6.升级 FastJson 至 1.2.70</div>
+                <div>7.升级 Knife4j 至 2.0.3</div>
+                <div>8.升级 MybatisPlus 至3.3.2</div>
+                <div>9.升级 EasyExcel 至 2.2.4</div>
+                <div>10.新增第三方系统登录，集成拓展JustAuth</div>
+                <div>11.新增行政区划功能模块</div>
+                <div>12.新增API报文加密工具</div>
+                <div>13.新增Token配置，支持有状态模式，支持一人在线或多人在线</div>
+                <div>14.新增Secure配置，支持配置请求方法类型、请求路径、请求表达式匹配</div>
+                <div>15.新增Jackson配置，支持大数字转字符串模式，支持null转空值模式</div>
+                <div>16.新增租户账号授权码保护机制，防止私有部署客户篡改数据库越权</div>
+                <div>17.优化字典模块，增加树形结构</div>
+                <div>18.优化新增租户逻辑，新增时同步超管配置的默认业务字典数据</div>
+                <div>19.优化用户导入逻辑，只有超管才可以定义租户编号</div>
+                <div>20.优化部门列表逻辑，非超管角色只可看到本级及以下部门数据</div>
+                <div>21.优化字典模块，增加枚举类，统一入口</div>
+                <div>22.优化DictCache缓存加载逻辑</div>
+                <div>23.优化租户缓存刷新逻辑</div>
+                <div>24.优化角色配置逻辑，同步取消子角色对应的菜单权限</div>
+                <div>25.优化顶部菜单，增加排序功能</div>
+                <div>26.优化INode，支持泛型</div>
+                <div>27.优化代码结构，为bean统一加上final关键字修饰</div>
+                <div>28.优化Nacos动态刷新配置</div>
+                <div>29.优化Dockerfile，采用Openj9基础镜像，大幅度降低内存占用</div>
+                <div>30.优化工程启动逻辑，关闭Flowable自动建表功能，需要手动导入流程sql</div>
+                <div>31.修复SpringBootAdmin读取actuator路径配置</div>
+                <div>32.修复用户导入逻辑，修正密码加密规则</div>
+                <div>33.修复Boot版本Xss默认配置路径</div>
+              </el-collapse-item>
               <el-collapse-item title="2.5.0.RELEASE发布，增加岗位管理，增加用户导入导出" name="15">
                 <div>1.升级Avue 至 2.5.0</div>
                 <div>2.升级SpringBoot 至 2.1.13</div>
@@ -428,7 +463,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['15']
+        logActiveNames: ['16']
       };
     },
     computed: {

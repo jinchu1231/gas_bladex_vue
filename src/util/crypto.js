@@ -8,6 +8,24 @@ export default class crypto {
   static desKey = "jMVCBsFGDQr1USHo";
 
   /**
+   * aes 加密方法
+   * @param data
+   * @returns {*}
+   */
+  static encrypt(data) {
+    return this.encryptAES(data, this.aesKey);
+  }
+
+  /**
+   * aes 解密方法
+   * @param data
+   * @returns {*}
+   */
+  static decrypt(data) {
+    return this.decryptAES(data, this.aesKey);
+  }
+
+  /**
    * aes 加密方法，同java：AesUtil.encryptToBase64(text, aesKey);
    */
   static encryptAES(data, key) {

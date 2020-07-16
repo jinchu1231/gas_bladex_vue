@@ -174,6 +174,7 @@
           type: "warning"
         }).then(() => {
           clearCache().then(() => {
+            this.contextmenuFlag = false;
             this.$message.success('清除完毕');
           })
         });

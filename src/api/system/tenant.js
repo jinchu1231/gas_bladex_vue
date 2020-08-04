@@ -59,6 +59,17 @@ export const setting = (ids, form) => {
   })
 }
 
+export const datasource = (tenantId, datasourceId) => {
+  return request({
+    url: '/api/blade-system/tenant/datasource',
+    method: 'post',
+    params: {
+      tenantId,
+      datasourceId
+    }
+  })
+}
+
 export const info = (domain) => {
   return request({
     url: '/api/blade-system/tenant/info',

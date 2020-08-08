@@ -78,7 +78,7 @@
 </template>
 
 <script>
-  import {add, getList, getRole, getRoleTree, grant, grantTree, remove, update,} from "@/api/system/role";
+  import {add, getList, getRole, getRoleTree, grant, grantTree, remove, update} from "@/api/system/role";
   import {mapGetters} from "vuex";
   import website from '@/config/website';
 
@@ -380,4 +380,13 @@
 </script>
 
 <style>
+  .el-tree {
+    width: 100%;
+    overflow-x: scroll;
+  }
+
+  .el-tree > .el-tree-node {
+    min-width: 100%;
+    display: inline-block !important;
+  }
 </style>

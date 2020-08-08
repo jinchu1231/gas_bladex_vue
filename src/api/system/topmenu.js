@@ -69,7 +69,7 @@ export const grant = (topMenuIds, menuIds) => {
   return request({
     url: '/api/blade-system/topmenu/grant',
     method: 'post',
-    params: {
+    data: {
       topMenuIds,
       menuIds,
     }

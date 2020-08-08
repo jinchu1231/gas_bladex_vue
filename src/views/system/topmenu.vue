@@ -168,12 +168,19 @@
           ids.push(ele.id);
         });
         return ids.join(",");
+      },
+      idsArray() {
+        let ids = [];
+        this.selectionList.forEach(ele => {
+          ids.push(ele.id);
+        });
+        return ids;
       }
     },
     methods: {
       submit() {
-        const menuList = this.$refs.treeMenu.getCheckedKeys().join(",");
-        grant(this.ids, menuList).then(() => {
+        const menuList = this.$refs.treeMenu.getCheckedKeys();
+        grant(this.idsArray, menuList).then(() => {
           this.box = false;
           this.$message({
             type: "success",

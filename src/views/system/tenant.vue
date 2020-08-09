@@ -5,7 +5,7 @@
                :data="data"
                ref="crud"
                v-model="form"
-               :page="page"
+               :page.sync="page"
                :permission="permissionList"
                :before-open="beforeOpen"
                @row-del="rowDel"

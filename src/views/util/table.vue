@@ -2,7 +2,7 @@
   <basic-container>
     <h3>表格例子</h3>
     <avue-crud :option="option"
-               :page="page"
+               :page.sync="page"
                :data="data" />
   </basic-container>
 </template>

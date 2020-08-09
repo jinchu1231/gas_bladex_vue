@@ -6,7 +6,7 @@
                ref="crud"
                v-model="form"
                :permission="permissionList"
-               :page="page"
+               :page.sync="page"
                @row-del="rowDel"
                @row-update="rowUpdate"
                @row-save="rowSave"

@@ -3,7 +3,7 @@
     <avue-crud :option="option"
                :table-loading="loading"
                :data="data"
-               :page="page"
+               :page.sync="page"
                :permission="permissionList"
                :before-open="beforeOpen"
                v-model="form"

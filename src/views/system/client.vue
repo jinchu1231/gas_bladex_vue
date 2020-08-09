@@ -3,7 +3,7 @@
     <avue-crud :option="option"
                :table-loading="loading"
                :data="data"
-               :page="page"
+               :page.sync="page"
                @row-del="rowDel"
                v-model="form"
                ref="crud"

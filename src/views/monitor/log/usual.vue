@@ -6,7 +6,7 @@
                ref="crud"
                v-model="form"
                :permission="permissionList"
-               :page="page"
+               :page.sync="page"
                :before-open="beforeOpen"
                @search-change="searchChange"
                @search-reset="searchReset"

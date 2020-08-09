@@ -7,7 +7,7 @@
                :before-open="beforeOpen"
                v-model="form"
                :permission="permissionList"
-               :page="page"
+               :page.sync="page"
                @search-change="searchChange"
                @search-reset="searchReset"
                @current-change="currentChange"

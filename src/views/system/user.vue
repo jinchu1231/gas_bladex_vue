@@ -21,7 +21,7 @@
                    @row-update="rowUpdate"
                    @row-save="rowSave"
                    :before-open="beforeOpen"
-                   :page="page"
+                   :page.sync="page"
                    @search-change="searchChange"
                    @search-reset="searchReset"
                    @selection-change="selectionChange"

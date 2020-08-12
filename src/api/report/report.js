@@ -2,7 +2,7 @@ import request from '@/router/axios';
 
 export const getList = (current, size, params) => {
   return request({
-    url: '/api/report/rest/list',
+    url: '/api/blade-report/report/rest/list',
     method: 'get',
     params: {
       ...params,
@@ -13,7 +13,7 @@ export const getList = (current, size, params) => {
 }
 export const remove = (ids) => {
   return request({
-    url: '/api/report/rest/remove',
+    url: '/api/blade-report/report/rest/remove',
     method: 'post',
     params: {
       ids,

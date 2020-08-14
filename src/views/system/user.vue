@@ -202,7 +202,7 @@
         },
         option: {
           height: 'auto',
-          calcHeight: 180,
+          calcHeight: 80,
           tip: false,
           searchShow: true,
           searchMenuSpan: 6,

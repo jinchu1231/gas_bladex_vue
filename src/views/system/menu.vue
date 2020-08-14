@@ -126,7 +126,7 @@
             {
               label: "菜单图标",
               prop: "source",
-              type: "icon-select",
+              type: "icon",
               slot: true,
               iconList: iconList,
               rules: [

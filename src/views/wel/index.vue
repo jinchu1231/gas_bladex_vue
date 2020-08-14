@@ -9,10 +9,10 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V2.5.1-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V2.6.0-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
             <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR6-blue.svg" alt="Coverage Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Boot-2.1.14.RELEASE-blue.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Spring%20Boot-2.1.16.RELEASE-blue.svg" alt="Downloads"/>
             <a target="_blank" href="https://bladex.vip">
               <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
             </a>
@@ -138,6 +138,30 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="2.6.0.RELEASE发布，增加租户数据库隔离、报表管理、SqlServer兼容" name="17">
+                <div>1.升级 Avue 至 2.6.15</div>
+                <div>2.升级 SpringBoot 至 2.1.16.RELEASE</div>
+                <div>3.升级 Seata 至 1.3.0</div>
+                <div>4.升级 Nacos 至 1.3.2</div>
+                <div>5.升级 FastJson 至 1.2.73</div>
+                <div>6.升级 Knife4j 至 2.0.4</div>
+                <div>7.升级 EasyExcel 至 2.2.6</div>
+                <div>8.升级 JustAuth 至 1.15.6</div>
+                <div>9.新增多租户数据库隔离、动态数据源特性</div>
+                <div>10.新增SqlServer兼容</div>
+                <div>11.新增UReport2报表管理模块</div>
+                <div>12.新增对象存储附件表功能</div>
+                <div>13.优化LocalFile支持序列化</div>
+                <div>14.优化MinioTemplate增加ContentType配置</div>
+                <div>15.优化LogBack-Elk的配置</div>
+                <div>16.优化流程状态变更的返回信息</div>
+                <div>17.优化顶部菜单配置接口，支持大容量数据传输</div>
+                <div>18.优化User密码字段序列化</div>
+                <div>19.优化序列化additionalInformation，解决非null值报错的问题</div>
+                <div>20.修复启用Token有状态模式下刷新Token的问题</div>
+                <div>21.修复日志表无法入库TenantId的问题</div>
+                <div>22.修复flowable-oracle脚本运行错误的问题</div>
+              </el-collapse-item>
               <el-collapse-item title="2.5.1.RELEASE发布，增加第三方登录、行政区划、API报文加密" name="16">
                 <div>1.升级 Avue 至 2.6.1、ElementUI 至 2.13.2</div>
                 <div>2.升级 SpringBoot 至 2.1.14.RELEASE</div>
@@ -463,7 +487,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['16']
+        logActiveNames: ['17']
       };
     },
     computed: {

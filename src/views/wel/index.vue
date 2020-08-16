@@ -138,7 +138,7 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
-              <el-collapse-item title="2.6.0.RELEASE发布，增加租户数据库隔离、报表管理、SqlServer兼容" name="17">
+              <el-collapse-item title="2.6.0.RELEASE发布，租户数据库隔离、报表管理、SqlServer兼容" name="17">
                 <div>1.升级 Avue 至 2.6.15</div>
                 <div>2.升级 SpringBoot 至 2.1.16.RELEASE</div>
                 <div>3.升级 Seata 至 1.3.0</div>

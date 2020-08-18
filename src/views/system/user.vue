@@ -12,6 +12,7 @@
     <el-col :span="19">
       <basic-container>
         <avue-crud :option="option"
+                   :search.sync="search"
                    :table-loading="loading"
                    :data="data"
                    ref="crud"
@@ -153,6 +154,7 @@
       };
       return {
         form: {},
+        search:{},
         roleBox: false,
         excelBox: false,
         initFlag: true,
@@ -699,8 +701,7 @@
           cancelButtonText: "取消",
           type: "warning"
         }).then(() => {
-          const searchForm = this.$refs.crud.searchForm;
-          window.open(`/api/blade-user/export-user?${this.website.tokenHeader}=${getToken()}&account=${searchForm.account}&realName=${searchForm.realName}`);
+          window.open(`/api/blade-user/export-user?${this.website.tokenHeader}=${getToken()}&account=${this.search.account}&realName=${this.search.realName}`);
         });
       },
       handleTemplate() {

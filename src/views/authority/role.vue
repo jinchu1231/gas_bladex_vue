@@ -378,15 +378,3 @@
     }
   };
 </script>
-
-<style>
-  .el-tree {
-    width: 100%;
-    overflow-x: scroll;
-  }
-
-  .el-tree > .el-tree-node {
-    min-width: 100%;
-    display: inline-block !important;
-  }
-</style>

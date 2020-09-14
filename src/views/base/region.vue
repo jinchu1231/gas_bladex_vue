@@ -67,6 +67,7 @@
           nodeKey: 'id',
           lazy: true,
           treeLoad: function (node, resolve) {
+            debugger
             const parentCode = (node.level === 0) ? "00" : node.data.id;
             getLazyTree(parentCode).then(res => {
               resolve(res.data.data.map(item => {
@@ -136,7 +137,7 @@
             },
             {
               label: "区划等级",
-              prop: "level",
+              prop: "regionLevel",
               type: "radio",
               dicUrl: "/api/blade-system/dict/dictionary?code=region",
               props: {
@@ -332,7 +333,7 @@
         this.regionForm.code = '';
         this.regionForm.subCode = '';
         this.regionForm.name = '';
-        this.regionForm.level = (this.regionForm.level === 5) ? 5 : this.regionForm.level + 1;
+        this.regionForm.regionLevel = (this.regionForm.regionLevel === 5) ? 5 : this.regionForm.regionLevel + 1;
       },
       handleSubmit(form, done, loading) {
         const parentCode = form.parentCode === this.topCode ? '' : form.parentCode;

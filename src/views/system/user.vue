@@ -78,6 +78,10 @@
                     slot="deptName">
             <el-tag>{{row.deptName}}</el-tag>
           </template>
+          <template slot-scope="{row}"
+                    slot="userTypeName">
+            <el-tag>{{row.userTypeName}}</el-tag>
+          </template>
         </avue-crud>
         <el-dialog title="用户角色配置"
                    append-to-body
@@ -245,6 +249,12 @@
               slot: true,
               display: false
             },
+            {
+              label: "用户平台",
+              prop: "userTypeName",
+              slot: true,
+              display: false
+            },
           ],
           group: [
             {
@@ -252,16 +262,6 @@
               prop: 'baseInfo',
               icon: 'el-icon-user-solid',
               column: [
-                {
-                  label: "登录账号",
-                  prop: "account",
-                  rules: [{
-                    required: true,
-                    message: "请输入登录账号",
-                    trigger: "blur"
-                  }],
-                  span: website.tenantMode ? 12 : 24,
-                },
                 {
                   label: "所属租户",
                   prop: "tenantId",
@@ -279,6 +279,34 @@
                     required: true,
                     message: "请输入所属租户",
                     trigger: "click"
+                  }],
+                  span: 24,
+                },
+                {
+                  label: "登录账号",
+                  prop: "account",
+                  rules: [{
+                    required: true,
+                    message: "请输入登录账号",
+                    trigger: "blur"
+                  }],
+                },
+                {
+                  label: "用户平台",
+                  type: "select",
+                  dicUrl: "/api/blade-system/dict/dictionary?code=user_type",
+                  props: {
+                    label: "dictValue",
+                    value: "dictKey"
+                  },
+                  dataType: "number",
+                  slot: true,
+                  prop: "userType",
+                  search: true,
+                  rules: [{
+                    required: true,
+                    message: "请选择用户平台",
+                    trigger: "blur"
                   }]
                 },
                 {

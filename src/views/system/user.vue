@@ -255,6 +255,25 @@
               slot: true,
               display: false
             },
+            {
+              label: "用户平台",
+              type: "select",
+              dicUrl: "/api/blade-system/dict/dictionary?code=user_type",
+              props: {
+                label: "dictValue",
+                value: "dictKey"
+              },
+              dataType: "number",
+              search: true,
+              hide: true,
+              display: false,
+              prop: "userType",
+              rules: [{
+                required: true,
+                message: "请选择用户平台",
+                trigger: "blur"
+              }]
+            },
           ],
           group: [
             {
@@ -302,7 +321,6 @@
                   dataType: "number",
                   slot: true,
                   prop: "userType",
-                  search: true,
                   rules: [{
                     required: true,
                     message: "请选择用户平台",

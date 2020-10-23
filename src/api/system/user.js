@@ -39,9 +39,31 @@ export const update = (row) => {
   })
 }
 
+export const updatePlatform = (userId, userType, userExt) => {
+  return request({
+    url: '/api/blade-user/update-platform',
+    method: 'post',
+    params: {
+      userId,
+      userType,
+      userExt,
+    }
+  })
+}
+
 export const getUser = (id) => {
   return request({
     url: '/api/blade-user/detail',
+    method: 'get',
+    params: {
+      id,
+    }
+  })
+}
+
+export const getUserPlatform = (id) => {
+  return request({
+    url: '/api/blade-user/platform-detail',
     method: 'get',
     params: {
       id,

@@ -139,7 +139,7 @@
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
               <el-collapse-item title="2.6.1.RELEASE发布，增加全局上下文系统，增加用户平台拓展模块" name="18">
-                <div>1.升级 SpringBoot 至 2.1.16.RELEASE</div>
+                <div>1.升级 SpringBoot 至 2.1.17.RELEASE</div>
                 <div>2.升级 Mybatis-Plus 至 3.4.0</div>
                 <div>3.升级 Knife4j 至 2.0.5</div>
                 <div>4.升级 JJWT 至 0.11.2</div>

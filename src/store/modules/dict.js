@@ -7,7 +7,6 @@ const dict = {
     flowRoutes: getStore({name: 'flowRoutes'}) || {},
   },
   actions: {
-    //发送错误日志
     FlowRoutes({commit}) {
       return new Promise((resolve, reject) => {
         getDictionary({code: 'flow'}).then(res => {

@@ -67,7 +67,6 @@
           nodeKey: 'id',
           lazy: true,
           treeLoad: function (node, resolve) {
-            debugger
             const parentCode = (node.level === 0) ? "00" : node.data.id;
             getLazyTree(parentCode).then(res => {
               resolve(res.data.data.map(item => {

@@ -9,10 +9,10 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V2.6.0-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V2.6.1-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
             <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR6-blue.svg" alt="Coverage Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Boot-2.1.16.RELEASE-blue.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Spring%20Boot-2.1.17.RELEASE-blue.svg" alt="Downloads"/>
             <a target="_blank" href="https://bladex.vip">
               <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
             </a>
@@ -138,6 +138,28 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="2.6.1.RELEASE发布，增加全局上下文系统，增加用户平台拓展模块" name="18">
+                <div>1.升级 SpringBoot 至 2.1.16.RELEASE</div>
+                <div>2.升级 Mybatis-Plus 至 3.4.0</div>
+                <div>3.升级 Knife4j 至 2.0.5</div>
+                <div>4.升级 JJWT 至 0.11.2</div>
+                <div>5.升级 FastJson 至 1.2.74</div>
+                <div>6.新增上下文核心包，优化全局上下文配置</div>
+                <div>7.新增secure模块的basic认证功能</div>
+                <div>8.新增用户平台拓展模块</div>
+                <div>9.优化重构增强cloud模块</div>
+                <div>10.优化request核心至boot模块</div>
+                <div>11.优化增强mybatis-plus的分页防注入功能</div>
+                <div>12.优化sms返回结果，去掉验证码序列化</div>
+                <div>13.优化数据权限插件支持最新版mybatis-plus</div>
+                <div>14.优化增强sql日志拦截器</div>
+                <div>15.优化增强令牌，新增对用户平台的判断逻辑</div>
+                <div>16.优化代码生成增加对sqlserver的支持</div>
+                <div>17.优化自定义mapper的api</div>
+                <div>18.修复Kv类克隆强转问题</div>
+                <div>19.修复elk配置无法读取项目名的问题</div>
+                <div>20.修复区划字段level为regionLevel以防oracle报错</div>
+              </el-collapse-item>
               <el-collapse-item title="2.6.0.RELEASE发布，租户数据库隔离、报表管理、SqlServer兼容" name="17">
                 <div>1.升级 Avue 至 2.6.15</div>
                 <div>2.升级 SpringBoot 至 2.1.16.RELEASE</div>
@@ -487,7 +509,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['17']
+        logActiveNames: ['18']
       };
     },
     computed: {

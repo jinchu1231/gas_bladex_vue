@@ -9,10 +9,10 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V2.6.1-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V2.7.0-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR6-blue.svg" alt="Coverage Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Boot-2.1.17.RELEASE-blue.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR8-blue.svg" alt="Coverage Status"/>
+            <img src="https://img.shields.io/badge/Spring%20Boot-2.2.11.RELEASE-blue.svg" alt="Downloads"/>
             <a target="_blank" href="https://bladex.vip">
               <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
             </a>
@@ -138,6 +138,25 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="2.7.0.RELEASE发布，更新Hoxton.SR8，全面升级底层驱动" name="19">
+                <div>1.升级 SpringBoot 至 2.2.11.RELEASE</div>
+                <div>2.升级 SpringCloud 至 Hoxton.SR8</div>
+                <div>3.升级 AlibabaCloud 至 2.2.3.RELEASE</div>
+                <div>4.升级 SpringBootAdmin 至 2.2.4</div>
+                <div>5.升级 Knife4j 至 2.0.6</div>
+                <div>6.升级 Swagger 至 2.10.5</div>
+                <div>7.升级 SwaggerModel 至 1.6.2</div>
+                <div>8.升级 SpringPlugin 至 2.2.0.RELEASE</div>
+                <div>9.升级 Druid 至 1.2.1</div>
+                <div>10.升级 JustAuth 至 1.15.8</div>
+                <div>11.升级 Dubbo 至 2.7.8</div>
+                <div>12.升级 Guava 至 30.0-jre</div>
+                <div>13.升级 Avue 至 2.7.0</div>
+                <div>14.优化Swagger封装以支持Knife4j最新API</div>
+                <div>15.引入Knife4j增强配置,生产环境将完全隔离文档访问</div>
+                <div>16.修复未引入租户插件后,自定义类空指针的问题</div>
+                <div>17.删除Zipkin模块,推荐使用官方独立模式运行服务</div>
+              </el-collapse-item>
               <el-collapse-item title="2.6.1.RELEASE发布，增加全局上下文系统，增加用户平台拓展模块" name="18">
                 <div>1.升级 SpringBoot 至 2.1.17.RELEASE</div>
                 <div>2.升级 Mybatis-Plus 至 3.4.0</div>
@@ -509,7 +528,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['18']
+        logActiveNames: ['19']
       };
     },
     computed: {

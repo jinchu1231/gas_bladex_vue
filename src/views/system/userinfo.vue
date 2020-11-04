@@ -1,10 +1,10 @@
 <template>
   <div>
     <basic-container>
-      <avue-tabs :option="option"
+      <avue-form :option="option"
                  v-model="form"
-                 @change="handleChange"
-                 @submit="handleSubmit"></avue-tabs>
+                 @tab-click="handleTabClick"
+                 @submit="handleSubmit"></avue-form>
     </basic-container>
   </div>
 </template>
@@ -13,12 +13,13 @@
   import option from "@/const/user/info";
   import {getUserInfo, updateInfo, updatePassword} from "@/api/system/user";
   import md5 from 'js-md5';
+  import func from "@/util/func";
 
 
   export default {
     data() {
       return {
-        type: "info",
+        index: 0,
         option: option,
         form: {}
       };
@@ -27,9 +28,9 @@
       this.handleWitch();
     },
     methods: {
-      handleSubmit() {
-        if (this.type === "info") {
-          updateInfo(this.form).then(res => {
+      handleSubmit(form, done) {
+        if (this.index === 0) {
+          updateInfo(form).then(res => {
             if (res.data.success) {
               this.$message({
                 type: "success",
@@ -41,9 +42,13 @@
                 message: res.data.msg
               });
             }
+            done();
+          }, error => {
+            window.console.log(error);
+            done();
           })
         } else {
-          updatePassword(md5(this.form.oldPassword), md5(this.form.newPassword), md5(this.form.newPassword1)).then(res => {
+          updatePassword(md5(form.oldPassword), md5(form.newPassword), md5(form.newPassword1)).then(res => {
             if (res.data.success) {
               this.$message({
                 type: "success",
@@ -55,11 +60,15 @@
                 message: res.data.msg
               });
             }
+            done();
+          }, error => {
+            window.console.log(error);
+            done();
           })
         }
       },
       handleWitch() {
-        if (this.type === "info") {
+        if (this.index === 0) {
           getUserInfo().then(res => {
             const user = res.data.data;
             this.form = {
@@ -73,8 +82,8 @@
           });
         }
       },
-      handleChange(item) {
-        this.type = item.prop;
+      handleTabClick(tabs) {
+        this.index = func.toInt(tabs.index);
         this.handleWitch();
       }
     }

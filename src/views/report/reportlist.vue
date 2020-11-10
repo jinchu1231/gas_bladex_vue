@@ -8,8 +8,6 @@
                :page.sync="page"
                :permission="permissionList"
                @row-del="rowDel"
-               @row-update="rowUpdate"
-               @row-save="rowSave"
                @search-change="searchChange"
                @search-reset="searchReset"
                @selection-change="selectionChange"

@@ -264,7 +264,7 @@
         this.onLoad(this.page, this.query);
       },
       onLoad(page, params = {}) {
-        const {releaseTimeRange} = params;
+        const {releaseTimeRange} = this.query;
         let values = {
           ...params,
         };
@@ -273,12 +273,12 @@
             ...params,
             releaseTime_datege: releaseTimeRange[0],
             releaseTime_datelt: releaseTimeRange[1],
+            ...this.query
           };
           values.releaseTimeRange = null;
-          this.query.releaseTimeRange = null;
         }
         this.loading = true;
-        getList(page.currentPage, page.pageSize, Object.assign(values, this.query)).then(res => {
+        getList(page.currentPage, page.pageSize, values).then(res => {
           const data = res.data.data;
           this.page.total = data.total;
           this.data = data.records;

@@ -17,6 +17,9 @@ module.exports = {
     entry.add('classlist-polyfill').end();
     entry.add('@/mock').end();
   },
+  css: {
+    extract: { ignoreOrder: true }
+  },
   //开发模式反向代理配置，生产模式请使用Nginx部署并配置反向代理
   devServer: {
     port: 1888,

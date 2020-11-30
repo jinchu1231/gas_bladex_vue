@@ -3,10 +3,10 @@ let RouterPlugin = function () {
   this.$store = null;
 
 };
-RouterPlugin.install = function (vue, router, store, i18n) {
-  this.$router = router;
-  this.$store = store;
-  this.$vue = new vue({i18n});
+RouterPlugin.install = function (vue, option = {}) {
+  this.$router = option.router;
+  this.$store = option.store;
+  this.$vue = new vue({ i18n: option.i18n });
 
   // 这个的作用是 为了检查出网页链接，因为本项目用到了 iframe
   function isURL(s) {
@@ -129,9 +129,9 @@ RouterPlugin.install = function (vue, router, store, i18n) {
           meta = oMenu[propsDefault.meta] || {};
           // meta中 keepalive 的处理
         meta = Object.assign(meta, (function () {
-          if (meta.keepAlive === true) {
+          if (option.keepAlive === true) {
             return {
-              $keepAlive: true
+              keepAlive: true
             }
           }
         })());

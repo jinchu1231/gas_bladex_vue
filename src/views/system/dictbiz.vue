@@ -116,7 +116,7 @@
     getDict,
     getDictTree
   } from "@/api/system/dictbiz";
-  import {optionParent, optionChild} from "@/const/system/dictbiz";
+  import {optionParent, optionChild} from "@/option/system/dictbiz";
   import {mapGetters} from "vuex";
 
   export default {

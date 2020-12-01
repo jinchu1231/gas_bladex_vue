@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import option from "@/const/user/info";
+  import option from "@/option/user/info";
   import {getUserInfo, updateInfo, updatePassword} from "@/api/system/user";
   import md5 from 'js-md5';
   import func from "@/util/func";

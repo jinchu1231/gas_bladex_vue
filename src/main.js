@@ -14,14 +14,17 @@ import {
   iconfontUrl,
   iconfontVersion
 } from '@/config/env';
-import i18n from './lang' // Internationalization
+import i18n from './lang'; // Internationalization
 import './styles/common.scss';
-import basicBlock from './components/basic-block/main'
-import basicContainer from './components/basic-container/main'
-import thirdRegister from './components/third-register/main'
+import basicBlock from './components/basic-block/main';
+import basicContainer from './components/basic-container/main';
+import thirdRegister from './components/third-register/main';
 import avueUeditor from 'avue-plugin-ueditor';
 import website from '@/config/website';
-
+import crudCommon from '@/mixins/crud';
+// 注册全局crud驱动
+window.$crudCommon = crudCommon;
+// 加载Vue拓展
 Vue.use(router);
 Vue.use(VueAxios, axios);
 Vue.use(Element, {
@@ -32,7 +35,7 @@ Vue.use(window.AVUE, {
   tableSize: 'small',
   i18n: (key, value) => i18n.t(key, value)
 });
-//注册全局容器
+// 注册全局容器
 Vue.component('basicContainer', basicContainer);
 Vue.component('basicBlock', basicBlock);
 Vue.component('thirdRegister', thirdRegister);
@@ -55,4 +58,4 @@ new Vue({
   store,
   i18n,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

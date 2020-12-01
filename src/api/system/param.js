@@ -1,5 +1,13 @@
 import request from '@/router/axios';
 
+export const list = (data) => {
+  return request({
+    url: '/api/blade-system/param/list',
+    method: 'get',
+    params: data
+  })
+}
+
 export const getList = (current, size, params) => {
   return request({
     url: '/api/blade-system/param/list',
@@ -11,6 +19,7 @@ export const getList = (current, size, params) => {
     }
   })
 }
+
 export const remove = (ids) => {
   return request({
     url: '/api/blade-system/param/remove',

@@ -55,10 +55,7 @@ export default (app, option = {}) => {
       getList() {
         const callback = () => {
           this.loading = true;
-          const pageParams = {};
-          pageParams[option.size || 'size'] = this.page.pageSize;
-          pageParams[option.current || 'current'] = this.page.currentPage;
-          this.api[option.list || 'list'](Object.assign(pageParams, this.params)).then(res => {
+          this.api[option.list || 'getList'](this.page.currentPage, this.page.pageSize, this.params).then(res => {
             let data;
             if (option.res) {
               data = option.res(res.data);

@@ -3,6 +3,7 @@
     <avue-crud v-bind="bindVal"
                v-on="onEvent"
                v-model="form"
+               :permission="permissionList"
                :page.sync="page">
       <template slot="menuLeft">
         <el-button type="danger"
@@ -22,6 +23,16 @@
 export default window.$crudCommon({
   data() {
     return {}
+  },
+  computed: {
+    permissionList() {
+      return {
+        addBtn: this.vaildData(this.permission.param_add, false),
+        viewBtn: this.vaildData(this.permission.param_view, false),
+        delBtn: this.vaildData(this.permission.param_delete, false),
+        editBtn: this.vaildData(this.permission.param_edit, false)
+      };
+    }
   },
   methods: {}
 }, {

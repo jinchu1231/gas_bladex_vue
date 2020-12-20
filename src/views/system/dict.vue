@@ -177,6 +177,11 @@
         });
       },
       handleAdd(row) {
+        this.$refs.crudChild.value.dictValue = "";
+        this.$refs.crudChild.value.dictKey = "";
+        this.$refs.crudChild.value.sort = 0;
+        this.$refs.crudChild.value.isSealed = 0;
+        this.$refs.crudChild.value.remark = "";
         this.$refs.crudChild.value.parentId = row.id;
         this.$refs.crudChild.option.column.filter(item => {
           if (item.prop === "parentId") {

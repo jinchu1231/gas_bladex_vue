@@ -11,8 +11,8 @@
           <p style="text-align: center">
             <img src="https://img.shields.io/badge/Release-V2.7.1-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR8-blue.svg" alt="Coverage Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Boot-2.2.11.RELEASE-blue.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR9-blue.svg" alt="Coverage Status"/>
+            <img src="https://img.shields.io/badge/Spring%20Boot-2.2.12.RELEASE-blue.svg" alt="Downloads"/>
             <a target="_blank" href="https://bladex.vip">
               <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
             </a>
@@ -138,6 +138,33 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="2.7.1.RELEASE发布，重构钉钉监控通知，升级依赖适配最新API" name="20">
+                <div>1.升级 SpringBoot 至 2.2.12.RELEASE</div>
+                <div>2.升级 SpringCloud 至 Hoxton.SR9</div>
+                <div>3.升级 Knife4j 至 2.0.8</div>
+                <div>4.升级 Druid 至 1.2.4</div>
+                <div>5.升级 Seata 至 1.4.1</div>
+                <div>6.升级 Jackson 至 2.11.4</div>
+                <div>7.升级 Mybatis-Plus 至 3.4.1</div>
+                <div>8.升级 Dynamic-Datasource 至3.2.1</div>
+                <div>9.升级 Avue 至 2.7.4</div>
+                <div>10.新增Secure模块动态签名认证特性</div>
+                <div>11.新增Redis序列化方式的配置</div>
+                <div>12.新增用户导入导出的用户平台字段</div>
+                <div>13.修改日志路径默认优先级，支持配置覆盖</div>
+                <div>14.修改Report模块包路径，新增Core目录</div>
+                <div>15.重构blade-admin，钉钉监控通知实现</div>
+                <div>16.优化blade-admin，增加账号密码登录</div>
+                <div>17.优化RefreshToken刷新逻辑</div>
+                <div>18.优化租户新增逻辑，业务字典支持无限层级复制</div>
+                <div>19.优化Ribbon组件，支持Feign调用配置</div>
+                <div>20.修复流程名搜索失效的问题</div>
+                <div>21.修复附件管理租户隔离问题</div>
+                <div>22.修复数据权限分配模块的sqlserver兼容性</div>
+                <div>23.修复系统字典缓存刷新逻辑</div>
+                <div>24.修复Swagger文档出现Locale参数的问题</div>
+                <div>25.删除spring-cloud-stream依赖，按需引入</div>
+              </el-collapse-item>
               <el-collapse-item title="2.7.0.RELEASE发布，更新Hoxton.SR8，全面升级底层驱动" name="19">
                 <div>1.升级 SpringBoot 至 2.2.11.RELEASE</div>
                 <div>2.升级 SpringCloud 至 Hoxton.SR8</div>
@@ -528,7 +555,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['19']
+        logActiveNames: ['20']
       };
     },
     computed: {

@@ -147,7 +147,7 @@
                 <div>6.升级 Jackson 至 2.11.4</div>
                 <div>7.升级 Mybatis-Plus 至 3.4.1</div>
                 <div>8.升级 Dynamic-Datasource 至3.2.1</div>
-                <div>9.升级 Avue 至 2.7.4</div>
+                <div>9.升级 Avue 至 2.7.5</div>
                 <div>10.新增Secure模块动态签名认证特性</div>
                 <div>11.新增Redis序列化方式的配置</div>
                 <div>12.新增用户导入导出的用户平台字段</div>

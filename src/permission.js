@@ -66,7 +66,11 @@ router.afterEach(() => {
   NProgress.done();
   let title = store.getters.tag.label;
   let i18n = store.getters.tag.meta.i18n;
-  title = router.$avueRouter.generateTitle(title, i18n)
+  title = router.$avueRouter.generateTitle(title, i18n);
+  //判断登录页的情况
+  if (router.history.current.fullPath === "/login") {
+    title = "登录";
+  }
   //根据当前的标签也获取label的值动态设置浏览器标题
   router.$avueRouter.setTitle(title);
 });

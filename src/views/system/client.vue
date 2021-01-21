@@ -82,7 +82,30 @@
             {
               label: "授权类型",
               prop: "authorizedGrantTypes",
+              type: "checkbox",
               value: "refresh_token,password,authorization_code",
+              dicData: [
+                {
+                  label: "refresh_token",
+                  value: "refresh_token"
+                },
+                {
+                  label: "password",
+                  value: "password"
+                },
+                {
+                  label: "authorization_code",
+                  value: "authorization_code"
+                },
+                {
+                  label: "captcha",
+                  value: "captcha"
+                },
+                {
+                  label: "social",
+                  value: "social"
+                }
+              ],
               rules: [{
                 required: true,
                 message: "请输入授权类型",

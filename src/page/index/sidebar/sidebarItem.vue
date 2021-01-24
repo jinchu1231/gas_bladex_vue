@@ -5,7 +5,7 @@
                     :index="item[pathKey]"
                     @click="open(item)"
                     :key="item[labelKey]"
-                    :class="{'is-active':vaildAvtive(item)}">
+                    :class="{'is-active':vaildActive(item)}">
         <i :class="item[iconKey]"></i>
         <span slot="title"
               :alt="item[pathKey]">{{generateTitle(item)}}</span>
@@ -21,7 +21,7 @@
         <template v-for="(child,cindex) in item[childrenKey]">
           <el-menu-item :index="child[pathKey],cindex"
                         @click="open(child)"
-                        :class="{'is-active':vaildAvtive(child)}"
+                        :class="{'is-active':vaildActive(child)}"
                         v-if="validatenull(child[childrenKey])"
                         :key="child[labelKey]">
             <i :class="child[iconKey]"></i>
@@ -40,7 +40,7 @@
 </template>
 <script>
   import {mapGetters} from "vuex";
-  import {validatenull} from "@/util/validate";
+  import {isURL, validatenull} from "@/util/validate";
   import config from "./config.js";
 
   export default {
@@ -89,6 +89,9 @@
       childrenKey() {
         return this.props.children || this.config.propsDefault.children;
       },
+      isOpenKey() {
+        return this.props.isOpen || this.config.propsDefault.isOpen;
+      },
       nowTagValue() {
         return this.$router.$avueRouter.getValue(this.$route);
       }
@@ -100,7 +103,10 @@
           (item.meta || {}).i18n
         );
       },
-      vaildAvtive(item) {
+      vaildActive(item) {
+        if (this.validIsOpen(item)) {
+          return false;
+        }
         const groupFlag = (item["group"] || []).some(ele =>
           this.$route.path.includes(ele)
         );
@@ -113,17 +119,26 @@
       validatenull(val) {
         return validatenull(val);
       },
-      open (item) {
+      validIsOpen(item) {
+        if (item[this.isOpenKey] === 2 && isURL(item[this.pathKey])) {
+          return true;
+        }
+      },
+      open(item) {
         if (this.screen <= 1) this.$store.commit("SET_COLLAPSE");
-        this.$router.$avueRouter.group = item.group;
-        this.$router.$avueRouter.meta = item.meta;
-        this.$router.push({
-          path: this.$router.$avueRouter.getPath({
-            name: item[this.labelKey],
-            src: item[this.pathKey]
-          }, item.meta),
-          query: item.query
-        });
+        if (this.validIsOpen(item)) {
+          window.open(item[this.pathKey]);
+        } else {
+          this.$router.$avueRouter.group = item.group;
+          this.$router.$avueRouter.meta = item.meta;
+          this.$router.push({
+            path: this.$router.$avueRouter.getPath({
+              name: item[this.labelKey],
+              src: item[this.pathKey]
+            }, item.meta),
+            query: item.query
+          });
+        }
       }
     }
   };

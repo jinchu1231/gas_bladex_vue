@@ -185,9 +185,35 @@
               ]
             },
             {
+              label: "新窗口",
+              prop: "isOpen",
+              type: "radio",
+              disabled: false,
+              dicData: [
+                {
+                  label: "否",
+                  value: 1
+                },
+                {
+                  label: "是",
+                  value: 2
+                }
+              ],
+              value: 1,
+              rules: [
+                {
+                  required: true,
+                  message: "请选择新窗口打开",
+                  trigger: "blur"
+                }
+              ]
+            },
+            {
               label: "菜单排序",
               prop: "sort",
               type: "number",
+              row: true,
+              span: 24,
               rules: [
                 {
                   required: true,
@@ -216,8 +242,11 @@
           if (item.prop === "path") {
             item.rules[0].required = category === 1;
           }
+          if (item.prop === 'isOpen') {
+            item.disabled = category === 2;
+          }
         });
-      }
+      },
     },
     computed: {
       ...mapGetters(["userInfo", "permission"]),

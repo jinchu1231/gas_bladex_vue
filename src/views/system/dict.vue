@@ -214,6 +214,7 @@
             type: "success",
             message: "操作成功!"
           });
+          this.onLoadChild(this.pageChild);
           done();
         }, error => {
           window.console.log(error);

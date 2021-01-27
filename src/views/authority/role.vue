@@ -78,7 +78,7 @@
 </template>
 
 <script>
-  import {add, getList, getRole, getRoleTree, grant, grantTree, remove, update} from "@/api/system/role";
+  import {add, getList, getRole, getRoleTreeById, grant, grantTree, remove, update} from "@/api/system/role";
   import {mapGetters} from "vuex";
   import website from '@/config/website';
 
@@ -229,8 +229,8 @@
       }
     },
     methods: {
-      initData(){
-        getRoleTree().then(res => {
+      initData(roleId){
+        getRoleTreeById(roleId).then(res => {
           const column = this.findObject(this.option.column, "parentId");
           column.dicData = res.data.data;
         });
@@ -311,7 +311,7 @@
       },
       beforeOpen(done, type) {
         if (["add", "edit"].includes(type)) {
-          this.initData();
+          this.initData(this.form.id);
         }
         done();
       },

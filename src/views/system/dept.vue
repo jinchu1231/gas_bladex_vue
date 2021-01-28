@@ -132,6 +132,7 @@
               dicData: [],
               type: "tree",
               hide: true,
+              addDisabled: false,
               props: {
                 label: "title"
               },
@@ -212,13 +213,10 @@
         });
       },
       handleAdd(row) {
-        this.$refs.crud.value.parentId = row.id;
-        this.$refs.crud.option.column.filter(item => {
-          if (item.prop === "parentId") {
-            item.value = row.id;
-            item.addDisabled = true;
-          }
-        });
+        this.parentId = row.id;
+        const column = this.findObject(this.option.column, "parentId");
+        column.value = row.id;
+        column.addDisabled = true;
         this.$refs.crud.rowAdd();
       },
       rowSave(row, done, loading) {
@@ -328,15 +326,10 @@
         done();
       },
       beforeClose(done) {
-        this.$refs.crud.tableForm = {};
-        this.$refs.crud.value.parentId = "";
-        this.$refs.crud.value.addDisabled = false;
-        this.$refs.crud.option.column.filter(item => {
-          if (item.prop === "parentId") {
-            item.value = "";
-            item.addDisabled = false;
-          }
-        });
+        this.parentId = "";
+        const column = this.findObject(this.option.column, "parentId");
+        column.value = "";
+        column.addDisabled = false;
         done();
       },
       currentChange(currentPage) {

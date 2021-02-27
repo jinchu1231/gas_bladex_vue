@@ -9,9 +9,9 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V2.7.2-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V2.8.0-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR9-blue.svg" alt="Coverage Status"/>
+            <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR10-blue.svg" alt="Coverage Status"/>
             <img src="https://img.shields.io/badge/Spring%20Boot-2.2.13.RELEASE-blue.svg" alt="Downloads"/>
             <a target="_blank" href="https://bladex.vip">
               <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
@@ -44,7 +44,7 @@
             </el-collapse-item>
             <el-collapse-item title="为何需要BladeX" name="3">
               <div>1.经历过较长的线上生产，积累了很多企业痛点的解决方案</div>
-              <div>2.一套代码兼容MySql、Oracle、PostgreSQL，适应企业各种不同场景的需求</div>
+              <div>2.一套代码兼容MySql、Oracle、PostgreSQL、SqlServer，适应企业各种不同场景的需求</div>
               <div>3.集成了很多企业急切所需的例如多租户、Oauth2授权认证、工作流、分布式事务等等功能</div>
               <div>4.深度定制了Flowable工作流，完美支持SpringCloud分布式服务的场景，以远程调用的方式进行操作</div>
               <div>5.升级了核心驱动，新功能完全可以开箱即用，而开源版需要自己再花时间进行集成，需要花掉更多的时间成本</div>
@@ -138,6 +138,30 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="2.8.0.RELEASE发布，集成Prometheus全方位监控方案" name="22">
+                <div>1.[升级]SpringCloud 至 Hoxton.SR10</div>
+                <div>2.[升级]AlibabaCloud 至 2.2.5.RELEASE</div>
+                <div>3.[升级]FastJson 至 1.2.75</div>
+                <div>4.[升级]Druid 至 1.2.5</div>
+                <div>5.[升级]EasyExcel 至 1.2.7</div>
+                <div>6.[升级]JustAuth 至 1.15.9</div>
+                <div>7.[升级]Avue 至 2.8.1</div>
+                <div>8.[升级]ElementUI 至 2.15.1</div>
+                <div>9.[升级]Oss与Sms升级依赖并适配最新版</div>
+                <div>10.[新增]基于宝塔系统的部署方案</div>
+                <div>11.[新增]Prometheus全方位监控方案</div>
+                <div>12.[新增]blade-admin服务支持prometheus对nacos的服务发现</div>
+                <div>13.[新增]BladeX对接Prometheus部署脚本</div>
+                <div>14.[新增]Saber远程部署推送脚本</div>
+                <div>15.[新增]基于Sentinel的服务熔断方案</div>
+                <div>16.[新增]Mybatis-Plus添加OptimizeJoin配置参数</div>
+                <div>17.[优化]将oss-starter系列合并为一</div>
+                <div>18.[优化]将sms-starter系列合并为一</div>
+                <div>19.[优化]增强优化Url通配符匹配逻辑</div>
+                <div>20.[优化]数据权限缓存逻辑</div>
+                <div>21.[优化]blade-auto封装</div>
+                <div>22.[优化]SqlLogInterceptor配置</div>
+              </el-collapse-item>
               <el-collapse-item title="2.7.2.RELEASE发布，重构升级常用功能，优化使用体验" name="21">
                 <div>1.[升级]SpringBoot 至 2.2.13.RELEASE</div>
                 <div>2.[升级]AlibabaCloud 至 2.2.5</div>
@@ -585,7 +609,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['21']
+        logActiveNames: ['22']
       };
     },
     computed: {

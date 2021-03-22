@@ -38,8 +38,8 @@ const user = {
     userInfo: getStore({name: 'userInfo'}) || [],
     permission: getStore({name: 'permission'}) || {},
     roles: [],
+    menuId: {},
     menu: getStore({name: 'menu'}) || [],
-    menuId: getStore({name: 'menuId'}) || [],
     menuAll: getStore({name: 'menuAll'}) || [],
     token: getStore({name: 'token'}) || '',
     refreshToken: getStore({name: 'refreshToken'}) || '',
@@ -134,8 +134,7 @@ const user = {
         logout().then(() => {
           commit('SET_TOKEN', '');
           commit('SET_MENU', []);
-          commit('SET_MENU_ID', {});
-          commit('SET_MENU_ALL', []);
+          commit('SET_MENU_ALL_NULL', []);
           commit('SET_ROLES', []);
           commit('SET_TAG_LIST', []);
           commit('DEL_ALL_TAG');
@@ -152,8 +151,7 @@ const user = {
     FedLogOut({commit}) {
       return new Promise(resolve => {
         commit('SET_TOKEN', '');
-        commit('SET_MENU_ID', {});
-        commit('SET_MENU_ALL', []);
+        commit('SET_MENU_ALL_NULL', []);
         commit('SET_MENU', []);
         commit('SET_ROLES', []);
         commit('SET_TAG_LIST', []);
@@ -208,33 +206,24 @@ const user = {
     },
     SET_MENU_ID(state, menuId) {
       state.menuId = menuId;
-      setStore({name: 'menuId', content: state.menuId})
     },
     SET_MENU_ALL: (state, menuAll) => {
-      state.menuAll = menuAll
-      setStore({name: 'menuAll', content: state.menuAll})
+      let menu = state.menuAll;
+      menuAll.forEach(ele => {
+        if (!menu.find(item => item.label === ele.label && item.path === ele.path)) {
+          menu.push(ele);
+        }
+      })
+      state.menuAll = menu
+      setStore({ name: 'menuAll', content: state.menuAll })
+    },
+    SET_MENU_ALL_NULL: (state) => {
+      state.menuAll = []
+      setStore({ name: 'menuAll', content: state.menuAll })
     },
     SET_MENU: (state, menu) => {
       state.menu = menu
-      setStore({name: 'menu', content: state.menu})
-      if (validatenull(menu)) return;
-      //合并动态路由去重
-      let menuAll = state.menuAll;
-      menuAll = menuAll.concat(menu).reverse();
-      let newMenu = [];
-      for (let item1 of menuAll) {
-        let flag = true;
-        for (let item2 of newMenu) {
-          if (item1.name === item2.name || item1.path === item2.path) {
-            flag = false;
-          }
-        }
-        if (flag) {
-          newMenu.push(item1);
-        }
-      }
-      state.menuAll = newMenu;
-      setStore({name: 'menuAll', content: state.menuAll})
+      setStore({ name: 'menu', content: state.menu })
     },
     SET_REFRESH_TOKEN: (state, refreshToken) => {
       setRefreshToken(refreshToken)

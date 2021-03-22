@@ -33,15 +33,13 @@
       return {};
     },
     created() {
-      this.index.openMenu(this.menuId);
+      this.index.openMenu();
     },
     computed: {
       ...mapGetters(["website", "menu", "tag", "keyCollapse", "screen", "menuId"]),
       nowTagValue: function () {
         return this.$router.$avueRouter.getValue(this.$route);
       }
-    },
-    mounted() {
     },
     methods: {}
   };

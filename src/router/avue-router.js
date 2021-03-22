@@ -26,7 +26,6 @@ RouterPlugin.install = function (vue, option = {}) {
   this.$router.$avueRouter = {
     //全局配置
     $website: this.$store.getters.website,
-    routerList: [],
     group: '',
     meta: {},
     safe: this,
@@ -110,8 +109,6 @@ RouterPlugin.install = function (vue, option = {}) {
       for (let i = 0; i < aMenu.length; i++) {
         // 取到当前要处理的一项
         const oMenu = aMenu[i];
-        // 判断this.routerList中是否已经存在该path，存在就跳出
-        if (this.routerList.includes(oMenu[propsDefault.path])) return;
         // 这一块的赋值 也就是取到返回的值
         let path = (() => {
             if (first) {
@@ -191,11 +188,7 @@ RouterPlugin.install = function (vue, option = {}) {
       // for循环结束
       // 这个first 卡的其实就是首路由
       if (first) {
-        window.console.log(aRouter)
-        if (!this.routerList.includes(aRouter[0][propsDefault.path])) {
-          this.safe.$router.addRoutes(aRouter)
-          this.routerList.push(aRouter[0][propsDefault.path])
-        }
+        this.safe.$router.addRoutes(aRouter)
       } else {
         // 这里返回的是子组件
         return aRouter

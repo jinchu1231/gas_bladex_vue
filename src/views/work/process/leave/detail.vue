@@ -85,7 +85,7 @@
       init() {
         this.processInstanceId = this.$route.params.processInstanceId;
         this.businessId = this.$route.params.businessId;
-        this.src = `/api/blade-flow/process/diagram-view?processInstanceId=${this.$route.params.processInstanceId}`;
+        this.src = `/api/blade-flow/process/diagram-view?processInstanceId=${this.$route.params.processInstanceId}&t=${new Date().getTime()}`;
         historyFlowList(this.processInstanceId).then(res => {
           const data = res.data;
           if (data.success) {

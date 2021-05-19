@@ -1,105 +1,109 @@
 <template>
-  <basic-container>
-    <avue-crud
-      :option="optionParent"
-      :table-loading="loading"
-      :data="dataParent"
-      :page="pageParent"
-      ref="crud"
-      v-model="formParent"
-      :permission="permissionList"
-      :before-open="beforeOpen"
-      @row-del="rowDel"
-      @row-update="rowUpdate"
-      @row-save="rowSave"
-      @row-click="handleRowClick"
-      @search-change="searchChange"
-      @search-reset="searchReset"
-      @selection-change="selectionChange"
-      @current-change="currentChange"
-      @size-change="sizeChange"
-      @refresh-change="refreshChange"
-      @on-load="onLoadParent"
-    >
-      <template slot="menuLeft">
-        <el-button
-          type="danger"
-          size="small"
-          icon="el-icon-delete"
-          v-if="permission.dictbiz_delete"
-          plain
-          @click="handleDelete"
-        >删 除
-        </el-button>
-      </template>
-      <template slot-scope="scope" slot="menu">
-        <el-button
-          type="text"
-          icon="el-icon-setting"
-          size="small"
-          @click.stop="handleRowClick(scope.row)"
-          v-if="userInfo.role_name.includes('admin')"
-        >字典配置
-        </el-button>
-      </template>
-      <template slot-scope="{row}" slot="code">
-        <el-tag @click="handleRowClick(row)" style="cursor:pointer">{{ row.code }}</el-tag>
-      </template>
-      <template slot-scope="{row}" slot="isSealed">
-        <el-tag>{{ row.isSealed === 0 ? '否' : '是' }}</el-tag>
-      </template>
-    </avue-crud>
-    <el-dialog :title="`[${dictValue}]字典配置`"
-               append-to-body
-               :visible.sync="box"
-               width="1000px">
-      <avue-crud
-        :option="optionChild"
-        :table-loading="loadingChild"
-        :data="dataChild"
-        ref="crudChild"
-        v-model="formChild"
-        :permission="permissionList"
-        :before-open="beforeOpenChild"
-        :before-close="beforeCloseChild"
-        @row-del="rowDelChild"
-        @row-update="rowUpdateChild"
-        @row-save="rowSaveChild"
-        @search-change="searchChangeChild"
-        @search-reset="searchResetChild"
-        @selection-change="selectionChangeChild"
-        @current-change="currentChangeChild"
-        @size-change="sizeChangeChild"
-        @refresh-change="refreshChangeChild"
-        @on-load="onLoadChild"
-      >
-        <template slot="menuLeft">
-          <el-button
-            type="danger"
-            size="small"
-            icon="el-icon-delete"
-            v-if="permission.dict_delete"
-            plain
-            @click="handleDelete"
-          >删 除
-          </el-button>
-        </template>
-        <template slot-scope="scope" slot="menu">
-          <el-button
-            type="text"
-            icon="el-icon-circle-plus-outline"
-            size="small"
-            @click.stop="handleAdd(scope.row,scope.index)"
-            v-if="userInfo.role_name.includes('admin')"
-          >新增子项
-          </el-button>
-        </template>
-        <template slot-scope="{row}" slot="isSealed">
-          <el-tag>{{ row.isSealed === 0 ? '否' : '是' }}</el-tag>
-        </template>
-      </avue-crud>
-    </el-dialog>
-  </basic-container>
+  <el-row>
+    <el-col :span="11">
+      <basic-container>
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>业务字典列表</span>
+          </div>
+          <div class="clearfix">
+            <avue-crud
+              :option="optionParent"
+              :table-loading="loading"
+              :data="dataParent"
+              :page="pageParent"
+              ref="crud"
+              v-model="formParent"
+              :permission="permissionList"
+              :before-open="beforeOpen"
+              @row-del="rowDel"
+              @row-update="rowUpdate"
+              @row-save="rowSave"
+              @row-click="handleRowClick"
+              @search-change="searchChange"
+              @search-reset="searchReset"
+              @selection-change="selectionChange"
+              @current-change="currentChange"
+              @size-change="sizeChange"
+              @refresh-change="refreshChange"
+              @on-load="onLoadParent"
+            >
+              <template slot="menuLeft">
+                <el-button
+                  type="danger"
+                  size="small"
+                  icon="el-icon-delete"
+                  v-if="permission.dict_delete"
+                  plain
+                  @click="handleDelete"
+                >删 除
+                </el-button>
+              </template>
+              <template slot-scope="{row}" slot="isSealed">
+                <el-tag>{{row.isSealed===0?'否':'是'}}</el-tag>
+              </template>
+            </avue-crud>
+          </div>
+        </el-card>
+      </basic-container>
+    </el-col>
+    <el-col :span="13">
+      <basic-container>
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>[{{dictValue}}] 业务字典详情</span>
+          </div>
+          <div class="clearfix">
+            <avue-crud
+              :option="optionChild"
+              :table-loading="loadingChild"
+              :data="dataChild"
+              ref="crudChild"
+              v-model="formChild"
+              :permission="permissionList"
+              :before-open="beforeOpenChild"
+              :before-close="beforeCloseChild"
+              @row-del="rowDelChild"
+              @row-update="rowUpdateChild"
+              @row-save="rowSaveChild"
+              @search-change="searchChangeChild"
+              @search-reset="searchResetChild"
+              @selection-change="selectionChangeChild"
+              @current-change="currentChangeChild"
+              @size-change="sizeChangeChild"
+              @refresh-change="refreshChangeChild"
+              @on-load="onLoadChild"
+            >
+              <template slot="menuLeft">
+                <el-button
+                  type="danger"
+                  size="small"
+                  icon="el-icon-delete"
+                  v-if="permission.dict_delete"
+                  plain
+                  @click="handleDelete"
+                >删 除
+                </el-button>
+              </template>
+              <template slot-scope="scope" slot="menu">
+                <el-button
+                  type="text"
+                  icon="el-icon-circle-plus-outline"
+                  size="small"
+                  @click.stop="handleAdd(scope.row,scope.index)"
+                  v-if="userInfo.role_name.includes('admin')"
+                >新增子项
+                </el-button>
+              </template>
+              <template slot-scope="{row}" slot="isSealed">
+                <el-tag>{{row.isSealed===0?'否':'是'}}</el-tag>
+              </template>
+            </avue-crud>
+          </div>
+        </el-card>
+      </basic-container>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -124,7 +128,6 @@
         formChild: {},
         selectionList: [],
         query: {},
-        box: false,
         loading: true,
         loadingChild: true,
         pageParent: {
@@ -174,12 +177,12 @@
         });
       },
       handleAdd(row) {
-        this.formChild.dictValue = "";
-        this.formChild.dictKey = "";
-        this.formChild.sort = 0;
-        this.formChild.isSealed = 0;
-        this.formChild.remark = "";
-        this.formChild.parentId = row.id;
+        this.$refs.crudChild.value.parentId = row.id;
+        this.$refs.crudChild.option.column.filter(item => {
+          if (item.prop === "parentId") {
+            item.value = row.id;
+          }
+        });
         this.$refs.crudChild.rowAdd();
       },
       rowSave(row, done, loading) {
@@ -206,7 +209,6 @@
             type: "success",
             message: "操作成功!"
           });
-          this.onLoadChild(this.pageChild);
           done();
         }, error => {
           window.console.log(error);
@@ -234,13 +236,16 @@
         this.query = {};
         this.parentId = row.id;
         this.dictValue = row.dictValue;
-
-        const code = this.findObject(this.optionChild.column, "code");
-        code.value = row.code;
-        const parentId = this.findObject(this.optionChild.column, "parentId");
-        parentId.value = row.id;
-
-        this.box = true;
+        this.$refs.crudChild.value.code = row.code;
+        this.$refs.crudChild.value.parentId = row.id;
+        this.$refs.crudChild.option.column.filter(item => {
+          if (item.prop === "code") {
+            item.value = row.code;
+          }
+          if (item.prop === "parentId") {
+            item.value = row.id;
+          }
+        });
         this.onLoadChild(this.pageChild);
       },
       searchReset() {

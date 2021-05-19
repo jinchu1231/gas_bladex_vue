@@ -1,6 +1,6 @@
 export const optionParent = {
   height: 'auto',
-  calcHeight: 95,
+  calcHeight: 30,
   tip: false,
   searchShow: true,
   searchMenuSpan: 10,
@@ -8,7 +8,7 @@ export const optionParent = {
   index: true,
   selection: true,
   viewBtn: true,
-  menuWidth: 150,
+  menuWidth: 250,
   dialogWidth: 880,
   dialogClickModal: false,
   column: [
@@ -16,6 +16,7 @@ export const optionParent = {
       label: "字典编号",
       prop: "code",
       search: true,
+      slot: true,
       span: 24,
       rules: [
         {
@@ -43,8 +44,7 @@ export const optionParent = {
       prop: "sort",
       type: "number",
       align: "right",
-      width: 80,
-      hide: true,
+      width: 100,
       rules: [
         {
           required: true,
@@ -58,7 +58,7 @@ export const optionParent = {
       prop: "isSealed",
       type: "switch",
       align: "center",
-      width: 80,
+      width: 100,
       dicData: [
         {
           label: "否",
@@ -98,7 +98,7 @@ export const optionChild = {
   index: true,
   selection: true,
   viewBtn: true,
-  menuWidth: 220,
+  menuWidth: 300,
   dialogWidth: 880,
   dialogClickModal: false,
   column: [

@@ -1,37 +1,38 @@
 <template>
   <div class="basic-container"
+       :style="styleName"
        :class="{'basic-container--block':block}">
-    <el-card>
+    <el-card class="basic-container__card">
       <slot></slot>
     </el-card>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "basicContainer",
-    props: {
-      radius: {
-        type: [String, Number],
-        default: 10
-      },
-      background: {
-        type: String
-      },
-      block: {
-        type: Boolean,
-        default: false
-      }
+export default {
+  name: "basicContainer",
+  props: {
+    radius: {
+      type: [String, Number],
+      default: 10
     },
-    computed: {
-      styleName () {
-        return {
-          borderRadius: this.setPx(this.radius),
-          background: this.background,
-        }
+    background: {
+      type: String
+    },
+    block: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    styleName () {
+      return {
+        borderRadius: this.setPx(this.radius),
+        background: this.background,
       }
     }
-  };
+  }
+};
 </script>
 
 <style lang="scss">
@@ -40,11 +41,11 @@
   box-sizing: border-box;
   &--block {
     height: 100%;
-    .el-card {
+    .basic-container__card {
       height: 100%;
     }
   }
-  .el-card {
+  &__card {
     width: 100%;
   }
   &:first-child {

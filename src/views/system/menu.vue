@@ -34,7 +34,7 @@
           icon="el-icon-circle-plus-outline"
           size="small"
           @click.stop="handleAdd(scope.row,scope.index)"
-          v-if="userInfo.role_name.includes('admin')"
+          v-if="userInfo.role_name.includes('admin') && scope.row.category === 1"
         >新增子项
         </el-button>
       </template>

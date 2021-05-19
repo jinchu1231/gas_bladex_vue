@@ -9,9 +9,9 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V2.8.0-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V2.8.1-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR10-blue.svg" alt="Coverage Status"/>
+            <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR11-blue.svg" alt="Coverage Status"/>
             <img src="https://img.shields.io/badge/Spring%20Boot-2.2.13.RELEASE-blue.svg" alt="Downloads"/>
             <a target="_blank" href="https://bladex.vip">
               <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
@@ -138,6 +138,37 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="2.8.1.RELEASE发布，适配Nacos2支持长链接特性" name="23">
+                <div>1.[升级]SpringCloud 至 Hoxton.SR11</div>
+                <div>2.[升级]Avue 至 2.8.12</div>
+                <div>3.[升级]Lombok 至 1.18.18</div>
+                <div>4.[升级]Nacos 至 2.0.1</div>
+                <div>5.[升级]JustAuth 至 1.16.1</div>
+                <div>6.[新增]JustAuth支持基于redis的state缓存</div>
+                <div>7.[新增]服务内部调用文件上传的工具类</div>
+                <div>8.[新增]插件市场目录说明</div>
+                <div>9.[新增]全新布局的字典管理模块</div>
+                <div>10.[优化]Dockerfile初始镜像改为固化的openjdk8-openj9含字体版本</div>
+                <div>11.[优化]SmsResponse返回字段message为msg</div>
+                <div>12.[优化]Feign熔断加载逻辑</div>
+                <div>13.[优化]Sql打印插件增加java8时间处理</div>
+                <div>14.[优化]多数据源环境下生效Sql打印插件的配置</div>
+                <div>15.[优化]校验短信验证码时与手机号关联验证</div>
+                <div>16.[优化]Request包装逻辑支持配置跳过</div>
+                <div>17.[优化]Mybatis-plus的SQLServerDialect逻辑</div>
+                <div>18.[优化]ObjectMapper支持可配</div>
+                <div>19.[优化]增加跨域请求头以防独立swagger服务出现跨域</div>
+                <div>20.[优化]数据权限与接口权限的缓存改为全局</div>
+                <div>21.[优化]Xss过滤逻辑</div>
+                <div>22.[优化]角色配置逻辑</div>
+                <div>23.[优化]菜单配置逻辑</div>
+                <div>24.[修复]ImageUtil宽高反转的bug</div>
+                <div>25.[修复]树组件未全选导致父节点没有入库从而引发顶部菜单生成的bug</div>
+                <div>26.[修复]字典通用接口未返回id与parentId产生的bug</div>
+                <div>27.[脚本]启动脚本增加jvm配置</div>
+                <div>28.[脚本]修复report脚本部署逻辑</div>
+                <div>29.[移除]过时的BladeRedisCache，请用BladeRedis取代</div>
+              </el-collapse-item>
               <el-collapse-item title="2.8.0.RELEASE发布，集成Prometheus全方位监控方案" name="22">
                 <div>1.[升级]SpringCloud 至 Hoxton.SR10</div>
                 <div>2.[升级]AlibabaCloud 至 2.2.5.RELEASE</div>
@@ -609,7 +640,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['22']
+        logActiveNames: ['23']
       };
     },
     computed: {

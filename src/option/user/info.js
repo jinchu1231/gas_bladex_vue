@@ -26,12 +26,12 @@ export default {
         label: '姓名',
         span: 12,
         row: true,
-        prop: 'name'
+        prop: 'realName'
       }, {
         label: '用户名',
         span: 12,
         row: true,
-        prop: 'realName'
+        prop: 'name'
       }, {
         label: '手机号',
         span: 12,

@@ -1,11 +1,13 @@
 import request from '@/router/axios';
 import website from "@/config/website";
 
-export const loginByUsername = (tenantId, username, password, type, key, code) => request({
+export const loginByUsername = (tenantId, deptId, roleId, username, password, type, key, code) => request({
   url: '/api/blade-auth/oauth/token',
   method: 'post',
   headers: {
     'Tenant-Id': tenantId,
+    'Dept-Id': deptId,
+    'Role-Id': roleId,
     'Captcha-Key': key,
     'Captcha-Code': code,
   },

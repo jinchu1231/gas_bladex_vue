@@ -60,6 +60,12 @@
                  class="login-submit">{{$t('login.submit')}}
       </el-button>
     </el-form-item>
+    <el-dialog title="用户信息选择"
+               append-to-body
+               :visible.sync="userBox"
+               width="350px">
+      <avue-form :option="userOption" v-model="userForm" @submit="submitLogin"/>
+    </el-dialog>
   </el-form>
 </template>
 
@@ -77,6 +83,10 @@
         loginForm: {
           //租户ID
           tenantId: "000000",
+          //部门ID
+          deptId: "",
+          //角色ID
+          roleId: "",
           //用户名
           username: "admin",
           //密码
@@ -102,7 +112,54 @@
             {min: 1, message: "密码长度最少为6位", trigger: "blur"}
           ]
         },
-        passwordType: "password"
+        passwordType: "password",
+        userBox: false,
+        userForm: {
+          deptId: '',
+          roleId: ''
+        },
+        userOption: {
+          labelWidth: 70,
+          submitBtn: true,
+          emptyBtn: false,
+          submitText: '登录',
+          column: [
+            {
+              label: '部门',
+              prop: 'deptId',
+              type: 'select',
+              props: {
+                label: 'deptName',
+                value: 'id'
+              },
+              dicUrl: '/api/blade-system/dept/select',
+              span: 24,
+              display: false,
+              rules: [{
+                required: true,
+                message: "请选择部门",
+                trigger: "blur"
+              }],
+            },
+            {
+              label: '角色',
+              prop: 'roleId',
+              type: 'select',
+              props: {
+                label: 'roleName',
+                value: 'id'
+              },
+              dicUrl: '/api/blade-system/role/select',
+              span: 24,
+              display: false,
+              rules: [{
+                required: true,
+                message: "请选择角色",
+                trigger: "blur"
+              }],
+            },
+          ]
+        }
       };
     },
     created() {
@@ -111,8 +168,28 @@
     },
     mounted() {
     },
+    watch: {
+      'loginForm.deptId'() {
+        const column = this.findObject(this.userOption.column, "deptId");
+        if (this.loginForm.deptId.includes(",")) {
+          column.dicUrl = `/api/blade-system/dept/select?deptId=${this.loginForm.deptId}`;
+          column.display = true;
+        } else {
+          column.dicUrl = '';
+        }
+      },
+      'loginForm.roleId'() {
+        const column = this.findObject(this.userOption.column, "roleId");
+        if (this.loginForm.roleId.includes(",")) {
+          column.dicUrl = `/api/blade-system/role/select?roleId=${this.loginForm.roleId}`;
+          column.display = true;
+        } else {
+          column.dicUrl = '';
+        }
+      }
+    },
     computed: {
-      ...mapGetters(["tagWel"])
+      ...mapGetters(["tagWel", "userInfo"])
     },
     props: [],
     methods: {
@@ -130,6 +207,16 @@
           ? (this.passwordType = "password")
           : (this.passwordType = "");
       },
+      submitLogin (form, done) {
+        if (form.deptId !== '') {
+          this.loginForm.deptId = form.deptId;
+        }
+        if (form.roleId !== '') {
+          this.loginForm.roleId = form.roleId;
+        }
+        this.handleLogin();
+        done();
+      },
       handleLogin() {
         this.$refs.loginForm.validate(valid => {
           if (valid) {
@@ -139,7 +226,15 @@
               spinner: "el-icon-loading"
             });
             this.$store.dispatch("LoginByUsername", this.loginForm).then(() => {
-              this.$router.push({path: this.tagWel.value});
+              const deptId = this.userInfo.dept_id;
+              const roleId = this.userInfo.role_id;
+              if (deptId.includes(",") || roleId.includes(",")) {
+                this.loginForm.deptId = deptId;
+                this.loginForm.roleId = roleId;
+                this.userBox = true;
+              } else {
+                this.$router.push({path: this.tagWel.value});
+              }
               loading.close();
             }).catch(() => {
               loading.close();

@@ -9,10 +9,10 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V2.8.1-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V2.8.2-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
             <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR11-blue.svg" alt="Coverage Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Boot-2.2.13.RELEASE-blue.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Spring%20Boot-2.3.12.RELEASE-blue.svg" alt="Downloads"/>
             <a target="_blank" href="https://bladex.vip">
               <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
             </a>
@@ -138,6 +138,33 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="2.8.2.RELEASE发布，增强用户登录方案" name="24">
+                <div>1.[升级]SpringBoot 至 2.3.12</div>
+                <div>2.[升级]SpringBootAdmin 至 2.3.1</div>
+                <div>3.[升级]Knife4j 至 2.0.9</div>
+                <div>4.[升级]Nacos 至 2.0.2</div>
+                <div>5.[升级]Seata 至 1.4.2</div>
+                <div>6.[升级]MybatisPlus 至 3.4.3.1</div>
+                <div>7.[升级]DynamicDatasource 至 3.3.6</div>
+                <div>8.[升级]Druid 至 1.2.6</div>
+                <div>9.[升级]Avue 至 2.8.18</div>
+                <div>10.[新增]用户登录错误次数锁定功能</div>
+                <div>11.[新增]多部门多角色用户在登录时增加下拉选项</div>
+                <div>12.[新增]新增用户多条件查询接口</div>
+                <div>13.[新增]Ribbon组件权重读取逻辑</div>
+                <div>14.[新增]ExcelUtil新增WriteHandler参数</div>
+                <div>15.[新增]CacheUtil增加指定tenantId清空方法</div>
+                <div>16.[优化]手机短信校验逻辑，增加手机号强制判断</div>
+                <div>17.[优化]短信调试功能增加资源编号读取</div>
+                <div>18.[优化]多租户切面逻辑</div>
+                <div>19.[优化]多租户缓存清空逻辑</div>
+                <div>20.[优化]ISqlInjector支持自定义覆盖</div>
+                <div>21.[优化]优化日志对于租户id的判断</div>
+                <div>22.[优化]Menu类重写hashCode方法</div>
+                <div>23.[优化]MySql脚本将long类型字段改为bigint(20)</div>
+                <div>24.[修复]用户中心字段绑定相反的问题</div>
+                <div>25.[修复]关闭验证码模式后首页仍调用验证码接口的问题</div>
+              </el-collapse-item>
               <el-collapse-item title="2.8.1.RELEASE发布，适配Nacos2支持长链接特性" name="23">
                 <div>1.[升级]SpringCloud 至 Hoxton.SR11</div>
                 <div>2.[升级]Avue 至 2.8.12</div>
@@ -640,7 +667,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['23']
+        logActiveNames: ['24']
       };
     },
     computed: {

@@ -144,7 +144,7 @@
                 <div>3.[升级]Knife4j 至 2.0.9</div>
                 <div>4.[升级]Nacos 至 2.0.2</div>
                 <div>5.[升级]Seata 至 1.4.2</div>
-                <div>6.[升级]MybatisPlus 至 3.4.3.1</div>
+                <div>6.[回滚]MybatisPlus 至 3.4.2</div>
                 <div>7.[升级]DynamicDatasource 至 3.3.6</div>
                 <div>8.[升级]Druid 至 1.2.6</div>
                 <div>9.[升级]Avue 至 2.8.18</div>

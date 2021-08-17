@@ -226,15 +226,18 @@
               spinner: "el-icon-loading"
             });
             this.$store.dispatch("LoginByUsername", this.loginForm).then(() => {
-              const deptId = this.userInfo.dept_id;
-              const roleId = this.userInfo.role_id;
-              if (deptId.includes(",") || roleId.includes(",")) {
-                this.loginForm.deptId = deptId;
-                this.loginForm.roleId = roleId;
-                this.userBox = true;
-              } else {
-                this.$router.push({path: this.tagWel.value});
+              if (this.website.switchMode) {
+                const deptId = this.userInfo.dept_id;
+                const roleId = this.userInfo.role_id;
+                if (deptId.includes(",") || roleId.includes(",")) {
+                  this.loginForm.deptId = deptId;
+                  this.loginForm.roleId = roleId;
+                  this.userBox = true;
+                  loading.close();
+                  return false;
+                }
               }
+              this.$router.push({path: this.tagWel.value});
               loading.close();
             }).catch(() => {
               loading.close();

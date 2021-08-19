@@ -170,6 +170,7 @@ export default {
             prop: "backgroundUrl",
             type: 'upload',
             listType: 'picture-img',
+            dataType: 'string',
             action: '/api/blade-resource/oss/endpoint/put-file',
             propsHttp: {
               res: 'data',

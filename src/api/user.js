@@ -6,8 +6,8 @@ export const loginByUsername = (tenantId, deptId, roleId, username, password, ty
   method: 'post',
   headers: {
     'Tenant-Id': tenantId,
-    'Dept-Id': deptId,
-    'Role-Id': roleId,
+    'Dept-Id': (website.switchMode ? deptId : ''),
+    'Role-Id': (website.switchMode ? roleId : ''),
     'Captcha-Key': key,
     'Captcha-Code': code,
   },

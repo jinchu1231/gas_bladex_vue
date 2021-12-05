@@ -118,7 +118,7 @@ const user = {
     refreshToken({state, commit}) {
       window.console.log('handle refresh token')
       return new Promise((resolve, reject) => {
-        refreshToken(state.refreshToken, state.tenantId).then(res => {
+        refreshToken(state.refreshToken, state.tenantId, state.userInfo.dept_id).then(res => {
           const data = res.data;
           commit('SET_TOKEN', data.access_token);
           commit('SET_REFRESH_TOKEN', data.refresh_token);

@@ -37,11 +37,12 @@ export const loginBySocial = (tenantId, source, code, state) => request({
   }
 })
 
-export const refreshToken = (refresh_token, tenantId) => request({
+export const refreshToken = (refresh_token, tenantId, deptId) => request({
   url: '/api/blade-auth/oauth/token',
   method: 'post',
   headers: {
-    'Tenant-Id': tenantId
+    'Tenant-Id': tenantId,
+    'Dept-Id': (website.switchMode ? deptId : '')
   },
   params: {
     tenantId,

@@ -118,3 +118,13 @@ export const grant = (userIds, roleIds) => {
     }
   })
 }
+
+export const unlock = (userIds) => {
+  return request({
+    url: '/api/blade-user/unlock',
+    method: 'post',
+    params: {
+      userIds,
+    }
+  })
+}

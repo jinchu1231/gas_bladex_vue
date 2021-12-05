@@ -59,6 +59,13 @@
                        icon="el-icon-setting"
                        @click="handlePlatform">平台配置
             </el-button>
+            <el-button type="info"
+                       size="small"
+                       plain
+                       v-if="userInfo.role_name.includes('admin')"
+                       icon="el-icon-coordinate"
+                       @click="handleLock">账号解封
+            </el-button>
             <el-button type="success"
                        size="small"
                        plain
@@ -159,17 +166,17 @@
 </template>
 
 <script>
-  import {
-    getList,
-    getUser,
-    getUserPlatform,
-    remove,
-    update,
-    updatePlatform,
-    add,
-    grant,
-    resetPassword
-  } from "@/api/system/user";
+import {
+  getList,
+  getUser,
+  getUserPlatform,
+  remove,
+  update,
+  updatePlatform,
+  add,
+  grant,
+  resetPassword, unlock
+} from "@/api/system/user";
   import {getDeptTree, getDeptLazyTree} from "@/api/system/dept";
   import {getRoleTree} from "@/api/system/role";
   import {getPostList} from "@/api/system/post";
@@ -859,6 +866,22 @@
       },
       handlePlatform() {
         this.platformBox = true;
+      },
+      handleLock() {
+        this.$confirm("确定将选择账号解封？", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        })
+          .then(() => {
+            return unlock(this.ids);
+          })
+          .then(() => {
+            this.$message({
+              type: "success",
+              message: "操作成功!"
+            });
+          });
       },
       handleImport() {
         this.excelBox = true;

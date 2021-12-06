@@ -233,7 +233,9 @@
                   this.loginForm.deptId = deptId;
                   this.loginForm.roleId = roleId;
                   this.userBox = true;
-                  loading.close();
+                  this.$store.dispatch("LogOut").then(() => {
+                    loading.close();
+                  });
                   return false;
                 }
               }

@@ -7,6 +7,7 @@
                v-model="form"
                :permission="permissionList"
                :before-open="beforeOpen"
+               :before-close="beforeClose"
                @row-del="rowDel"
                @row-update="rowUpdate"
                @row-save="rowSave"
@@ -569,6 +570,10 @@
             this.form = res.data.data;
           });
         }
+        done();
+      },
+      beforeClose(done) {
+        this.formScope = {};
         done();
       },
       currentChange(currentPage) {

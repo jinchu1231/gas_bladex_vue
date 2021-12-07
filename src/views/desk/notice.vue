@@ -278,7 +278,7 @@
           values.releaseTimeRange = null;
         }
         this.loading = true;
-        getList(page.currentPage, page.pageSize, values).then(res => {
+        getList(page.currentPage, page.pageSize, Object.assign(values, this.query)).then(res => {
           const data = res.data.data;
           this.page.total = data.total;
           this.data = data.records;

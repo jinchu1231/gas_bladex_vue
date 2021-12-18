@@ -79,3 +79,24 @@ export const info = (domain) => {
     }
   })
 }
+
+export const packageInfo = (tenantId) => {
+  return request({
+    url: '/api/blade-system/tenant/package-detail',
+    method: 'get',
+    params: {
+      tenantId
+    }
+  })
+}
+
+export const packageSetting = (tenantId, packageId) => {
+  return request({
+    url: '/api/blade-system/tenant/package-setting',
+    method: 'post',
+    params: {
+      tenantId,
+      packageId
+    }
+  })
+}

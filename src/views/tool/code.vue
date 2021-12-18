@@ -73,7 +73,7 @@
           index: true,
           selection: true,
           labelWidth: 120,
-          menuWidth: 250,
+          menuWidth: 300,
           viewBtn: true,
           dialogClickModal: false,
           column: [

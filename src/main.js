@@ -22,6 +22,9 @@ import thirdRegister from './components/third-register/main';
 import avueUeditor from 'avue-plugin-ueditor';
 import website from '@/config/website';
 import crudCommon from '@/mixins/crud';
+// 业务组件
+import tenantPackage from './views/system/tenantpackage';
+
 // 注册全局crud驱动
 window.$crudCommon = crudCommon;
 // 加载Vue拓展
@@ -41,6 +44,7 @@ Vue.component('basicContainer', basicContainer);
 Vue.component('basicBlock', basicBlock);
 Vue.component('thirdRegister', thirdRegister);
 Vue.component('avueUeditor', avueUeditor);
+Vue.component('tenantPackage', tenantPackage);
 // 加载相关url地址
 Object.keys(urls).forEach(key => {
   Vue.prototype[key] = urls[key];

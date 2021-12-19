@@ -138,6 +138,34 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="2.9.0.RELEASE发布，新增租户菜单产品包功能" name="25">
+                <div>1.[升级]SpringCloud 至 Hoxton.SR12</div>
+                <div>2.[升级]AlibabaCloud 至 2.2.7.RELEASE</div>
+                <div>3.[升级]Nacos 至 2.0.3</div>
+                <div>4.[升级]Log4j2 至 2.17.0</div>
+                <div>5.[升级]Druid 至 1.2.8</div>
+                <div>6.[升级]FastJson 至 1.2.78</div>
+                <div>7.[升级]Lombok 至 1.18.22</div>
+                <div>8.[升级]Avue 至 2.8.25</div>
+                <div>9.[升级]阿里云仓库为最新地址</div>
+                <div>10.[新增]租户菜单产品包功能</div>
+                <div>11.[新增]部门角色在线切换功能</div>
+                <div>12.[新增]登录错误次数支持从参数管理读取</div>
+                <div>13.[新增]管理端手动解锁用户功能</div>
+                <div>14.[新增]actuator接口增加内网放行外网认证功能</div>
+                <div>15.[新增]pg数据库int类型条件查询处理示例</div>
+                <div>16.[新增]Lemon平台代码生成模板</div>
+                <div>17.[优化]角色删除增加子节点判断</div>
+                <div>18.[优化]流程条件查询增加租户过滤</div>
+                <div>19.[优化]流程列表增加名称查询</div>
+                <div>20.[优化]登录成功时清除错误次数</div>
+                <div>21.[优化]适配cloud最新版异常处理</div>
+                <div>22.[优化]数据权限新增成功后清空表单数据</div>
+                <div>23.[修复]修复用户导入部门数据为null时保存报错的问题</div>
+                <div>24.[修复]修复刷新token导致多部门id被覆盖的问题</div>
+                <div>25.[修复]修复登录界面多部门选择弹框出现后直接刷新就能进入主页的问题</div>
+                <div>26.[修复]修复通知公告分页未带入查询条件的问题</div>
+              </el-collapse-item>
               <el-collapse-item title="2.8.2.RELEASE发布，增强用户登录方案" name="24">
                 <div>1.[升级]SpringBoot 至 2.3.12</div>
                 <div>2.[升级]SpringBootAdmin 至 2.3.1</div>
@@ -667,7 +695,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['24']
+        logActiveNames: ['25']
       };
     },
     computed: {

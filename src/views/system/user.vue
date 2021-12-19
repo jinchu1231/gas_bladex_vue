@@ -269,7 +269,7 @@ import {
           index: true,
           selection: true,
           viewBtn: true,
-          //dialogType: 'drawer',
+          dialogType: 'drawer',
           dialogClickModal: false,
           column: [
             {

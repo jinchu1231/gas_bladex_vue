@@ -115,10 +115,13 @@ const user = {
       })
     },
     //刷新token
-    refreshToken({state, commit}) {
-      window.console.log('handle refresh token')
+    refreshToken({state, commit}, userInfo) {
+      window.console.log('handle refresh token');
       return new Promise((resolve, reject) => {
-        refreshToken(state.refreshToken, state.tenantId, state.userInfo.dept_id).then(res => {
+        refreshToken(state.refreshToken, state.tenantId,
+          !validatenull(userInfo) ? userInfo.deptId : state.userInfo.dept_id,
+          !validatenull(userInfo) ? userInfo.roleId : state.userInfo.role_id
+        ).then(res => {
           const data = res.data;
           commit('SET_TOKEN', data.access_token);
           commit('SET_REFRESH_TOKEN', data.refresh_token);

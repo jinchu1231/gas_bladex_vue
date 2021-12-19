@@ -88,11 +88,20 @@
           <el-dropdown-item>
             <router-link to="/info/index">{{$t('navbar.userinfo')}}</router-link>
           </el-dropdown-item>
+          <el-dropdown-item v-if="this.website.switchMode" @click.native="switchDept"
+                            >{{$t('navbar.switchDept')}}
+          </el-dropdown-item>
           <el-dropdown-item @click.native="logout"
                             divided>{{$t('navbar.logOut')}}
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
+      <el-dialog title="用户信息选择"
+                 append-to-body
+                 :visible.sync="userBox"
+                 width="350px">
+        <avue-form ref="form" :option="userOption" v-model="userForm" @submit="submitSwitch"/>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -122,7 +131,55 @@
     },
     name: "top",
     data() {
-      return {};
+      return {
+        userBox: false,
+        userForm: {
+          deptId: '',
+          roleId: ''
+        },
+        userOption: {
+          labelWidth: 70,
+          submitBtn: true,
+          emptyBtn: false,
+          submitText: '切换',
+          column: [
+            {
+              label: '部门',
+              prop: 'deptId',
+              type: 'select',
+              props: {
+                label: 'deptName',
+                value: 'id'
+              },
+              dicUrl: '/api/blade-system/dept/select',
+              span: 24,
+              display: false,
+              rules: [{
+                required: true,
+                message: "请选择部门",
+                trigger: "blur"
+              }],
+            },
+            {
+              label: '角色',
+              prop: 'roleId',
+              type: 'select',
+              props: {
+                label: 'roleName',
+                value: 'id'
+              },
+              dicUrl: '/api/blade-system/role/select',
+              span: 24,
+              display: false,
+              rules: [{
+                required: true,
+                message: "请选择角色",
+                trigger: "blur"
+              }],
+            },
+          ]
+        }
+      };
     },
     filters: {},
     created() {
@@ -161,6 +218,22 @@
       },
       setScreen() {
         this.$store.commit("SET_FULLSCREN");
+      },
+      switchDept() {
+        const userId = this.userInfo.user_id;
+        const deptColumn = this.findObject(this.userOption.column, "deptId");
+        deptColumn.dicUrl = `/api/blade-system/dept/select?userId=${userId}`;
+        deptColumn.display = true;
+        const roleColumn = this.findObject(this.userOption.column, "roleId");
+        roleColumn.dicUrl = `/api/blade-system/role/select?userId=${userId}`;
+        roleColumn.display = true;
+        this.userBox = true;
+      },
+      submitSwitch (form, done) {
+        this.$store.dispatch("refreshToken", form).then(() => {
+          this.userBox = false;
+        })
+        done();
       },
       logout() {
         this.$confirm(this.$t("logoutTip"), this.$t("tip"), {

@@ -88,6 +88,7 @@ export default {
     info: 'info',
     logOut: 'logout',
     userinfo: 'userinfo',
+    switchDept : 'switch dept',
     dashboard: 'dashboard',
     lock: 'lock',
     bug: 'none bug',

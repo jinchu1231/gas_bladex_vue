@@ -87,6 +87,7 @@ export default {
   navbar: {
     logOut: '退出登录',
     userinfo: '个人信息',
+    switchDept : '部门切换',
     dashboard: '首页',
     lock: '锁屏',
     bug: '没有错误日志',

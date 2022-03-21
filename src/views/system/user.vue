@@ -868,6 +868,10 @@ import {
         this.platformBox = true;
       },
       handleLock() {
+        if (this.selectionList.length === 0) {
+          this.$message.warning("请选择至少一条数据");
+          return;
+        }
         this.$confirm("确定将选择账号解封？", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",

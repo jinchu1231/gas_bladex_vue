@@ -273,12 +273,7 @@ export default {
             props: {
               label: "packageName",
               value: "id"
-            },
-            rules: [{
-              required: true,
-              message: "请选择产品包",
-              trigger: "blur"
-            }]
+            }
           },
           {
             label: "菜单预览",

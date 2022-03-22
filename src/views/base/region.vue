@@ -52,9 +52,14 @@
 
 <script>
   import {getLazyTree, getDetail, submit, remove} from "@/api/base/region";
+  import {exportBlob} from "@/api/common";
   import {mapGetters} from "vuex";
   import {validatenull} from "@/util/validate";
+  import {downloadXls} from "@/util/util";
+  import {dateNow} from "@/util/date";
   import {getToken} from "@/util/auth";
+  import NProgress from 'nprogress';
+  import 'nprogress/nprogress.css';
 
   export default {
     data() {
@@ -392,11 +397,17 @@
           cancelButtonText: "取消",
           type: "warning"
         }).then(() => {
-          window.open(`/api/blade-system/region/export-region?${this.website.tokenHeader}=${getToken()}`);
+          NProgress.start();
+          exportBlob(`/api/blade-system/region/export-region?${this.website.tokenHeader}=${getToken()}`).then(res => {
+            downloadXls(res.data, `行政区划数据${dateNow()}.xlsx`);
+            NProgress.done();
+          })
         });
       },
       handleTemplate() {
-        window.open(`/api/blade-system/region/export-template?${this.website.tokenHeader}=${getToken()}`);
+        exportBlob(`/api/blade-system/region/export-template?${this.website.tokenHeader}=${getToken()}`).then(res => {
+          downloadXls(res.data, "行政区划模板.xlsx");
+        })
       },
     }
   };

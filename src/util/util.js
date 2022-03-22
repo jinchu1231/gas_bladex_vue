@@ -365,3 +365,27 @@ export const downloadFileBase64 = (path, name) => {
     }
   };
 }
+
+/**
+ * 下载excel
+ * @param {blob} fileArrayBuffer 文件流
+ * @param {String} filename 文件名称
+ */
+export const downloadXls = (fileArrayBuffer, filename) => {
+  let data = new Blob([fileArrayBuffer], {type: 'application/vnd.ms-excel,charset=utf-8'});
+  if (typeof window.chrome !== 'undefined') {
+    // Chrome
+    var link = document.createElement('a');
+    link.href = window.URL.createObjectURL(data);
+    link.download = filename;
+    link.click();
+  } else if (typeof window.navigator.msSaveBlob !== 'undefined') {
+    // IE
+    var blob = new Blob([data], {type: 'application/force-download'});
+    window.navigator.msSaveBlob(blob, filename);
+  } else {
+    // Firefox
+    var file = new File([data], filename, {type: 'application/force-download'});
+    window.open(URL.createObjectURL(file));
+  }
+}

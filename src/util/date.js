@@ -49,3 +49,10 @@ export function dateFormat(date, format) {
   return '';
 
 }
+
+/**
+ * 当前时间戳
+ */
+export function dateNow() {
+  return dateFormat(new Date(), "yyyyMMddhhmmss");
+}

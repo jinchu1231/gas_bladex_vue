@@ -166,23 +166,28 @@
 </template>
 
 <script>
-import {
-  getList,
-  getUser,
-  getUserPlatform,
-  remove,
-  update,
-  updatePlatform,
-  add,
-  grant,
-  resetPassword, unlock
-} from "@/api/system/user";
+  import {
+    getList,
+    getUser,
+    getUserPlatform,
+    remove,
+    update,
+    updatePlatform,
+    add,
+    grant,
+    resetPassword, unlock
+  } from "@/api/system/user";
+  import {exportBlob} from "@/api/common";
   import {getDeptTree, getDeptLazyTree} from "@/api/system/dept";
   import {getRoleTree} from "@/api/system/role";
   import {getPostList} from "@/api/system/post";
   import {mapGetters} from "vuex";
   import website from '@/config/website';
   import {getToken} from '@/util/auth';
+  import {downloadXls} from "@/util/util";
+  import {dateNow} from "@/util/date";
+  import NProgress from 'nprogress';
+  import 'nprogress/nprogress.css';
 
   export default {
     data() {
@@ -902,11 +907,17 @@ import {
           cancelButtonText: "取消",
           type: "warning"
         }).then(() => {
-          window.open(`/api/blade-user/export-user?${this.website.tokenHeader}=${getToken()}&account=${this.search.account}&realName=${this.search.realName}`);
+          NProgress.start();
+          exportBlob(`/api/blade-user/export-user?${this.website.tokenHeader}=${getToken()}&account=${this.search.account}&realName=${this.search.realName}`).then(res => {
+            downloadXls(res.data, `用户数据表${dateNow()}.xlsx`);
+            NProgress.done();
+          })
         });
       },
       handleTemplate() {
-        window.open(`/api/blade-user/export-template?${this.website.tokenHeader}=${getToken()}`);
+        exportBlob(`/api/blade-user/export-template?${this.website.tokenHeader}=${getToken()}`).then(res => {
+          downloadXls(res.data, "用户数据模板.xlsx");
+        })
       },
       beforeOpen(done, type) {
         if (["edit", "view"].includes(type)) {

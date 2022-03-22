@@ -87,7 +87,7 @@
           index: true,
           viewBtn: true,
           selection: true,
-          menuWidth: 300,
+          menuWidth: 350,
           labelWidth: 100,
           dialogWidth: 880,
           dialogClickModal: false,

@@ -95,7 +95,7 @@
             },
             {
               label: "附件域名",
-              prop: "domain",
+              prop: "domainUrl",
               search: true,
               rules: [{
                 required: true,

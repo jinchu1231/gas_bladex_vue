@@ -199,7 +199,7 @@ export default {
           },
           {
             label: "绑定域名",
-            prop: "domain",
+            prop: "domainUrl",
             span: 24,
           },
           {

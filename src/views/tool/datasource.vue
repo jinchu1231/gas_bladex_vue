@@ -84,6 +84,12 @@
                 }, {
                   label: 'oracle.jdbc.OracleDriver',
                   value: 'oracle.jdbc.OracleDriver',
+                }, {
+                  label: 'com.microsoft.sqlserver.jdbc.SQLServerDriver',
+                  value: 'com.microsoft.sqlserver.jdbc.SQLServerDriver',
+                }, {
+                  label: 'dm.jdbc.driver.DmDriver',
+                  value: 'dm.jdbc.driver.DmDriver',
                 }
               ],
               width: 200,

@@ -125,6 +125,7 @@ const user = {
           const data = res.data;
           commit('SET_TOKEN', data.access_token);
           commit('SET_REFRESH_TOKEN', data.refresh_token);
+          commit('SET_USER_INFO', data);
           resolve();
         }).catch(error => {
           reject(error)

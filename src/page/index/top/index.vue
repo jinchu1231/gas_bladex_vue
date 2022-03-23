@@ -232,6 +232,7 @@
       submitSwitch (form, done) {
         this.$store.dispatch("refreshToken", form).then(() => {
           this.userBox = false;
+          this.$router.push({path: "/"});
         })
         done();
       },

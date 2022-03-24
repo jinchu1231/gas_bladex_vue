@@ -22,16 +22,14 @@
       <template slot-scope="scope" slot="menu">
         <el-button type="text"
                    size="small"
+                   icon="el-icon-video-play"
                    v-if="permission.work_start_flow"
-                   plain
-                   class="none-border"
                    @click.stop="handleStart(scope.row)">发起
         </el-button>
         <el-button type="text"
                    size="small"
+                   icon="el-icon-search"
                    v-if="permission.work_start_image"
-                   plain
-                   class="none-border"
                    @click.stop="handleImage(scope.row,scope.index)">流程图
         </el-button>
       </template>
@@ -52,27 +50,7 @@
         <el-tag>{{row.categoryName}}</el-tag>
       </template>
     </avue-crud>
-    <el-dialog title="流程图"
-               append-to-body
-               :visible.sync="flowBox"
-               :fullscreen="true">
-      <iframe
-        :src=flowUrl
-        width="100%"
-        height="700"
-        title="流程图"
-        frameBorder="no"
-        border="0"
-        marginWidth="0"
-        marginHeight="0"
-        scrolling="no"
-        allowTransparency="yes">
-      </iframe>
-      <span slot="footer"
-            class="dialog-footer">
-        <el-button @click="flowBox = false">关 闭</el-button>
-      </span>
-    </el-dialog>
+    <flow-design is-dialog :is-display.sync="flowBox" :process-definition-id="processDefinitionId"></flow-design>
   </basic-container>
 </template>
 
@@ -95,8 +73,8 @@
           currentPage: 1,
           total: 0
         },
+        processDefinitionId: '',
         flowBox: false,
-        flowUrl: '',
         workBox: false,
         option: {
           height: 'auto',
@@ -204,7 +182,7 @@
         this.$router.push({path: `/work/process/${flowRoute(this.flowRoutes, row.category)}/form/${row.id}`});
       },
       handleImage(row) {
-        this.flowUrl = `/api/blade-flow/process/resource-view?processDefinitionId=${row.id}`;
+        this.processDefinitionId = row.id;
         this.flowBox = true;
       },
       currentChange(currentPage) {
@@ -234,10 +212,3 @@
     }
   };
 </script>
-
-<style>
-  .none-border {
-    border: 0;
-    background-color: transparent !important;
-  }
-</style>

@@ -1,7 +1,12 @@
 <template>
-  <basic-container>
-    <avue-form :option="option" v-model="form" @submit="handleSubmit"/>
-  </basic-container>
+  <div>
+    <basic-container>
+      <avue-form :option="option" v-model="form" @submit="handleSubmit"/>
+    </basic-container>
+    <basic-container>
+      <flow-design :is-display="true" :process-definition-id="processDefinitionId"></flow-design>
+    </basic-container>
+  </div>
 </template>
 
 <script>
@@ -10,6 +15,7 @@
   export default {
     data() {
       return {
+        processDefinitionId: '',
         form: {},
         option: {
           group: [
@@ -80,6 +86,9 @@
           ],
         }
       }
+    },
+    created() {
+      this.processDefinitionId = this.$route.params.processDefinitionId;
     },
     methods: {
       handleSubmit() {

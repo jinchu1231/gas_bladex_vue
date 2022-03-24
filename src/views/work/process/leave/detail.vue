@@ -50,8 +50,8 @@
         <div slot="header">
           <span>流程跟踪</span>
         </div>
-        <el-row type="flex" class="row-bg">
-          <img :src="src" alt="design">
+        <el-row class="row-bg">
+          <flow-design :is-display="true" :process-instance-id="processInstanceId"></flow-design>
         </el-row>
       </el-card>
     </el-form>
@@ -85,7 +85,6 @@
       init() {
         this.processInstanceId = this.$route.params.processInstanceId;
         this.businessId = this.$route.params.businessId;
-        this.src = `/api/blade-flow/process/diagram-view?processInstanceId=${this.$route.params.processInstanceId}&t=${new Date().getTime()}`;
         historyFlowList(this.processInstanceId).then(res => {
           const data = res.data;
           if (data.success) {

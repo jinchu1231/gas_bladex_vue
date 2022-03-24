@@ -97,3 +97,27 @@ export const deleteProcessInstance = (params) => {
     params
   })
 }
+
+export const submitModel = (data) => {
+  return request({
+    url: '/api/blade-flow/model/submit',
+    method: 'post',
+    data
+  })
+}
+
+export const detail = (params) => {
+  return request({
+    url: '/api/blade-flow/model/detail',
+    method: 'get',
+    params
+  })
+}
+
+export const modelView = (params) => {
+  return request({
+    url: '/api/blade-flow/process/model-view',
+    method: 'get',
+    params
+  })
+}

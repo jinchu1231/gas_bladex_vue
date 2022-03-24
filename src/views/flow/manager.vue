@@ -23,23 +23,20 @@
       <template slot-scope="scope" slot="menu">
         <el-button type="text"
                    size="small"
+                   icon="el-icon-refresh"
                    v-if="permission.flow_manager_state"
-                   plain
-                   class="none-border"
                    @click.stop="handleState(scope.row,scope.index)">变更状态
         </el-button>
         <el-button type="text"
                    size="small"
+                   icon="el-icon-search"
                    v-if="permission.flow_manager_image"
-                   plain
-                   class="none-border"
                    @click.stop="handleImage(scope.row,scope.index)">流程图
         </el-button>
         <el-button type="text"
                    size="small"
+                   icon="el-icon-delete"
                    v-if="permission.flow_manager_remove"
-                   plain
-                   class="none-border"
                    @click.stop="handleSlotDelete(scope.row,scope.index)">删除
         </el-button>
       </template>
@@ -60,27 +57,7 @@
         <el-tag>{{row.categoryName}}</el-tag>
       </template>
     </avue-crud>
-    <el-dialog title="流程图"
-               append-to-body
-               :visible.sync="flowBox"
-               :fullscreen="true">
-      <iframe
-        :src=flowUrl
-        width="100%"
-        height="700"
-        title="流程图"
-        frameBorder="no"
-        border="0"
-        marginWidth="0"
-        marginHeight="0"
-        scrolling="no"
-        allowTransparency="yes">
-      </iframe>
-      <span slot="footer"
-            class="dialog-footer">
-        <el-button @click="flowBox = false">关 闭</el-button>
-      </span>
-    </el-dialog>
+    <flow-design is-dialog :is-display.sync="flowBox" :process-definition-id="processDefinitionId"></flow-design>
     <el-dialog title="流程变更"
                append-to-body
                :visible.sync="stateBox"
@@ -128,8 +105,8 @@
           currentPage: 1,
           total: 0
         },
+        processDefinitionId: '',
         flowBox: false,
-        flowUrl: '',
         stateBox: false,
         flowState: '',
         stateOptions: [{
@@ -153,7 +130,7 @@
           viewBtn: false,
           delBtn: false,
           dialogWidth: 900,
-          menuWidth: 150,
+          menuWidth: 250,
           dialogClickModal: false,
           column: [
             {
@@ -329,7 +306,7 @@
         })
       },
       handleImage(row) {
-        this.flowUrl = `/api/blade-flow/process/resource-view?processDefinitionId=${row.id}`;
+        this.processDefinitionId = row.id;
         this.flowBox = true;
       },
       currentChange(currentPage) {
@@ -359,10 +336,3 @@
     }
   };
 </script>
-
-<style>
-  .none-border {
-    border: 0;
-    background-color: transparent !important;
-  }
-</style>

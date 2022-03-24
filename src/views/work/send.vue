@@ -16,17 +16,15 @@
       <template slot-scope="scope" slot="menu">
         <el-button type="text"
                    size="small"
+                   icon="el-icon-info"
                    v-if="permission.work_send_detail"
-                   plain
-                   class="none-border"
                    @click.stop="handleDetail(scope.row)">详情
         </el-button>
         <el-button type="text"
                    size="small"
+                   icon="el-icon-search"
                    v-if="permission.work_send_follow"
-                   plain
-                   class="none-border"
-                   @click.stop="handleImage(scope.row,scope.index)">跟踪
+                   @click.stop="handleImage(scope.row,scope.index)">流程图
         </el-button>
       </template>
       <template slot-scope="{row}"
@@ -38,27 +36,7 @@
         <el-tag>{{row.processIsFinished==='finished' ? '已完成' : '未完成'}}</el-tag>
       </template>
     </avue-crud>
-    <el-dialog title="流程图"
-               append-to-body
-               :visible.sync="flowBox"
-               :fullscreen="true">
-      <iframe
-        :src=flowUrl
-        width="100%"
-        height="700"
-        title="流程图"
-        frameBorder="no"
-        border="0"
-        marginWidth="0"
-        marginHeight="0"
-        scrolling="no"
-        allowTransparency="yes">
-      </iframe>
-      <span slot="footer"
-            class="dialog-footer">
-        <el-button @click="flowBox = false">关 闭</el-button>
-      </span>
-    </el-dialog>
+    <flow-design is-dialog :is-display.sync="flowBox" :process-instance-id="processInstanceId"></flow-design>
   </basic-container>
 </template>
 
@@ -80,8 +58,8 @@
           currentPage: 1,
           total: 0
         },
+        processInstanceId: '',
         flowBox: false,
-        flowUrl: '',
         workBox: false,
         option: {
           height: 'auto',
@@ -179,7 +157,7 @@
         this.$router.push({ path: `/work/process/${flowRoute(this.flowRoutes, row.category)}/detail/${row.processInstanceId}/${row.businessId}` });
       },
       handleImage(row) {
-        this.flowUrl = `/api/blade-flow/process/diagram-view?processInstanceId=${row.processInstanceId}`;
+        this.processInstanceId = row.processInstanceId;
         this.flowBox = true;
       },
       currentChange(currentPage){
@@ -208,10 +186,3 @@
     }
   };
 </script>
-
-<style>
-  .none-border {
-    border: 0;
-    background-color: transparent !important;
-  }
-</style>

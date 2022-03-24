@@ -19,6 +19,7 @@ import './styles/common.scss';
 import basicBlock from './components/basic-block/main';
 import basicContainer from './components/basic-container/main';
 import thirdRegister from './components/third-register/main';
+import flowDesign from './components/flow-design/main';
 import avueUeditor from 'avue-plugin-ueditor';
 import website from '@/config/website';
 import crudCommon from '@/mixins/crud';
@@ -44,11 +45,14 @@ Vue.component('basicContainer', basicContainer);
 Vue.component('basicBlock', basicBlock);
 Vue.component('thirdRegister', thirdRegister);
 Vue.component('avueUeditor', avueUeditor);
+Vue.component('flowDesign', flowDesign);
 Vue.component('tenantPackage', tenantPackage);
 // 加载相关url地址
 Object.keys(urls).forEach(key => {
   Vue.prototype[key] = urls[key];
 });
+// 加载NutFlow
+Vue.use(window.WfDesignBase);
 // 加载website
 Vue.prototype.website = website;
 // 动态加载阿里云字体库

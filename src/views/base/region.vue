@@ -244,7 +244,7 @@
                 label: 'name',
                 value: 'code'
               },
-              cascaderItem: ['city', 'district'],
+              cascader: ['city'],
               dicUrl: '/api/blade-system/region/select',
               span: 24,
             },
@@ -256,8 +256,9 @@
                 label: 'name',
                 value: 'code'
               },
+              cascader: ['district'],
               dicFlag: false,
-              dicUrl: '/api/blade-system/region/select?code={{key}}',
+              dicUrl: '/api/blade-system/region/select?code={{province}}',
               span: 24,
             },
             {
@@ -269,7 +270,7 @@
                 value: 'code'
               },
               dicFlag: false,
-              dicUrl: '/api/blade-system/region/select?code={{key}}',
+              dicUrl: '/api/blade-system/region/select?code={{city}}',
               span: 24,
             }
           ]

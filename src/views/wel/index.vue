@@ -9,7 +9,7 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V2.8.2-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V2.9.1-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
             <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR12-blue.svg" alt="Coverage Status"/>
             <img src="https://img.shields.io/badge/Spring%20Boot-2.3.12.RELEASE-blue.svg" alt="Downloads"/>
@@ -119,8 +119,9 @@
                 <el-tag type="success" style="cursor: pointer"
                         onclick="window.open('https://sns.bladex.vip/note/view/1.html')">免费版</el-tag>
                 <el-divider direction="vertical"/>
-                <el-tag type="danger" style="cursor: pointer"
-                        onclick="window.open('https://www.kancloud.cn/@smallchill')">收费版</el-tag>
+                <el-tooltip class="item" effect="dark" content="前往商业群文件免费下载,每份授权有一个名额入群" placement="top">
+                  <el-tag type="danger" style="cursor: pointer">收费版</el-tag>
+                </el-tooltip>
               </span>
               <el-divider content-position="right"><i class="el-icon-star-off"/></el-divider>
               <span>获取源码</span>
@@ -138,6 +139,40 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="2.9.1.RELEASE发布，新增达梦数据库支持，集成NutFlow流程设计器" name="26">
+                <div>1.[升级]Mybatis-Plus 至 3.5.1</div>
+                <div>2.[升级]Mybatis-Plus-Generator 至 3.5.2</div>
+                <div>3.[升级]Nacos 至 2.0.4</div>
+                <div>4.[升级]Log4j2 至 2.17.2</div>
+                <div>5.[升级]FastJson 至 1.2.80</div>
+                <div>6.[升级]Sentinel 至 1.8.3</div>
+                <div>7.[升级]EasyExcel 至 2.2.11</div>
+                <div>8.[升级]JuatAuth 至 1.16.5</div>
+                <div>9.[升级]OkHttp 至 4.9.3</div>
+                <div>10.[升级]AliyunOss 至 3.14.0</div>
+                <div>11.[升级]Minio 至 8.3.7</div>
+                <div>12.[升级]Qiniu 至 7.9.4</div>
+                <div>13.[升级]TencentCOS 至 5.6.69</div>
+                <div>14.[升级]HuaweiOss 至 3.21.12</div>
+                <div>15.[升级]Avue 至 2.9.4</div>
+                <div>16.[升级]ElementUI 至 2.15.6</div>
+                <div>17.[新增]达梦数据库支持</div>
+                <div>18.[新增]NutFlow流程设计器集成</div>
+                <div>19.[新增]Sword升级至AntdV4版本</div>
+                <div>20.[优化]租户全局数据源拦截器逻辑</div>
+                <div>21.[优化]单人在线模式RefreshToken的处理逻辑</div>
+                <div>22.[优化]单元测试支持读取服务名不同环境的配置</div>
+                <div>23.[优化]租户产品包支持配置清空</div>
+                <div>24.[优化]配置解决oracle更新null值报错的问题</div>
+                <div>25.[优化]适配oss与sms操作栏不换行</div>
+                <div>26.[优化]提升excel导出功能的用户体验</div>
+                <div>27.[优化]主页部门切换逻辑</div>
+                <div>28.[修复]用户解封增加空数据判断逻辑</div>
+                <div>29.[修复]流程用户查询增加租户ID筛选</div>
+                <div>30.[修复]Oauth2授权码模式失效</div>
+                <div>31.[修复]登录锁定逻辑</div>
+                <div>32.[修复]通知公告日期段查询报错</div>
+              </el-collapse-item>
               <el-collapse-item title="2.9.0.RELEASE发布，新增租户菜单产品包功能" name="25">
                 <div>1.[升级]SpringCloud 至 Hoxton.SR12</div>
                 <div>2.[升级]AlibabaCloud 至 2.2.7.RELEASE</div>
@@ -695,7 +730,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['25']
+        logActiveNames: ['26']
       };
     },
     computed: {

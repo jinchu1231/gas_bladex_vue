@@ -8,8 +8,29 @@
         <div class="login-time">
           {{time}}
         </div>
-        <img class="img" src="/img/logo.png" alt="">
         <p class="title">{{ $t('login.info') }}</p>
+        <div style="font-size: 15px">
+          <span>----------------------------------------------</span>
+          <br>
+          <span>管理租户编号：000000</span>
+          <br>
+          <span>超级管理员账号: admin / admin</span>
+          <br>
+          <span>人事账号: hr / hr</span>
+          <br>
+          <span>经理账号: manager / manager</span>
+          <br>
+          <span>老板账号: boss / boss</span>
+          <br>
+          <span>----------------------------------------------</span>
+          <br>
+          <span>普通租户编号：详见租户管理模块</span>
+          <br>
+          <span>租户管理员账号: admin / admin</span>
+          <br>
+          <span>----------------------------------------------</span>
+        </div>
+      <!--<img class="img" src="/img/logo.png" alt="">-->
       </div>
       <div class="login-border">
         <div class="login-main">

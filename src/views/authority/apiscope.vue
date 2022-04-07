@@ -320,7 +320,7 @@
               search: true,
               rules: [{
                 required: true,
-                message: "请输入数据权限名称",
+                message: "请输入权限名称",
                 trigger: "blur"
               }]
             },
@@ -331,7 +331,7 @@
               width: 180,
               rules: [{
                 required: true,
-                message: "请输入数据权限编号",
+                message: "请输入权限编号",
                 trigger: "blur"
               }]
             },
@@ -341,7 +341,7 @@
               width: 180,
               rules: [{
                 required: true,
-                message: "请输入数据权限编号",
+                message: "请输入权限编号",
                 trigger: "blur"
               }]
             },

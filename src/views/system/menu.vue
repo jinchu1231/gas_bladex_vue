@@ -190,6 +190,7 @@
               prop: "isOpen",
               type: "radio",
               disabled: false,
+              display: false,
               dicData: [
                 {
                   label: "否",
@@ -213,8 +214,6 @@
               label: "菜单排序",
               prop: "sort",
               type: "number",
-              row: true,
-              span: 24,
               rules: [
                 {
                   required: true,

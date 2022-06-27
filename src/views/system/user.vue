@@ -188,6 +188,7 @@
   import {dateNow} from "@/util/date";
   import NProgress from 'nprogress';
   import 'nprogress/nprogress.css';
+  import func from "@/util/func";
 
   export default {
     data() {
@@ -902,13 +903,15 @@
         done();
       },
       handleExport() {
+        const account = func.toStr(this.search.account);
+        const realName = func.toStr(this.search.realName);
         this.$confirm("是否导出用户数据?", "提示", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"
         }).then(() => {
           NProgress.start();
-          exportBlob(`/api/blade-user/export-user?${this.website.tokenHeader}=${getToken()}&account=${this.search.account}&realName=${this.search.realName}`).then(res => {
+          exportBlob(`/api/blade-user/export-user?${this.website.tokenHeader}=${getToken()}&account=${account}&realName=${realName}`).then(res => {
             downloadXls(res.data, `用户数据表${dateNow()}.xlsx`);
             NProgress.done();
           })

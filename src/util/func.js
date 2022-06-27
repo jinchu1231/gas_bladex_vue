@@ -90,4 +90,16 @@ export default class func {
   static split(str) {
     return str ? String(str).split(',') : '';
   }
+
+  /**
+   * 转换空字符串
+   * @param str
+   * @returns {string|*}
+   */
+  static toStr(str) {
+    if (typeof str === 'undefined' || str === null) {
+      return "";
+    }
+    return str;
+  }
 }

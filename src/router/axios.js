@@ -32,10 +32,14 @@ NProgress.configure({
 axios.interceptors.request.use(config => {
   //开启 progress bar
   NProgress.start();
+  //headers判断是否需要
+  const authorization = config.authorization === false;
+  if (!authorization) {
+    config.headers['Authorization'] = `Basic ${Base64.encode(`${website.clientId}:${website.clientSecret}`)}`;
+  }
+  //让每个请求携带token
   const meta = (config.meta || {});
   const isToken = meta.isToken === false;
-  config.headers['Authorization'] = `Basic ${Base64.encode(`${website.clientId}:${website.clientSecret}`)}`;
-  //让每个请求携带token
   if (getToken() && !isToken) {
     config.headers[website.tokenHeader] = 'bearer ' + getToken()
   }

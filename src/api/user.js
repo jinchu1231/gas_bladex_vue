@@ -72,12 +72,14 @@ export const getButtons = () => request({
 
 export const getCaptcha = () => request({
   url: '/api/blade-auth/oauth/captcha',
-  method: 'get'
+  method: 'get',
+  authorization: false
 });
 
 export const logout = () => request({
   url: '/api/blade-auth/oauth/logout',
-  method: 'get'
+  method: 'get',
+  authorization: false
 });
 
 export const getUserInfo = () => request({
@@ -93,5 +95,6 @@ export const sendLogs = (list) => request({
 
 export const clearCache = () => request({
   url: '/api/blade-auth/oauth/clear-cache',
-  method: 'get'
+  method: 'get',
+  authorization: false
 });

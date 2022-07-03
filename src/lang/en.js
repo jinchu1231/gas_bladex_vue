@@ -81,6 +81,7 @@ export default {
     userLogin: 'userLogin',
     phoneLogin: 'phoneLogin',
     thirdLogin: 'thirdLogin',
+    ssoLogin: 'ssoLogin',
     msgText: 'send code',
     msgSuccess: 'reissued code',
   },

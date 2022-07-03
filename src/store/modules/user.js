@@ -4,7 +4,7 @@ import {setStore, getStore} from '@/util/store'
 import {isURL, validatenull} from '@/util/validate'
 import {deepClone} from '@/util/util'
 import website from '@/config/website'
-import {loginByUsername, loginBySocial, getUserInfo, logout, refreshToken, getButtons} from '@/api/user'
+import {loginByUsername, loginBySocial, loginBySso, getUserInfo, logout, refreshToken, getButtons} from '@/api/user'
 import {getTopMenu, getRoutes} from '@/api/system/menu'
 import md5 from 'js-md5'
 
@@ -95,6 +95,29 @@ const user = {
             commit('SET_TOKEN', data.access_token);
             commit('SET_REFRESH_TOKEN', data.refresh_token);
             commit('SET_USER_INFO', data);
+            commit('SET_TENANT_ID', data.tenant_id);
+            commit('DEL_ALL_TAG');
+            commit('CLEAR_LOCK');
+          }
+          resolve();
+        })
+      })
+    },
+    //根据单点信息登录
+    LoginBySso({commit}, userInfo) {
+      return new Promise((resolve) => {
+        loginBySso(userInfo.state, userInfo.code).then(res => {
+          const data = res.data;
+          if (data.error_description) {
+            Message({
+              message: data.error_description,
+              type: 'error'
+            })
+          } else {
+            commit('SET_TOKEN', data.access_token);
+            commit('SET_REFRESH_TOKEN', data.refresh_token);
+            commit('SET_USER_INFO', data);
+            commit('SET_TENANT_ID', data.tenant_id);
             commit('DEL_ALL_TAG');
             commit('CLEAR_LOCK');
           }

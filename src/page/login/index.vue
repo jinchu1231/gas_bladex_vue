@@ -45,6 +45,7 @@
             <a href="#" @click.stop="activeName='user'">{{ $t('login.userLogin') }}</a>
             <!--<a href="#" @click.stop="activeName='code'">{{ $t('login.phoneLogin') }}</a>-->
             <a href="#" @click.stop="activeName='third'">{{ $t('login.thirdLogin') }}</a>
+            <a :href="website.ssoUrl + website.redirectUri">{{ $t('login.ssoLogin') }}</a>
           </div>
         </div>
 
@@ -108,6 +109,7 @@
       handleLogin() {
         const topUrl = getTopUrl();
         const redirectUrl = "/oauth/redirect/";
+        const ssoCode = "?code=";
         this.socialForm.source = getQueryString("source");
         this.socialForm.code = getQueryString("code");
         this.socialForm.state = getQueryString("state");
@@ -116,7 +118,7 @@
           source = source.split(redirectUrl)[1];
           this.socialForm.source = source;
         }
-        if (!validatenull(this.socialForm.source) && !validatenull(this.socialForm.code) && !validatenull(this.socialForm.state)) {
+        if (topUrl.includes(redirectUrl) && !validatenull(this.socialForm.source) && !validatenull(this.socialForm.code) && !validatenull(this.socialForm.state)) {
           const loading = this.$loading({
             lock: true,
             text: '第三方系统登录中,请稍后。。。',
@@ -124,6 +126,19 @@
           });
           this.$store.dispatch("LoginBySocial", this.socialForm).then(() => {
             window.location.href = topUrl.split(redirectUrl)[0];
+            this.$router.push({path: this.tagWel.value});
+            loading.close();
+          }).catch(() => {
+            loading.close();
+          });
+        } else if (!topUrl.includes(redirectUrl) && !validatenull(this.socialForm.code) && !validatenull(this.socialForm.state)) {
+          const loading = this.$loading({
+            lock: true,
+            text: '单点系统登录中,请稍后。。。',
+            spinner: "el-icon-loading"
+          });
+          this.$store.dispatch("LoginBySso", this.socialForm).then(() => {
+            window.location.href = topUrl.split(ssoCode)[0];
             this.$router.push({path: this.tagWel.value});
             loading.close();
           }).catch(() => {

@@ -37,6 +37,21 @@ export const loginBySocial = (tenantId, source, code, state) => request({
   }
 })
 
+export const loginBySso = (state, code) => request({
+  url: '/api/blade-auth/oauth/token',
+  method: 'post',
+  headers: {
+    'Tenant-Id': state
+  },
+  params: {
+    tenantId: state,
+    code,
+    grant_type: "authorization_code",
+    scope: "all",
+    redirect_uri: website.redirectUri,
+  }
+})
+
 export const refreshToken = (refresh_token, tenantId, deptId, roleId) => request({
   url: '/api/blade-auth/oauth/token',
   method: 'post',

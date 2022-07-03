@@ -81,6 +81,7 @@ export default {
     userLogin: '账号密码登录',
     phoneLogin: '手机号登录',
     thirdLogin: '第三方系统登录',
+    ssoLogin: '单点系统登录',
     msgText: '发送验证码',
     msgSuccess: '秒后重发',
   },

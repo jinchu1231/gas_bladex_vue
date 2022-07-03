@@ -44,4 +44,8 @@ export default {
   authUrl: 'http://localhost/blade-auth/oauth/render',
   // 报表设计器地址(cloud端口为8108,boot端口为80)
   reportUrl: 'http://localhost:8108/ureport',
+  // 单点登录系统认证(blade-auth服务的地)
+  ssoUrl: 'http://localhost:8100/oauth/authorize?client_id=saber&response_type=code&redirect_uri=',
+  // 单点登录回调地址(Saber服务的地址)
+  redirectUri: 'http://localhost:1888',
 }

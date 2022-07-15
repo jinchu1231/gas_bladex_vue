@@ -9,10 +9,10 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V2.9.1-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V3.0.0-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR12-blue.svg" alt="Coverage Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Boot-2.3.12.RELEASE-blue.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
+            <img src="https://img.shields.io/badge/Spring%20Boot-2.7-blue.svg" alt="Downloads"/>
             <a target="_blank" href="https://bladex.vip">
               <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
             </a>
@@ -44,7 +44,7 @@
             </el-collapse-item>
             <el-collapse-item title="为何需要BladeX" name="3">
               <div>1.经历过较长的线上生产，积累了很多企业痛点的解决方案</div>
-              <div>2.一套代码兼容MySql、Oracle、PostgreSQL、SqlServer，适应企业各种不同场景的需求</div>
+              <div>2.一套代码兼容MySql、Oracle、PostgreSQL、SqlServer、达梦，适应企业各种不同场景的需求</div>
               <div>3.集成了很多企业急切所需的例如多租户、Oauth2授权认证、工作流、分布式事务等等功能</div>
               <div>4.深度定制了Flowable工作流，完美支持SpringCloud分布式服务的场景，以远程调用的方式进行操作</div>
               <div>5.升级了核心驱动，新功能完全可以开箱即用，而开源版需要自己再花时间进行集成，需要花掉更多的时间成本</div>
@@ -139,6 +139,37 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="3.0.0.RELEASE发布，系统架构升级至 SpringCloud 2021" name="27">
+                <div>1.[升级]SpringCloud 至 2021.0.3</div>
+                <div>2.[升级]SpringBoot 至 2.7.1</div>
+                <div>3.[升级]SpringBootAdmin 至 2.7.1</div>
+                <div>4.[升级]AlibabaCloud 至 2021.0.1.0</div>
+                <div>5.[升级]Mybatis-Plus 至 3.5.2</div>
+                <div>6.[升级]Mybatis-Plus-Generator 至 3.5.3</div>
+                <div>7.[升级]Nacos 至 2.1.0</div>
+                <div>8.[升级]Seata 至 1.5.2</div>
+                <div>9.[升级]Log4J 至 2.18.0</div>
+                <div>10.[升级]JackSon 至 2.13.3</div>
+                <div>11.[升级]FastJson 至 1.2.83</div>
+                <div>12.[升级]Avue 至 2.9.12</div>
+                <div>13.[新增]基于Oauth2的单点登录</div>
+                <div>14.[新增]灰度服务发布与调用</div>
+                <div>15.[新增]代码生成增加element和feign模版</div>
+                <div>16.[优化]自动装配模块采用新版@AutoConfiguration注解</div>
+                <div>17.[优化]TencentCosTemplate避免oom的情况</div>
+                <div>18.[优化]TreeNode类</div>
+                <div>19.[优化]Gateway鉴权逻辑</div>
+                <div>20.[修复]BladeRedis incr方法失效的问题</div>
+                <div>21.[修复]租户产品包更新后缓存未刷新的问题</div>
+                <div>22.[修复]绑定租户产品包后普通管理员权限配置丢失按钮选项的问题</div>
+                <div>23.[修复]流程设计器监听无法删除的问题</div>
+                <div>24.[修复]用户excel导出条件为空的判断逻辑</div>
+                <div>25.[删除]Hystrix接入以Sentinel取代</div>
+                <div>26.[删除]Ribbon接入以LoadBalancer取代</div>
+                <div>27.[删除]Zipkin接入</div>
+                <div>28.[删除]Turbine接入</div>
+                <div>29.[替代]后续版本将对接SkyWalking取代Zipkin与Turbine</div>
+              </el-collapse-item>
               <el-collapse-item title="2.9.1.RELEASE发布，新增达梦数据库支持，集成NutFlow流程设计器" name="26">
                 <div>1.[升级]Mybatis-Plus 至 3.5.1</div>
                 <div>2.[升级]Mybatis-Plus-Generator 至 3.5.2</div>
@@ -730,7 +761,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['26']
+        logActiveNames: ['27']
       };
     },
     computed: {

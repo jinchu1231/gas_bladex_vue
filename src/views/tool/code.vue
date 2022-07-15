@@ -155,6 +155,7 @@
             },
             {
               label: "基础业务",
+              labelTip:'配置是否使用BladeX封装的BaseService解锁更多功能',
               prop: "baseMode",
               type: 'radio',
               dicUrl: "/api/blade-system/dict/dictionary?code=yes_no",
@@ -162,6 +163,7 @@
                 label: "dictValue",
                 value: "dictKey"
               },
+              value: 2,
               dataType: "number",
               hide: true,
               rules: [{
@@ -172,6 +174,7 @@
             },
             {
               label: "包装器",
+              labelTip:'配置是否使用Wrapper包装器来拓展Controller返回列表的字段',
               prop: "wrapMode",
               type: 'radio',
               dicUrl: "/api/blade-system/dict/dictionary?code=yes_no",
@@ -179,11 +182,54 @@
                 label: "dictValue",
                 value: "dictKey"
               },
+              value: 2,
               dataType: "number",
               hide: true,
               rules: [{
                 required: true,
                 message: "请选择包装器",
+                trigger: "blur"
+              }]
+            },
+            {
+              label: "远程调用",
+              labelTip:'配置是否使用Feign远程调用',
+              prop: "feignMode",
+              type: 'radio',
+              dicUrl: "/api/blade-system/dict/dictionary?code=yes_no",
+              props: {
+                label: "dictValue",
+                value: "dictKey"
+              },
+              value: 1,
+              dataType: "number",
+              hide: true,
+              rules: [{
+                required: true,
+                message: "请选择基础业务",
+                trigger: "blur"
+              }]
+            },
+            {
+              label: "代码风格",
+              labelTip:'选择不同底层实现的代码模版',
+              prop: "codeStyle",
+              type: 'radio',
+              dicData: [
+                {
+                  label: "saber",
+                  value: "saber"
+                },
+                {
+                  label: "element",
+                  value: "element"
+                }
+              ],
+              value: "saber",
+              hide: true,
+              rules: [{
+                required: true,
+                message: "请选择代码风格",
                 trigger: "blur"
               }]
             },

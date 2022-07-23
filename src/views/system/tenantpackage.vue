@@ -146,7 +146,7 @@ export default {
         done();
       }, error => {
         loading();
-        console.log(error);
+        window.console.log(error);
       });
     },
     rowDel(row) {

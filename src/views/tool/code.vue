@@ -48,6 +48,9 @@
 
 <script>
   import {getList, getCode, build, remove, add, update, copy} from "@/api/tool/code";
+  import {getDetail as modelDetail, prototypeDetail} from "@/api/tool/model";
+  import {templateDic} from "@/const/tool/model";
+  import {validatenull} from "@/util/validate";
   import {mapGetters} from "vuex";
 
   export default {
@@ -76,189 +79,379 @@
           menuWidth: 300,
           viewBtn: true,
           dialogClickModal: false,
+          tabs: true,
           column: [
-            {
-              label: "数据源",
-              prop: "datasourceId",
-              search: true,
-              span: 24,
-              type: "select",
-              dicUrl: "/api/blade-develop/datasource/select",
-              props: {
-                label: "name",
-                value: "id"
-              },
-              rules: [{
-                required: true,
-                message: "请选择数据源",
-                trigger: "blur"
-              }]
-            },
             {
               label: "模块名",
               prop: "codeName",
               search: true,
-              rules: [{
-                required: true,
-                message: "请输入模块名",
-                trigger: "blur"
-              }]
+              display: false,
+            },
+            {
+              label: "表名",
+              prop: "tableName",
+              search: true,
+              display: false,
             },
             {
               label: "服务名",
               prop: "serviceName",
               search: true,
-              rules: [{
-                required: true,
-                message: "请输入服务名",
-                trigger: "blur"
-              }]
-            },
-            {
-              label: "表名",
-              prop: "tableName",
-              rules: [{
-                required: true,
-                message: "请输入表名",
-                trigger: "blur"
-              }]
-            },
-            {
-              label: "表前缀",
-              prop: "tablePrefix",
-              hide: true,
-              rules: [{
-                required: true,
-                message: "请输入表前缀",
-                trigger: "blur"
-              }]
-            },
-            {
-              label: "主键名",
-              prop: "pkName",
-              hide: true,
-              rules: [{
-                required: true,
-                message: "请输入主键名",
-                trigger: "blur"
-              }]
+              display: false,
             },
             {
               label: "包名",
               prop: "packageName",
-              overHidden: true,
-              rules: [{
-                required: true,
-                message: "请输入包名",
-                trigger: "blur"
-              }]
+              display: false,
             },
+          ],
+          group: [
             {
-              label: "基础业务",
-              labelTip:'配置是否使用BladeX封装的BaseService解锁更多功能',
-              prop: "baseMode",
-              type: 'radio',
-              dicUrl: "/api/blade-system/dict/dictionary?code=yes_no",
-              props: {
-                label: "dictValue",
-                value: "dictKey"
-              },
-              value: 2,
-              dataType: "number",
-              hide: true,
-              rules: [{
-                required: true,
-                message: "请选择基础业务",
-                trigger: "blur"
-              }]
-            },
-            {
-              label: "包装器",
-              labelTip:'配置是否使用Wrapper包装器来拓展Controller返回列表的字段',
-              prop: "wrapMode",
-              type: 'radio',
-              dicUrl: "/api/blade-system/dict/dictionary?code=yes_no",
-              props: {
-                label: "dictValue",
-                value: "dictKey"
-              },
-              value: 2,
-              dataType: "number",
-              hide: true,
-              rules: [{
-                required: true,
-                message: "请选择包装器",
-                trigger: "blur"
-              }]
-            },
-            {
-              label: "远程调用",
-              labelTip:'配置是否使用Feign远程调用',
-              prop: "feignMode",
-              type: 'radio',
-              dicUrl: "/api/blade-system/dict/dictionary?code=yes_no",
-              props: {
-                label: "dictValue",
-                value: "dictKey"
-              },
-              value: 1,
-              dataType: "number",
-              hide: true,
-              rules: [{
-                required: true,
-                message: "请选择基础业务",
-                trigger: "blur"
-              }]
-            },
-            {
-              label: "代码风格",
-              labelTip:'选择不同底层实现的代码模版',
-              prop: "codeStyle",
-              type: 'radio',
-              dicData: [
+              label: '模型配置',
+              prop: 'modelSetting',
+              icon: 'el-icon-tickets',
+              column: [
                 {
-                  label: "saber",
-                  value: "saber"
+                  label: "数据模型",
+                  prop: "modelId",
+                  search: true,
+                  span: 24,
+                  type: "select",
+                  dicUrl: "/api/blade-develop/model/select",
+                  props: {
+                    label: "modelName",
+                    value: "id"
+                  },
+                  rules: [{
+                    required: true,
+                    message: "请选择数据模型",
+                    trigger: "blur"
+                  }]
                 },
                 {
-                  label: "element",
-                  value: "element"
+                  label: "模块名",
+                  prop: "codeName",
+                  search: true,
+                  rules: [{
+                    required: true,
+                    message: "请输入模块名",
+                    trigger: "blur"
+                  }]
+                },
+                {
+                  label: "服务名",
+                  prop: "serviceName",
+                  search: true,
+                  rules: [{
+                    required: true,
+                    message: "请输入服务名",
+                    trigger: "blur"
+                  }]
+                },
+                {
+                  label: "表名",
+                  prop: "tableName",
+                  rules: [{
+                    required: true,
+                    message: "请输入表名",
+                    trigger: "blur"
+                  }]
+                },
+                {
+                  label: "表前缀",
+                  prop: "tablePrefix",
+                  hide: true,
+                  rules: [{
+                    required: true,
+                    message: "请输入表前缀",
+                    trigger: "blur"
+                  }]
+                },
+                {
+                  label: "主键名",
+                  prop: "pkName",
+                  hide: true,
+                  rules: [{
+                    required: true,
+                    message: "请输入主键名",
+                    trigger: "blur"
+                  }]
+                },
+                {
+                  label: "包名",
+                  prop: "packageName",
+                  overHidden: true,
+                  rules: [{
+                    required: true,
+                    message: "请输入包名",
+                    trigger: "blur"
+                  }]
+                },
+              ]
+            },
+            {
+              label: '模版配置',
+              prop: 'templateSetting',
+              icon: 'el-icon-copy-document',
+              column: [
+                {
+                  label: '模版类型',
+                  prop: 'templateType',
+                  type: "select",
+                  dicData: templateDic,
+                  value: "crud",
+                  rules: [{
+                    required: true,
+                    message: "请选择模版类型",
+                    trigger: "blur"
+                  }]
+                },
+                {
+                  label: "作者信息",
+                  prop: "author",
+                  value: "BladeX",
+                  rules: [{
+                    required: true,
+                    message: "请输入作者",
+                    trigger: "blur"
+                  }]
+                },
+                {
+                  label: "子表模型",
+                  prop: "subModelId",
+                  type: "select",
+                  dicUrl: "/api/blade-develop/model/select",
+                  props: {
+                    label: "modelName",
+                    value: "id"
+                  },
+                  display: false,
+                  hide: true,
+                },
+                {
+                  label: "子表外键",
+                  prop: "subFkId",
+                  display: false,
+                  hide: true,
+                },
+                {
+                  label: "树主键字段",
+                  prop: "treeId",
+                  type: "select",
+                  dicData: [],
+                  props: {
+                    label: "comment",
+                    value: "jdbcName"
+                  },
+                  display: false,
+                  hide: true,
+                },
+                {
+                  label: "树父主键字段",
+                  prop: "treePid",
+                  type: "select",
+                  dicData: [],
+                  props: {
+                    label: "comment",
+                    value: "jdbcName"
+                  },
+                  display: false,
+                  hide: true,
+                },
+                {
+                  label: "树名称字段",
+                  prop: "treeName",
+                  type: "select",
+                  dicData: [],
+                  props: {
+                    label: "comment",
+                    value: "jdbcName"
+                  },
+                  display: false,
+                  hide: true,
+                },
+              ]
+            },
+            {
+              label: '生成配置',
+              prop: 'codingSetting',
+              icon: 'el-icon-printer',
+              column: [
+                {
+                  label: "基础业务",
+                  labelTip:'配置是否使用BladeX封装的BaseService解锁更多功能',
+                  prop: "baseMode",
+                  type: 'radio',
+                  dicUrl: "/api/blade-system/dict/dictionary?code=yes_no",
+                  props: {
+                    label: "dictValue",
+                    value: "dictKey"
+                  },
+                  value: 2,
+                  dataType: "number",
+                  hide: true,
+                  rules: [{
+                    required: true,
+                    message: "请选择基础业务",
+                    trigger: "blur"
+                  }]
+                },
+                {
+                  label: "包装器",
+                  labelTip:'配置是否使用Wrapper包装器来拓展Controller返回列表的字段',
+                  prop: "wrapMode",
+                  type: 'radio',
+                  dicUrl: "/api/blade-system/dict/dictionary?code=yes_no",
+                  props: {
+                    label: "dictValue",
+                    value: "dictKey"
+                  },
+                  value: 2,
+                  dataType: "number",
+                  hide: true,
+                  rules: [{
+                    required: true,
+                    message: "请选择包装器",
+                    trigger: "blur"
+                  }]
+                },
+                {
+                  label: "远程调用",
+                  labelTip:'配置是否使用Feign远程调用',
+                  prop: "feignMode",
+                  type: 'radio',
+                  dicUrl: "/api/blade-system/dict/dictionary?code=yes_no",
+                  props: {
+                    label: "dictValue",
+                    value: "dictKey"
+                  },
+                  value: 1,
+                  dataType: "number",
+                  hide: true,
+                  rules: [{
+                    required: true,
+                    message: "请选择基础业务",
+                    trigger: "blur"
+                  }]
+                },
+                {
+                  label: "代码风格",
+                  labelTip:'选择不同底层实现的代码模版',
+                  prop: "codeStyle",
+                  type: 'radio',
+                  dicData: [
+                    {
+                      label: "saber",
+                      value: "saber"
+                    },
+                    {
+                      label: "element",
+                      value: "element"
+                    }
+                  ],
+                  value: "saber",
+                  hide: true,
+                  rules: [{
+                    required: true,
+                    message: "请选择代码风格",
+                    trigger: "blur"
+                  }]
+                },
+                {
+                  label: "后端生成路径",
+                  prop: "apiPath",
+                  span: 24,
+                  hide: true,
+                  rules: [{
+                    required: true,
+                    message: "请输入后端生成路径",
+                    trigger: "blur"
+                  }]
+                },
+                {
+                  label: "前端生成路径",
+                  prop: "webPath",
+                  span: 24,
+                  hide: true,
+                  rules: [{
+                    required: true,
+                    message: "请输入前端生成路径",
+                    trigger: "blur"
+                  }]
                 }
-              ],
-              value: "saber",
-              hide: true,
-              rules: [{
-                required: true,
-                message: "请选择代码风格",
-                trigger: "blur"
-              }]
-            },
-            {
-              label: "后端生成路径",
-              prop: "apiPath",
-              span: 24,
-              hide: true,
-              rules: [{
-                required: true,
-                message: "请输入后端生成路径",
-                trigger: "blur"
-              }]
-            },
-            {
-              label: "前端生成路径",
-              prop: "webPath",
-              span: 24,
-              hide: true,
-              rules: [{
-                required: true,
-                message: "请输入前端生成路径",
-                trigger: "blur"
-              }]
+              ]
             }
           ]
         },
         data: []
       };
+    },
+    watch: {
+      'form.modelId'() {
+        if (!validatenull(this.form.modelId)) {
+          // 获取数据模型信息
+          modelDetail(this.form.modelId).then(res => {
+            const result = res.data;
+            if (result.success) {
+              const {modelName, modelTable, modelCode} = result.data;
+              if (validatenull(this.form.tablePrefix)) {
+                this.form.tablePrefix = modelTable.split("_")[0] + "_";
+              }
+              if (validatenull(this.form.tableName)) {
+                this.form.tableName = modelTable;
+              }
+              if (validatenull(this.form.codeName)) {
+                this.form.codeName = modelName;
+              }
+              if (validatenull(this.form.serviceName)) {
+                this.form.serviceName = `blade-${modelCode}`;
+              }
+              if (validatenull(this.form.pkName)) {
+                this.form.pkName = "id";
+              }
+              if (validatenull(this.form.packageName)) {
+                this.form.packageName = `org.springblade.${modelCode}`;
+              }
+              if (validatenull(this.form.subFkId) && !validatenull(this.form.tablePrefix)) {
+                this.form.subFkId = modelTable.replace(this.form.tablePrefix, "") + "_id";
+              }
+
+              // 获取数据原型信息
+              prototypeDetail(this.form.modelId).then(res => {
+                const result = res.data;
+                if (result.success) {
+                  const columnTreeId = this.findObject(this.option.group, "treeId");
+                  const columnTreePid = this.findObject(this.option.group, "treePid");
+                  const columnTreeName = this.findObject(this.option.group, "treeName");
+                  columnTreeId.subFkId = result.data;
+                  columnTreeId.dicData = result.data;
+                  columnTreePid.dicData = result.data;
+                  columnTreeName.dicData = result.data;
+                }
+              });
+            }
+          });
+        }
+      },
+      'form.templateType'() {
+        // 模版类型
+        const type = this.form.templateType;
+
+        // 主子表字段显隐
+        const columnSubModelId = this.findObject(this.option.group, "subModelId");
+        const columnSubFkId = this.findObject(this.option.group, "subFkId");
+        columnSubModelId.display = type === "sub";
+        columnSubFkId.display = type === "sub";
+
+        // 树表字段显隐
+        const columnTreeId = this.findObject(this.option.group, "treeId");
+        const columnTreePid = this.findObject(this.option.group, "treePid");
+        const columnTreeName = this.findObject(this.option.group, "treeName");
+        columnTreeId.display = type === "tree";
+        columnTreePid.display = type === "tree";
+        columnTreeName.display = type === "tree";
+
+      }
     },
     computed: {
       ...mapGetters(["permission"]),

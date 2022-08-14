@@ -139,6 +139,16 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="3.0.1.RELEASE发布，代码生成功能全面升级" name="28">
+                <div>1.[新增]数据模型在线配置</div>
+                <div>2.[新增]代码生成表单组件在线配置</div>
+                <div>3.[新增]Saber风格的单表生成模版</div>
+                <div>4.[新增]Saber风格的主子表生成模版</div>
+                <div>5.[新增]Saber风格的树表生成模版</div>
+                <div>6.[新增]ElementUI风格的单表生成模版</div>
+                <div>7.[新增]ElementUI风格的主子表生成模版</div>
+                <div>8.[新增]ElementUI风格的树表生成模版</div>
+              </el-collapse-item>
               <el-collapse-item title="3.0.0.RELEASE发布，系统架构升级至 SpringCloud 2021" name="27">
                 <div>1.[升级]SpringCloud 至 2021.0.3</div>
                 <div>2.[升级]SpringBoot 至 2.7.1</div>
@@ -761,7 +771,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['27']
+        logActiveNames: ['28']
       };
     },
     computed: {

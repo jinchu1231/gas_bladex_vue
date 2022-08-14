@@ -88,6 +88,13 @@
               display: false,
             },
             {
+              label: '模版类型',
+              prop: 'templateType',
+              type: "select",
+              dicData: templateDic,
+              display: false,
+            },
+            {
               label: "表名",
               prop: "tableName",
               search: true,

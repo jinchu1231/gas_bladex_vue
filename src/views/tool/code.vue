@@ -430,7 +430,6 @@
                   const columnTreeId = this.findObject(this.option.group, "treeId");
                   const columnTreePid = this.findObject(this.option.group, "treePid");
                   const columnTreeName = this.findObject(this.option.group, "treeName");
-                  columnTreeId.subFkId = result.data;
                   columnTreeId.dicData = result.data;
                   columnTreePid.dicData = result.data;
                   columnTreeName.dicData = result.data;

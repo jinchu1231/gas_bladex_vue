@@ -76,7 +76,7 @@ export default {
       loading: true,
       loadingOption: {
         lock: true,
-        text: 'Loading',
+        text: '物理表读取中',
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0)'
       },
@@ -133,6 +133,8 @@ export default {
             }
             fullLoading.close();
           }
+        }).catch(() => {
+          fullLoading.close();
         });
       }
     }

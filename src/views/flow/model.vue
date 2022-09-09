@@ -347,7 +347,7 @@ export default {
       deployModel({
         modelId: this.selectionId,
         category: flowCategory(form.categoryValue),
-        tenantIds: form.tenantId.join(",")
+        tenantIds: form.tenantId ? form.tenantId.join(",") : ""
       }).then(res => {
         const data = res.data;
         if (data.success) {

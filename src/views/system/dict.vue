@@ -240,6 +240,9 @@ export default {
       const parentId = this.findObject(this.optionChild.column, "parentId");
       parentId.value = row.id;
 
+      this.formChild.code = row.code;
+      this.formChild.parentId = row.id;
+
       this.box = true;
       this.onLoadChild(this.pageChild);
     },

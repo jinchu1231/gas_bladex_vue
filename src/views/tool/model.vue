@@ -67,6 +67,7 @@ import {
 import {entityDic, option, optionModel} from "@/const/tool/model";
 import {validatenull} from "@/util/validate";
 import {mapGetters} from "vuex";
+import {clearCache} from "@/api/user";
 
 export default {
   data() {
@@ -159,12 +160,23 @@ export default {
   },
   methods: {
     rowSave(row, done, loading) {
-      add(row).then(() => {
+      add(row).then((res) => {
         done();
         this.onLoad(this.page);
         this.$message({
           type: "success",
           message: "操作成功!"
+        });
+        this.$confirm("是否进行模型配置?", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }).then(() => {
+          let model = {
+            id: res.data.data.id,
+            datasourceId: res.data.data.datasourceId
+          };
+          this.handleModel(model);
         });
       }, error => {
         loading();

@@ -100,6 +100,8 @@ export default {
       formStep: {},
       fields: [],
       selectionModelList: [],
+      // 默认不需要显示的字段名
+      hideFields: ["id", "tenant_id", "create_user", "create_dept", "create_time", "update_user", "update_time", "status", "is_deleted"]
     };
   },
   watch: {
@@ -290,19 +292,10 @@ export default {
           this.fields.forEach(item => {
             item.$cellEdit = true;
             item.modelId = this.modelId;
-            // 首次加载配置默认值
-            if (validatenull(item.id)) {
-              item.isList = 1;
-              item.isForm = 1;
-              item.isRow = 0;
-              item.isRequired = 0;
-              item.isQuery = 0;
-              item.componentType = "input";
-            }
+            // 根据字段物理类型自动适配实体类型
             if (!validatenull(item.name)) {
               item.jdbcName = item.name;
               item.jdbcType = item.propertyType;
-              // 根据字段物理类型自动适配实体类型
               if (item.propertyType === "LocalDateTime") {
                 item.propertyType = "Date";
                 item.propertyEntity = "java.util.Date";
@@ -313,6 +306,21 @@ export default {
                     item.propertyEntity = d.value;
                   }
                 });
+              }
+            }
+            // 首次加载配置默认值
+            if (validatenull(item.id)) {
+              item.isList = 1;
+              item.isForm = 1;
+              item.isRow = 0;
+              item.isRequired = 0;
+              item.isQuery = 0;
+              item.componentType = "input";
+              // 默认不需要显示的字段名配置
+              if (this.hideFields.includes(item.jdbcName)) {
+                item.isList = 0;
+                item.isForm = 0;
+                item.isRequired = 0;
               }
             }
           });

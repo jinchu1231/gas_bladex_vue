@@ -50,6 +50,10 @@ export const componentDic = [
     value: "textarea"
   },
   {
+    label: "富文本",
+    value: "editor"
+  },
+  {
     label: "下拉选项",
     value: "select"
   },

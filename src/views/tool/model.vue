@@ -67,7 +67,6 @@ import {
 import {entityDic, option, optionModel} from "@/const/tool/model";
 import {validatenull} from "@/util/validate";
 import {mapGetters} from "vuex";
-import {clearCache} from "@/api/user";
 
 export default {
   data() {

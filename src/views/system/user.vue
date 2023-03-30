@@ -745,9 +745,9 @@
         });
       },
       rowSave(row, done, loading) {
-        row.deptId = row.deptId.join(",");
-        row.roleId = row.roleId.join(",");
-        row.postId = row.postId.join(",");
+        row.deptId = func.join(row.deptId);
+        row.roleId = func.join(row.roleId);
+        row.postId = func.join(row.postId);
         add(row).then(() => {
           this.initFlag = false;
           this.onLoad(this.page);
@@ -762,9 +762,9 @@
         });
       },
       rowUpdate(row, index, done, loading) {
-        row.deptId = row.deptId.join(",");
-        row.roleId = row.roleId.join(",");
-        row.postId = row.postId.join(",");
+        row.deptId = func.join(row.deptId);
+        row.roleId = func.join(row.roleId);
+        row.postId = func.join(row.postId);
         update(row).then(() => {
           this.initFlag = false;
           this.onLoad(this.page);

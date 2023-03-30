@@ -28,7 +28,7 @@
                   label: '审批人员',
                   prop: 'taskUser',
                   type: 'select',
-                  dicUrl: `/api/blade-user/user-list`,
+                  dicUrl: `/api/blade-system/user/user-list`,
                   props: {
                     label: "account",
                     value: "id"

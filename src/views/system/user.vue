@@ -630,7 +630,7 @@
                 res: 'data'
               },
               tip: '请上传 .xls,.xlsx 标准格式文件',
-              action: "/api/blade-user/import-user"
+              action: "/api/blade-system/user/import-user"
             },
             {
               label: "数据覆盖",
@@ -677,7 +677,7 @@
       'excelForm.isCovered'() {
         if (this.excelForm.isCovered !== '') {
           const column = this.findObject(this.excelOption.column, "excelFile");
-          column.action = `/api/blade-user/import-user?isCovered=${this.excelForm.isCovered}`;
+          column.action = `/api/blade-system/user/import-user?isCovered=${this.excelForm.isCovered}`;
         }
       }
     },
@@ -911,14 +911,14 @@
           type: "warning"
         }).then(() => {
           NProgress.start();
-          exportBlob(`/api/blade-user/export-user?${this.website.tokenHeader}=${getToken()}&account=${account}&realName=${realName}`).then(res => {
+          exportBlob(`/api/blade-system/user/export-user?${this.website.tokenHeader}=${getToken()}&account=${account}&realName=${realName}`).then(res => {
             downloadXls(res.data, `用户数据表${dateNow()}.xlsx`);
             NProgress.done();
           })
         });
       },
       handleTemplate() {
-        exportBlob(`/api/blade-user/export-template?${this.website.tokenHeader}=${getToken()}`).then(res => {
+        exportBlob(`/api/blade-system/user/export-template?${this.website.tokenHeader}=${getToken()}`).then(res => {
           downloadXls(res.data, "用户数据模板.xlsx");
         })
       },

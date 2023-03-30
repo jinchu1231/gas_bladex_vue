@@ -69,7 +69,7 @@ export const refreshToken = (refresh_token, tenantId, deptId, roleId) => request
 });
 
 export const registerGuest = (form, oauthId) => request({
-  url: '/api/blade-user/register-guest',
+  url: '/api/blade-system/user/register-guest',
   method: 'post',
   params: {
     tenantId: form.tenantId,

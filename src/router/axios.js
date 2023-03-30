@@ -11,8 +11,10 @@ import router from '@/router/router';
 import {serialize} from '@/util/util';
 import {getToken} from '@/util/auth';
 import {Message} from 'element-ui';
+import {isURL} from "@/util/validate";
 import website from '@/config/website';
 import {Base64} from 'js-base64';
+import { baseUrl } from '@/config/env';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
@@ -32,6 +34,10 @@ NProgress.configure({
 axios.interceptors.request.use(config => {
   //开启 progress bar
   NProgress.start();
+  //地址为已经配置状态则不添加前缀
+  if (!isURL(config.url) && !config.url.startsWith(baseUrl)) {
+    config.url = baseUrl + config.url
+  }
   //headers判断是否需要
   const authorization = config.authorization === false;
   if (!authorization) {

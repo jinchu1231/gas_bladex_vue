@@ -186,10 +186,10 @@
                 <div>45.[修复]Xss转义符</div>
                 <div>46.[修复]行政区划市级新增报错问题</div>
                 <div>47.[修复]Jackson注册模块失效的问题</div>
-                <div>48.[修复]修复流程部署问题</div>
+                <div>48.[修复]流程部署问题</div>
                 <div>49.[修复]字典管理新增缓存上级数据不匹配的问题</div>
                 <div>50.[修复]用户模块先查看再提交会失败的问题</div>
-                <div>51.[迁移]Xxl-Job迁移至biz工程</div>
+                <div>51.[迁移]Xxl-Job迁移至Biz工程</div>
                 <div>52.[迁移]user服务合并至system服务，保留blade-user-api</div>
               </el-collapse-item>
               <el-collapse-item title="3.0.1.RELEASE发布，代码生成功能全面升级" name="28">

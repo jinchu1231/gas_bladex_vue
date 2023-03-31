@@ -6,7 +6,6 @@ import request from "@/router/axios";
  * @param params 接口参数
  */
 export const exportBlob = (url, params) => {
-  debugger
   return request({
     url: url,
     params: params,

@@ -9,7 +9,7 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V3.0.1-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V3.1.0-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
             <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
             <img src="https://img.shields.io/badge/Spring%20Boot-2.7-blue.svg" alt="Downloads"/>
@@ -139,6 +139,59 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="3.1.0.RELEASE发布，新增vue3、sharding-jdbc、aws s3、redis mq支持" name="29">
+                <div>1.[升级]SpringCloud 至 2021.0.6</div>
+                <div>2.[升级]SpringBoot 至 2.7.10</div>
+                <div>3.[升级]SpringBootAdmin 至 2.7.10</div>
+                <div>4.[升级]AlibabaCloud 至 2021.0.5.0</div>
+                <div>5.[升级]Mybatis-Plus 至 3.5.3.1</div>
+                <div>6.[升级]Mybatis-Plus-Generator 至 3.5.3.1</div>
+                <div>7.[升级]Nacos 至 2.1.2</div>
+                <div>8.[升级]Seata 至 1.6.1</div>
+                <div>9.[升级]Knife4j 至 4.1.0</div>
+                <div>10.[升级]Avue2 至 2.10.10</div>
+                <div>12.[升级]Avue3 至 3.2.13</div>
+                <div>13.[新增]基于Vue3与Element-Plus版本的Saber正式发布</div>
+                <div>14.[新增]新增Sharding-Jdbc与动态数据源联合demo</div>
+                <div>15.[新增]axios支持baseUrl自动追加</div>
+                <div>16.[新增]字典管理新增全数据接口提供前端缓存支持</div>
+                <div>17.[新增]使用 flatten maven 插件优化版本处理</div>
+                <div>18.[新增]BizService供用户自行修改拓展并引入新的业务模块</div>
+                <div>19.[新增]Auto 支持 spring boot 2.7.x spi</div>
+                <div>20.[新增]Metrics 增加 undertow 指标</div>
+                <div>21.[新增]Redis 添加 stream,轻量级 mq，支持广播和集群模式</div>
+                <div>22.[新增]Redis 调整限流脚本,更好的支持云服务器</div>
+                <div>23.[新增]S3Template支持 aws s3 且可同时支持minio作为分布式存储</div>
+                <div>24.[新增]可配置七牛云region的方式 增加七牛云私有文件下载方式</div>
+                <div>25.[新增]OssTemplate实现类获取流的方式去下载文件</div>
+                <div>26.[新增]代码生成saber3以及element-plus模版</div>
+                <div>27.[优化]代码生成数据模型新增后增加提示框是否需要配置详情</div>
+                <div>28.[优化]代码生成查询类型适配</div>
+                <div>29.[优化]代码生成优化基础业务的判断逻辑</div>
+                <div>30.[优化]代码生成增加excel导出功能</div>
+                <div>31.[优化]代码生成加快物理表信息读取速度</div>
+                <div>32.[优化]代码生成参数类型适配pg</div>
+                <div>33.[优化]代码生成数据模型新增逻辑</div>
+                <div>34.[优化]代码生成数据模型增加表前缀提醒</div>
+                <div>35.[优化]代码生成优化表前缀判断</div>
+                <div>36.[优化]代码生成数据模型删除增加关联表</div>
+                <div>37.[优化]登录成功后清除验证码缓存</div>
+                <div>38.[优化]代码生成通用字段默认隐藏</div>
+                <div>39.[优化]关闭nacos默认日志解决与logback冲突的问题</div>
+                <div>40.[优化]取消token默认签名，强制要求配置自定义签名</div>
+                <div>41.[优化]资源管理默认参数判断逻辑</div>
+                <div>42.[优化]Oauth2 token发放增加空判断</div>
+                <div>43.[优化]BladeReids getIncr与getDecr专用方法</div>
+                <div>44.[修复]BladeRedis rPush 方法</div>
+                <div>45.[修复]Xss转义符</div>
+                <div>46.[修复]行政区划市级新增报错问题</div>
+                <div>47.[修复]Jackson注册模块失效的问题</div>
+                <div>48.[修复]修复流程部署问题</div>
+                <div>49.[修复]字典管理新增缓存上级数据不匹配的问题</div>
+                <div>50.[修复]用户模块先查看再提交会失败的问题</div>
+                <div>51.[迁移]Xxl-Job迁移至biz工程</div>
+                <div>52.[迁移]user服务合并至system服务，保留blade-user-api</div>
+              </el-collapse-item>
               <el-collapse-item title="3.0.1.RELEASE发布，代码生成功能全面升级" name="28">
                 <div>1.[新增]数据模型在线配置</div>
                 <div>2.[新增]代码生成表单组件在线配置</div>
@@ -771,7 +824,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['28']
+        logActiveNames: ['29']
       };
     },
     computed: {

@@ -149,7 +149,8 @@
                 <div>7.[升级]Nacos 至 2.1.2</div>
                 <div>8.[升级]Seata 至 1.6.1</div>
                 <div>9.[升级]Knife4j 至 4.1.0</div>
-                <div>10.[升级]Avue2 至 2.10.10</div>
+                <div>10.[升级]Log4j 至 2.20.0</div>
+                <div>11.[升级]Avue2 至 2.10.10</div>
                 <div>12.[升级]Avue3 至 3.2.13</div>
                 <div>13.[新增]基于Vue3与Element-Plus版本的Saber正式发布</div>
                 <div>14.[新增]新增Sharding-Jdbc与动态数据源联合demo</div>

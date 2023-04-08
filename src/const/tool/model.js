@@ -248,7 +248,7 @@ export const optionModel = {
     cell: true,
   }, {
     label: '字段说明',
-    prop: 'comment',
+    prop: 'jdbcComment',
     cell: true,
   }, {
     label: '列表显示',

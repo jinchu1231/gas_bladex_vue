@@ -296,6 +296,7 @@ export default {
             if (!validatenull(item.name)) {
               item.jdbcName = item.name;
               item.jdbcType = item.propertyType;
+              item.jdbcComment = item.comment;
               if (item.propertyType === "LocalDateTime") {
                 item.propertyType = "Date";
                 item.propertyEntity = "java.util.Date";

@@ -247,7 +247,7 @@
                   type: "select",
                   dicData: [],
                   props: {
-                    label: "comment",
+                    label: "jdbcComment",
                     value: "jdbcName"
                   },
                   display: false,
@@ -259,7 +259,7 @@
                   type: "select",
                   dicData: [],
                   props: {
-                    label: "comment",
+                    label: "jdbcComment",
                     value: "jdbcName"
                   },
                   display: false,
@@ -271,7 +271,7 @@
                   type: "select",
                   dicData: [],
                   props: {
-                    label: "comment",
+                    label: "jdbcComment",
                     value: "jdbcName"
                   },
                   display: false,

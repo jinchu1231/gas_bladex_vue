@@ -97,7 +97,7 @@
               type: "radio",
               value: 1,
               span: 24,
-              width: 100,
+              width: 120,
               searchLabelWidth: 50,
               row: true,
               dicUrl: "/api/blade-system/dict/dictionary?code=oss",
@@ -244,7 +244,7 @@
             item.display = category === 4;
           }
           if (item.prop === "region") {
-            item.display = category === 4;
+            item.display = category === 4 || category === 5;
           }
         });
       },

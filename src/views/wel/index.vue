@@ -9,7 +9,7 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V3.1.0-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V3.1.1-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
             <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
             <img src="https://img.shields.io/badge/Spring%20Boot-2.7-blue.svg" alt="Downloads"/>
@@ -139,6 +139,28 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="3.1.1.RELEASE发布，新增国产崖山数据库支持，升级中央仓库" name="30">
+                <div>1.[升级]SpringBoot 至 2.7.11</div>
+                <div>2.[升级]Druid 至 1.2.18</div>
+                <div>3.[新增]新版nexus仓库依赖</div>
+                <div>4.[新增]docker构建工具更换为fabric</div>
+                <div>5.[新增]支持国产崖山数据库(YashanDB)</div>
+                <div>6.[新增]控制台日志增加放行url的特性</div>
+                <div>7.[新增]单人登录模式新增全平台唯一与单客户端唯一两种选择</div>
+                <div>8.[新增]signKey生成器</div>
+                <div>9.[新增]多租户对象存储新增 华为云obs 与 amazon s3</div>
+                <div>10.[优化]适配腾讯云cos最新API</div>
+                <div>11.[优化]适配最新版minio接口，手动关闭流</div>
+                <div>12.[优化]代码生成增加查询字段适配</div>
+                <div>13.[优化]saber3添加prod环境的启动与打包命令</div>
+                <div>14.[优化]取消Dept模块默认的全局管理员接口权限</div>
+                <div>15.[优化]SqlKeyword类的防sql注入功能</div>
+                <div>16.[优化]数据模型字段comment改名为jdbc_comment避免数据库关键词</div>
+                <div>17.[优化]element风格代码生成增加按钮权限</div>
+                <div>18.[优化]vue3版代码生成适配新的时间格式</div>
+                <div>19.[优化]达梦数据库文件修改为脚本文件避免编码不同导入失败</div>
+                <div>20.[修复]报表管理外链打开问题</div>
+              </el-collapse-item>
               <el-collapse-item title="3.1.0.RELEASE发布，新增vue3、sharding-jdbc、aws s3、redis mq支持" name="29">
                 <div>1.[升级]SpringCloud 至 2021.0.6</div>
                 <div>2.[升级]SpringBoot 至 2.7.10</div>
@@ -825,7 +847,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['29']
+        logActiveNames: ['30']
       };
     },
     computed: {

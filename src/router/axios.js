@@ -17,6 +17,7 @@ import {Base64} from 'js-base64';
 import { baseUrl } from '@/config/env';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import crypto from '@/util/crypto';
 
 //默认超时时间
 axios.defaults.timeout = 10000;
@@ -43,11 +44,16 @@ axios.interceptors.request.use(config => {
   if (!authorization) {
     config.headers['Authorization'] = `Basic ${Base64.encode(`${website.clientId}:${website.clientSecret}`)}`;
   }
-  //让每个请求携带token
+  //headers判断请求是否携带token
   const meta = (config.meta || {});
   const isToken = meta.isToken === false;
-  if (getToken() && !isToken) {
-    config.headers[website.tokenHeader] = 'bearer ' + getToken()
+  //headers传递token是否加密
+  const cryptoToken = config.cryptoToken === true;
+  const token = getToken();
+  if (token && !isToken) {
+    config.headers[website.tokenHeader] = cryptoToken
+      ? 'crypto ' + crypto.encrypt(token)
+      : 'bearer ' + token;
   }
   //headers中配置text请求
   if (config.text === true) {

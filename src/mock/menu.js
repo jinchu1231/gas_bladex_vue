@@ -15,7 +15,7 @@ const top = [{
     meta: {
       i18n: 'website',
     },
-    path: "https://bladex.vip/#/",
+    path: "https://bladex.cn/#/",
     parentId: 1
   },
   {

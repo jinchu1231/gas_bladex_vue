@@ -34,6 +34,7 @@
 <script>
   import {getList, getDetail, add, update, remove} from "@/api/tool/datasource";
   import {mapGetters} from "vuex";
+  import func from "@/util/func";
 
   export default {
     data() {
@@ -61,9 +62,35 @@
           dialogClickModal: false,
           column: [
             {
+              label: '数据类型',
+              type: 'radio',
+              value: 1,
+              span: 24,
+              width: 120,
+              searchLabelWidth: 100,
+              row: true,
+              dicUrl: '/blade-system/dict/dictionary?code=datasource_category',
+              props: {
+                label: 'dictValue',
+                value: 'dictKey',
+              },
+              dataType: 'number',
+              prop: 'category',
+              search: true,
+              rules: [
+                {
+                  required: true,
+                  message: '请选择分类',
+                  trigger: 'blur',
+                },
+              ],
+            },
+            {
               label: "名称",
               prop: "name",
               width: 120,
+              span: 24,
+              search: true,
               rules: [{
                 required: true,
                 message: "请输入数据源名称",
@@ -71,9 +98,26 @@
               }]
             },
             {
+              label: 'YAML',
+              prop: 'shardingConfig',
+              span: 24,
+              minRows: 5,
+              hide: false,
+              display: false,
+              type: 'textarea',
+              rules: [
+                {
+                  required: true,
+                  message: '请输入YAML配置',
+                  trigger: 'blur',
+                },
+              ],
+            },
+            {
               label: "驱动类",
               prop: "driverClass",
               type: 'select',
+              span: 24,
               dicData: [
                 {
                   label: 'com.mysql.cj.jdbc.Driver',
@@ -84,15 +128,10 @@
                 }, {
                   label: 'oracle.jdbc.OracleDriver',
                   value: 'oracle.jdbc.OracleDriver',
-                }, {
-                  label: 'com.microsoft.sqlserver.jdbc.SQLServerDriver',
-                  value: 'com.microsoft.sqlserver.jdbc.SQLServerDriver',
-                }, {
-                  label: 'dm.jdbc.driver.DmDriver',
-                  value: 'dm.jdbc.driver.DmDriver',
                 }
               ],
               width: 200,
+              display: true,
               rules: [{
                 required: true,
                 message: "请输入驱动类",
@@ -103,6 +142,7 @@
               label: "用户名",
               prop: "username",
               width: 120,
+              display: true,
               rules: [{
                 required: true,
                 message: "请输入用户名",
@@ -113,6 +153,7 @@
               label: "密码",
               prop: "password",
               hide: true,
+              display: true,
               rules: [{
                 required: true,
                 message: "请输入密码",
@@ -123,6 +164,7 @@
               label: "连接地址",
               prop: "url",
               span: 24,
+              display: true,
               rules: [{
                 required: true,
                 message: "请输入连接地址",
@@ -141,6 +183,28 @@
         },
         data: []
       };
+    },
+    watch: {
+      'form.category'() {
+        const category = func.toInt(this.form.category);
+        this.$refs.crud.option.column.filter(item => {
+          if (item.prop === 'driverClass') {
+            item.display = category === 1;
+          }
+          if (item.prop === 'url') {
+            item.display = category === 1;
+          }
+          if (item.prop === 'username') {
+            item.display = category === 1;
+          }
+          if (item.prop === 'password') {
+            item.display = category === 1;
+          }
+          if (item.prop === 'shardingConfig') {
+            item.display = category === 2;
+          }
+        });
+      },
     },
     computed: {
       ...mapGetters(["permission"]),

@@ -78,7 +78,7 @@
            :src="userInfo.avatar">
       <el-dropdown>
         <span class="el-dropdown-link">
-          {{userInfo.userName}}
+          {{userInfo.real_name}}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">

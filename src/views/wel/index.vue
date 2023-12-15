@@ -9,7 +9,7 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V3.2.0-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V3.3.0-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
             <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
             <img src="https://img.shields.io/badge/Spring%20Boot-2.7-blue.svg" alt="Downloads"/>
@@ -139,10 +139,37 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
-              <el-collapse-item
-                title="3.2.0.RELEASE发布，新增规则引擎、token加密、skywalking集成"
-                name="31"
-              >
+              <el-collapse-item title="3.3.0.RELEASE发布，多租户数据库隔离集成ShardingSphere支持分库分表" name="32">
+                <div>1.[升级]SpringBoot 至 2.7.18</div>
+                <div>2.[升级]SpringBootAdmin 至 2.7.4</div>
+                <div>3.[升级]Spring 至 5.3.31</div>
+                <div>4.[升级]Druid 至 1.2.20</div>
+                <div>5.[升级]Mybatis-Plus 至 3.5.4.1</div>
+                <div>6.[升级]Avue2 至 2.11.0</div>
+                <div>7.[升级]Knife4j 至 4.3.0</div>
+                <div>8.[升级]Jackson 至 2.16.0</div>
+                <div>9.[升级]Log4j2 至 2.22.0</div>
+                <div>10.[升级]Logback 至 1.2.13</div>
+                <div>11.[升级]LiteFlow 至 2.11.3</div>
+                <div>12.[新增]多租户数据库隔离支持分库分表功能</div>
+                <div>13.[新增]动态数据源与分库分表集成</div>
+                <div>14.[新增]多租户对象存储支持内外网地址映射</div>
+                <div>15.[优化]Sql防注入逻辑避免双写等情况攻击</div>
+                <div>16.[优化]Redis序列化逻辑</div>
+                <div>17.[优化]RequestInterceptor增加初始化指定类名</div>
+                <div>18.[优化]antlr4版本指定避免模版解析冲突失效</div>
+                <div>19.[优化]调整对象存储枚举类别名与配置类名称一致</div>
+                <div>20.[优化]部分重要API调用权限提高至管理员角色</div>
+                <div>21.[优化]数据源配置提交逻辑</div>
+                <div>
+                  22.[优化]数据权限处理器强制指定Master数据源，避免动态数据源无法正确读取数据
+                </div>
+                <div>23.[修复]单点登录退出失效的问题</div>
+                <div>24.[修复]oss缓存判断有概率空指针的问题</div>
+                <div>25.[修复]ApiVersion在 SpringBoot2.7.x下报错的问题</div>
+                <div>26.[修复]修复用户名称读取错误的问题</div>
+              </el-collapse-item>
+              <el-collapse-item title="3.2.0.RELEASE发布，新增规则引擎、token加密、skywalking集成" name="31">
                 <div>1.[升级]SpringCloud 至 2021.0.8</div>
                 <div>2.[升级]SpringBoot 至 2.7.15</div>
                 <div>3.[升级]Spring 至 5.3.29</div>
@@ -874,7 +901,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['31']
+        logActiveNames: ['32']
       };
     },
     computed: {

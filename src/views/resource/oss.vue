@@ -129,13 +129,22 @@
             },
             {
               label: "资源地址",
+              labelTip: "对象存储通用资源地址，可以是内网也可以是外网",
               prop: "endpoint",
               span: 24,
-              rules: [{
-                required: true,
-                message: "请输入资源地址",
-                trigger: "blur"
-              }]
+              rules: [
+                {
+                  required: true,
+                  message: "请输入资源地址",
+                  trigger: "blur",
+                },
+              ],
+            },
+            {
+              label: "外网地址",
+              labelTip: "资源地址设置为内网上传，则外部访问需要配置外网映射地址",
+              prop: "transformEndpoint",
+              span: 24,
             },
             {
               label: "空间名",

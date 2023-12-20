@@ -49,11 +49,24 @@ axios.interceptors.request.use(config => {
   const isToken = meta.isToken === false;
   //headers传递token是否加密
   const cryptoToken = config.cryptoToken === true;
+  //判断传递数据是否加密
+  const cryptoData = config.cryptoData === true;
   const token = getToken();
   if (token && !isToken) {
     config.headers[website.tokenHeader] = cryptoToken
       ? 'crypto ' + crypto.encrypt(token)
       : 'bearer ' + token;
+  }
+  // 开启报文加密
+  if (cryptoData) {
+    if (config.params) {
+      const data = crypto.encryptAES(JSON.stringify(config.params), crypto.aesKey);
+      config.params = { data };
+    }
+    if (config.data) {
+      config.text = true;
+      config.data = crypto.encryptAES(JSON.stringify(config.data), crypto.aesKey);
+    }
   }
   //headers中配置text请求
   if (config.text === true) {
@@ -75,6 +88,8 @@ axios.interceptors.response.use(res => {
   const status = res.data.code || res.status;
   const statusWhiteList = website.statusWhiteList || [];
   const message = res.data.msg || res.data.error_description || '未知错误';
+  const config = res.config;
+  const cryptoData = config.cryptoData === true;
   //如果在白名单里则自行catch逻辑处理
   if (statusWhiteList.includes(status)) return Promise.reject(res);
   //如果是401则跳转到登录页面
@@ -86,6 +101,10 @@ axios.interceptors.response.use(res => {
       type: 'error'
     });
     return Promise.reject(new Error(message))
+  }
+  // 解析加密报文
+  if (cryptoData) {
+    res.data = JSON.parse(crypto.decryptAES(res.data, crypto.aesKey));
   }
   return res;
 }, error => {

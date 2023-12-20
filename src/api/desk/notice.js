@@ -9,7 +9,8 @@ export const getList = (current, size, params) => {
       current,
       size,
     },
-    cryptoToken: false
+    cryptoToken: false,
+    cryptoData: false
   })
 }
 
@@ -20,7 +21,8 @@ export const remove = (ids) => {
     params: {
       ids,
     },
-    cryptoToken: false
+    cryptoToken: false,
+    cryptoData: false
   })
 }
 
@@ -29,7 +31,8 @@ export const add = (row) => {
     url: '/api/blade-desk/notice/submit',
     method: 'post',
     data: row,
-    cryptoToken: false
+    cryptoToken: false,
+    cryptoData: false
   })
 }
 
@@ -38,7 +41,8 @@ export const update = (row) => {
     url: '/api/blade-desk/notice/submit',
     method: 'post',
     data: row,
-    cryptoToken: false
+    cryptoToken: false,
+    cryptoData: false
   })
 }
 
@@ -49,7 +53,8 @@ export const getNotice = (id) => {
     params: {
       id
     },
-    cryptoToken: false
+    cryptoToken: false,
+    cryptoData: false
   })
 }
 

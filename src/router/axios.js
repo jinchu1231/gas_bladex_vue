@@ -54,7 +54,7 @@ axios.interceptors.request.use(config => {
   const token = getToken();
   if (token && !isToken) {
     config.headers[website.tokenHeader] = cryptoToken
-      ? 'crypto ' + crypto.encrypt(token)
+      ? 'crypto ' + crypto.encryptAES(token, crypto.cryptoKey)
       : 'bearer ' + token;
   }
   // 开启报文加密

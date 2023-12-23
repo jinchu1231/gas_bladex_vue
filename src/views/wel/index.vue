@@ -9,7 +9,7 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V3.3.0-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V3.3.1-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
             <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
             <img src="https://img.shields.io/badge/Spring%20Boot-2.7-blue.svg" alt="Downloads"/>
@@ -139,6 +139,23 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="3.3.1.RELEASE发布，优化Token加密、独立分库分表配置" name="33">
+                <div>1.[升级]Nacos 至 2.3.0</div>
+                <div>2.[升级]FastJson 至 2.0.43</div>
+                <div>3.[升级]EasyExcel 至 3.3.3</div>
+                <div>4.[升级]JustAuth 至 1.16.6</div>
+                <div>5.[升级]MySql驱动 mysql-connector-java 至 mysql-connector-j</div>
+                <div>6.[新增]Nacos认证启动注册</div>
+                <div>7.[新增]使用 flatten-maven-plugin 重构版本管理</div>
+                <div>8.[新增]CryptoKeyGenerator提供加密签名获取</div>
+                <div>9.[新增]cryptoData配置支持前端报文加密自动化</div>
+                <div>10.[新增]分库分表独立配置</div>
+                <div>11.[优化]Token加密单独出配置blade.token.crypto-key防止与报文加密配置逻辑冲突</div>
+                <div>12.[优化]tenant数据库隔离与sharding分库分表依赖分离，减少默认jar包容量</div>
+                <div>13.[优化]默认关闭Notice模块的token加密，降低启动难度</div>
+                <div>14.[优化]关闭aesKey与desKey的默认值防止外部以此攻击加密接口获取信息</div>
+                <div>15.[修复]修复菜单新增层级问题</div>
+              </el-collapse-item>
               <el-collapse-item title="3.3.0.RELEASE发布，多租户数据库隔离集成ShardingSphere支持分库分表" name="32">
                 <div>1.[升级]SpringBoot 至 2.7.18</div>
                 <div>2.[升级]SpringBootAdmin 至 2.7.4</div>
@@ -901,7 +918,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['32']
+        logActiveNames: ['33']
       };
     },
     computed: {

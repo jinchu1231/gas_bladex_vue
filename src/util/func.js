@@ -102,4 +102,27 @@ export default class func {
     }
     return str;
   }
+
+  /**
+   * 判断是否为数组
+   * @param param
+   * @returns {boolean}
+   */
+  static isArrayAndNotEmpty(param) {
+    return Array.isArray(param) && param.length > 0;
+  }
+
+  /**
+   * 格式化URL
+   * @param url
+   * @returns {*|string}
+   */
+  static formatUrl(url) {
+    if (!url) return url;
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    } else {
+      return `http://${url}`;
+    }
+  }
 }

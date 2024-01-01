@@ -9,7 +9,7 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V3.3.1-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V3.4.0-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
             <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
             <img src="https://img.shields.io/badge/Spring%20Boot-2.7-blue.svg" alt="Downloads"/>
@@ -139,6 +139,18 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="3.4.0.RELEASE发布，新增分布式任务调度客户端" name="34">
+                <div>1.[升级]Jackson 至 2.16.1</div>
+                <div>2.[升级]Mybatis 至 3.5.15</div>
+                <div>3.[升级]MybatisSpring 至 2.1.2</div>
+                <div>4.[升级]MybatisPlus 至 3.5.5</div>
+                <div>5.[升级]MybatisPlusGenerator 至 3.5.5</div>
+                <div>6.[升级]MinioClient 至 8.5.7</div>
+                <div>7.[新增]分布式任务PowJob集成</div>
+                <div>8.[新增]分布式任务客户端开发</div>
+                <div>9.[优化]Saber3加载动画</div>
+                <div>10.[修复]代码生成主子表路径引用问题</div>
+              </el-collapse-item>
               <el-collapse-item title="3.3.1.RELEASE发布，优化Token加密、独立分库分表配置" name="33">
                 <div>1.[升级]Nacos 至 2.3.0</div>
                 <div>2.[升级]FastJson 至 2.0.43</div>
@@ -918,7 +930,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['33']
+        logActiveNames: ['34']
       };
     },
     computed: {

@@ -156,7 +156,7 @@ export default {
       prop: 'jobName',
       type: 'input',
       search: true,
-      width: 100,
+      width: 200,
       display: false,
     },
     {

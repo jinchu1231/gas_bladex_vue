@@ -2,7 +2,7 @@ import request from '@/router/axios';
 
 export const getList = (current, size, params) => {
   return request({
-    url: '/blade-job/job-info/list',
+    url: '/api/blade-job/job-info/list',
     method: 'get',
     params: {
       ...params,
@@ -14,7 +14,7 @@ export const getList = (current, size, params) => {
 
 export const getDetail = id => {
   return request({
-    url: '/blade-job/job-info/detail',
+    url: '/api/blade-job/job-info/detail',
     method: 'get',
     params: {
       id,
@@ -24,7 +24,7 @@ export const getDetail = id => {
 
 export const remove = ids => {
   return request({
-    url: '/blade-job/job-info/remove',
+    url: '/api/blade-job/job-info/remove',
     method: 'post',
     params: {
       ids,
@@ -34,7 +34,7 @@ export const remove = ids => {
 
 export const add = row => {
   return request({
-    url: '/blade-job/job-info/submit',
+    url: '/api/blade-job/job-info/submit',
     method: 'post',
     data: row,
   });
@@ -42,7 +42,7 @@ export const add = row => {
 
 export const update = row => {
   return request({
-    url: '/blade-job/job-info/submit',
+    url: '/api/blade-job/job-info/submit',
     method: 'post',
     data: row,
   });
@@ -50,7 +50,7 @@ export const update = row => {
 
 export const change = row => {
   return request({
-    url: '/blade-job/job-info/change',
+    url: '/api/blade-job/job-info/change',
     method: 'post',
     params: {
       id: row.id,
@@ -61,7 +61,7 @@ export const change = row => {
 
 export const run = row => {
   return request({
-    url: '/blade-job/job-info/run',
+    url: '/api/blade-job/job-info/run',
     method: 'post',
     params: {
       id: row.id,
@@ -71,7 +71,7 @@ export const run = row => {
 
 export const sync = row => {
   return request({
-    url: '/blade-job/job-info/sync',
+    url: '/api/blade-job/job-info/sync',
     method: 'post',
     data: row,
   });

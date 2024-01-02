@@ -2,7 +2,7 @@ import request from '@/router/axios';
 
 export const getList = (current, size, params) => {
   return request({
-    url: '/blade-job/job-server/list',
+    url: '/api/blade-job/job-server/list',
     method: 'get',
     params: {
       ...params,
@@ -14,7 +14,7 @@ export const getList = (current, size, params) => {
 
 export const getDetail = id => {
   return request({
-    url: '/blade-job/job-server/detail',
+    url: '/api/blade-job/job-server/detail',
     method: 'get',
     params: {
       id,
@@ -24,7 +24,7 @@ export const getDetail = id => {
 
 export const remove = ids => {
   return request({
-    url: '/blade-job/job-server/remove',
+    url: '/api/blade-job/job-server/remove',
     method: 'post',
     params: {
       ids,
@@ -34,7 +34,7 @@ export const remove = ids => {
 
 export const add = row => {
   return request({
-    url: '/blade-job/job-server/submit',
+    url: '/api/blade-job/job-server/submit',
     method: 'post',
     data: row,
   });
@@ -42,7 +42,7 @@ export const add = row => {
 
 export const update = row => {
   return request({
-    url: '/blade-job/job-server/submit',
+    url: '/api/blade-job/job-server/submit',
     method: 'post',
     data: row,
   });
@@ -50,7 +50,7 @@ export const update = row => {
 
 export const sync = row => {
   return request({
-    url: '/blade-job/job-server/sync',
+    url: '/api/blade-job/job-server/sync',
     method: 'post',
     data: row,
   });

@@ -40,7 +40,7 @@
         </el-button>
       </template>
       <template slot-scope="{row}" slot="menu">
-        <el-button type="text" size="small" icon="el-icon-video-play" @click="handleLink(scope.row)"
+        <el-button type="text" size="small" icon="el-icon-video-play" @click="handleLink(row)"
           >服务跳转
         </el-button>
       </template>

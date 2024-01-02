@@ -135,7 +135,7 @@ export default {
       label: '任务应用',
       prop: 'jobServerId',
       type: 'select',
-      dicUrl: '/blade-job/job-server/select',
+      dicUrl: '/api/blade-job/job-server/select',
       props: {
         label: 'jobAppName',
         value: 'id',
@@ -228,7 +228,7 @@ export default {
           label: '任务应用',
           prop: 'jobServerId',
           type: 'select',
-          dicUrl: '/blade-job/job-server/select',
+          dicUrl: '/api/blade-job/job-server/select',
           props: {
             label: 'jobAppName',
             value: 'id',

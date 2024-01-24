@@ -42,7 +42,7 @@
       </template>
       <template slot-scope="{row}"
                 slot="attachSize">
-        <el-tag>{{`${row.attachSize} KB`}}</el-tag>
+        <el-tag>{{ `${func.bytesToKB(row.attachSize)} KB` }}</el-tag>
       </template>
     </avue-crud>
     <el-dialog title="附件管理"
@@ -58,6 +58,7 @@
 <script>
   import {getList, getDetail, remove} from "@/api/resource/attach";
   import {mapGetters} from "vuex";
+  import func from "@/util/func";
 
   export default {
     data() {
@@ -167,6 +168,9 @@
       };
     },
     computed: {
+      func() {
+        return func
+      },
       ...mapGetters(["permission"]),
       permissionList() {
         return {

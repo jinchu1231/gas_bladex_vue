@@ -125,4 +125,14 @@ export default class func {
       return `http://${url}`;
     }
   }
+
+  /**
+   * bytes转换为kb单位
+   * @param bytes
+   * @returns {string}
+   */
+  static bytesToKB(bytes) {
+    const kb = bytes / 1024;
+    return kb.toFixed(2);
+  }
 }

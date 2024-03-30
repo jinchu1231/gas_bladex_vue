@@ -39,6 +39,8 @@ axios.interceptors.request.use(config => {
   if (!isURL(config.url) && !config.url.startsWith(baseUrl)) {
     config.url = baseUrl + config.url
   }
+  //安全请求header
+  config.headers['Blade-Requested-With'] = 'BladeHttpRequest';
   //headers判断是否需要
   const authorization = config.authorization === false;
   if (!authorization) {

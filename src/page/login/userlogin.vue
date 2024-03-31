@@ -216,11 +216,25 @@
               label: '手机',
               prop: 'phone',
               span: 24,
+              rules: [
+                {
+                  required: true,
+                  message: '请填写手机',
+                  trigger: 'blur',
+                },
+              ],
             },
             {
               label: '邮箱',
               prop: 'email',
               span: 24,
+              rules: [
+                {
+                  required: true,
+                  message: '请填写邮箱',
+                  trigger: 'blur',
+                },
+              ],
             },
             {
               label: '密码',
@@ -341,21 +355,6 @@
         this.registerBox = true;
       },
       submitRegister(form, done) {
-        if (form.tenantId === '') {
-          this.$message.warning('请先输入租户编号');
-          done();
-          return;
-        }
-        if (form.account === '') {
-          this.$message.warning('请先输入账号名称');
-          done();
-          return;
-        }
-        if (form.password === '' || form.password2 === '') {
-          this.$message.warning('请先输入密码');
-          done();
-          return;
-        }
         if (form.password !== form.password2) {
           this.$message.warning('两次密码输入不一致');
           done();

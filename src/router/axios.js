@@ -89,7 +89,7 @@ axios.interceptors.response.use(res => {
   //获取状态码
   const status = res.data.code || res.status;
   const statusWhiteList = website.statusWhiteList || [];
-  const message = res.data.msg || res.data.error_description || '未知错误';
+  const message = res.data.msg || res.data.error_description || '系统错误';
   const config = res.config;
   const cryptoData = config.cryptoData === true;
   //如果在白名单里则自行catch逻辑处理

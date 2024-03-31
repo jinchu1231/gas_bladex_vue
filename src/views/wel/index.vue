@@ -9,10 +9,10 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V3.4.0-green.svg" alt="Downloads"/>
-            <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Boot-2.7-blue.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V4.0.0-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/JDK-17+-green.svg" alt="Build Status"/>
+            <img src="https://img.shields.io/badge/Spring%20Cloud-2023-blue.svg" alt="Coverage Status"/>
+            <img src="https://img.shields.io/badge/Spring%20Boot-3.2-blue.svg" alt="Downloads"/>
             <a target="_blank" href="https://bladex.cn">
               <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
             </a>
@@ -139,6 +139,54 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item
+                title="4.0.0.RELEASE发布，全面升级支持Java17、SpringBoot3、SpringCloud2023"
+                name="35"
+              >
+                <div>1.[升级]JDK 至 Java17</div>
+                <div>2.[升级]SpringBoot 至 3.2.4</div>
+                <div>3.[升级]SpringBootAdmin 至 3.2.3</div>
+                <div>4.[升级]SpringCloud 至 2023.0.1</div>
+                <div>5.[升级]AlibabaCloud 至 2022.0.0</div>
+                <div>6.[升级]JJWT 至 0.12.5</div>
+                <div>7.[升级]Flowable 至 7.0.1</div>
+                <div>8.[升级]XxlJob 至 2.4.0</div>
+                <div>9.[升级]PowerJob 至 4.3.9</div>
+                <div>10.[升级]Knife4j 至 4.5.0</div>
+                <div>11.[升级]MybatisSpring 至 3.0.3</div>
+                <div>12.[升级]DynamicDatasource 至 4.3.0</div>
+                <div>13.[升级]Druid 至 1.2.22</div>
+                <div>14.[升级]Nacos 至 2.3.1</div>
+                <div>15.[升级]Fastjson 至 2.0.47</div>
+                <div>16.[升级]EasyExcel 至 3.3.4</div>
+                <div>17.[替换]原SecurityOauth2改为BladeXOAuth2</div>
+                <div>18.[替换]原Swagger2改为OpenAPI3</div>
+                <div>19.[替换]原独立blade-swagger服务改为blade-gateway聚合文档</div>
+                <div>20.[替换]代码头部注释全局替换为新版本</div>
+                <div>21.[新增]原Auth模块完全重构，采用新版BladeXOAuth实现</div>
+                <div>22.[新增]Boot与Cloud共用认证逻辑，Boot支持单点登录</div>
+                <div>23.[新增]安全框架Token与Header严格模式</div>
+                <div>24.[新增]安全框架默认打开严格模式与内部二次鉴权</div>
+                <div>25.[新增]登录首页用户注册功能</div>
+                <div>26.[新增]新注册账号若未绑定角色部门在严格模式下无法直接调用接口</div>
+                <div>27.[新增]Sentinel新版API适配</div>
+                <div>28.[新增]生产环境屏蔽详细的异常信息返回</div>
+                <div>29.[新增]新增卡片+列表模式共存，无缝切换</div>
+                <div>30.[新增]SpringDoc-OpenAI3集成支持</div>
+                <div>31.[优化]更新代码生成脚本适配最新版API</div>
+                <div>32.[优化]优化数据权限枚举类转换方法</div>
+                <div>33.[优化]Feign接口地址参数完善命名</div>
+                <div>34.[优化]blade-flow配置文件默认关闭租户动态数据源</div>
+                <div>35.[优化]问号挂参的路由不再开启新tab</div>
+                <div>36.[优化]vue3支持base路径的配置和部署</div>
+                <div>37.[优化]优化流程图布局</div>
+                <div>38.[优化]数据缓存逻辑，避免无授权用户访问</div>
+                <div>39.[优化]默认错误提示</div>
+                <div>40.[修复]附件单位转换逻辑</div>
+                <div>41.[修复]vue2模块日期格式格式化</div>
+                <div>42.[修复]vue3指定第三方登录的路由</div>
+                <div>43.[修复]vue3用户个人信息切换后提交报错的问题</div>
+              </el-collapse-item>
               <el-collapse-item title="3.4.0.RELEASE发布，新增分布式任务调度客户端" name="34">
                 <div>1.[升级]Jackson 至 2.16.1</div>
                 <div>2.[升级]Mybatis 至 3.5.15</div>
@@ -930,7 +978,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['34']
+        logActiveNames: ['35']
       };
     },
     computed: {

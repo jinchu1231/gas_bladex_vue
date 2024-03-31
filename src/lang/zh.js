@@ -49,6 +49,7 @@ export default {
       index: '顺序',
       width: '宽度'
     },
+    emptyText: '暂无数据',
     tipStartTitle: '当前表格已选择',
     tipEndTitle: '项',
     editTitle: '编 辑',
@@ -74,7 +75,7 @@ export default {
     viewBtn: '查 看',
     editBtn: '编 辑',
     copyBtn: '复 制',
-    delBtn: '删 除'
+    delBtn: '删 除',
   },
   login: {
     title: '登录 ',
@@ -89,6 +90,7 @@ export default {
     phone: '请输入手机号',
     code: '请输入验证码',
     submit: '登录',
+    register: '注册',
     userLogin: '账号密码登录',
     phoneLogin: '手机号登录',
     thirdLogin: '第三方系统登录',

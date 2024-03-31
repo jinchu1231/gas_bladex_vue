@@ -59,12 +59,20 @@
                  @click.native.prevent="handleLogin"
                  class="login-submit">{{$t('login.submit')}}
       </el-button>
+      <el-button type="danger"
+                 size="small"
+                 @click.native.prevent="handleRegister"
+                 class="register-submit">{{ $t('login.register') }}
+      </el-button>
     </el-form-item>
     <el-dialog title="用户信息选择"
                append-to-body
                :visible.sync="userBox"
                width="350px">
       <avue-form :option="userOption" v-model="userForm" @submit="submitLogin"/>
+    </el-dialog>
+    <el-dialog title="用户信息注册" append-to-body v-model="registerBox" width="350px">
+      <avue-form :option="registerOption" v-model="registerForm" @submit="submitRegister" />
     </el-dialog>
   </el-form>
 </template>
@@ -159,7 +167,87 @@
               }],
             },
           ]
-        }
+        },
+        registerBox: false,
+        registerForm: {},
+        registerOption: {
+          labelWidth: 90,
+          submitBtn: true,
+          emptyBtn: false,
+          submitText: '注册',
+          column: [
+            {
+              label: '租户编号',
+              prop: 'tenantId',
+              span: 24,
+              rules: [
+                {
+                  required: true,
+                  message: '请填写租户编号',
+                  trigger: 'blur',
+                },
+              ],
+            },
+            {
+              label: '用户姓名',
+              prop: 'name',
+              span: 24,
+              rules: [
+                {
+                  required: true,
+                  message: '请输入用户姓名',
+                  trigger: 'blur',
+                },
+              ],
+            },
+            {
+              label: '用户账号',
+              prop: 'account',
+              span: 24,
+              rules: [
+                {
+                  required: true,
+                  message: '请填写用户账号',
+                  trigger: 'blur',
+                },
+              ],
+            },
+            {
+              label: '手机',
+              prop: 'phone',
+              span: 24,
+            },
+            {
+              label: '邮箱',
+              prop: 'email',
+              span: 24,
+            },
+            {
+              label: '密码',
+              prop: 'password',
+              span: 24,
+              rules: [
+                {
+                  required: true,
+                  message: '请填写密码',
+                  trigger: 'blur',
+                },
+              ],
+            },
+            {
+              label: '确认密码',
+              prop: 'password2',
+              span: 24,
+              rules: [
+                {
+                  required: true,
+                  message: '请填写确认密码',
+                  trigger: 'blur',
+                },
+              ],
+            },
+          ],
+        },
       };
     },
     created() {
@@ -167,6 +255,7 @@
       this.refreshCode();
     },
     mounted() {
+      this.$nextTick(() => {});
     },
     watch: {
       'loginForm.deptId'() {
@@ -247,6 +336,53 @@
             });
           }
         });
+      },
+      handleRegister() {
+        this.registerBox = true;
+      },
+      submitRegister(form, done) {
+        if (form.tenantId === '') {
+          this.$message.warning('请先输入租户编号');
+          done();
+          return;
+        }
+        if (form.account === '') {
+          this.$message.warning('请先输入账号名称');
+          done();
+          return;
+        }
+        if (form.password === '' || form.password2 === '') {
+          this.$message.warning('请先输入密码');
+          done();
+          return;
+        }
+        if (form.password !== form.password2) {
+          this.$message.warning('两次密码输入不一致');
+          done();
+          return;
+        }
+
+        const loading = this.$loading({
+          lock: true,
+          text: '注册中,请稍后',
+          background: 'rgba(0, 0, 0, 0.7)',
+        });
+        this.$store
+          .dispatch('RegisterUser', form)
+          .then(() => {
+            this.$alert('注册成功，请耐心等待管理员审核后分配权限', '注册成功', {
+              confirmButtonText: '确定',
+              callback: () => {
+                this.$router.push(this.tagWel);
+              },
+            });
+            this.registerBox = false;
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        loading.close();
+        done();
       },
       getTenant() {
         let domain = getTopUrl();

@@ -4,7 +4,7 @@ import {setStore, getStore} from '@/util/store'
 import {isURL, validatenull} from '@/util/validate'
 import {deepClone} from '@/util/util'
 import website from '@/config/website'
-import {loginByUsername, loginBySocial, loginBySso, getUserInfo, logout, refreshToken, getButtons} from '@/api/user'
+import {loginByUsername, loginBySocial, loginBySso, getUserInfo, logout, refreshToken, getButtons, registerUser} from '@/api/user'
 import {getTopMenu, getRoutes} from '@/api/system/menu'
 import md5 from 'js-md5'
 
@@ -124,6 +124,35 @@ const user = {
           resolve();
         })
       })
+    },
+    RegisterUser({ commit }, userInfo = {}) {
+      return new Promise((resolve, reject) => {
+        registerUser(
+          userInfo.tenantId,
+          userInfo.name,
+          userInfo.account,
+          userInfo.password,
+          userInfo.phone,
+          userInfo.email
+        ).then(res => {
+          const data = res.data;
+          if (data.error_description) {
+            Message({
+              message: data.error_description,
+              type: 'error',
+            });
+            reject(data.error_description);
+          } else {
+            commit('SET_TOKEN', data.access_token);
+            commit('SET_REFRESH_TOKEN', data.refresh_token);
+            commit('SET_USER_INFO', data);
+            commit('SET_TENANT_ID', data.tenant_id);
+            commit('DEL_ALL_TAG');
+            commit('CLEAR_LOCK');
+          }
+          resolve();
+        });
+      });
     },
     //获取用户信息
     GetUserInfo({commit}) {

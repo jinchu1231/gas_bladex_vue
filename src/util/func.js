@@ -69,7 +69,7 @@ export default class func {
    * @param format
    * @returns {null}
    */
-  static format(date, format = 'YYYY-MM-DD HH:mm:ss') {
+  static format(date, format = 'yyyy-MM-DD HH:mm:ss') {
     return date ? date.format(format) : null;
   }
 

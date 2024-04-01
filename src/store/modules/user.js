@@ -131,7 +131,7 @@ const user = {
           userInfo.tenantId,
           userInfo.name,
           userInfo.account,
-          userInfo.password,
+          md5(userInfo.password),
           userInfo.phone,
           userInfo.email
         ).then(res => {

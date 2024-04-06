@@ -104,7 +104,11 @@
                 {
                   label: "social",
                   value: "social"
-                }
+                },
+                {
+                  label: 'register',
+                  value: 'register',
+                },
               ],
               rules: [{
                 required: true,

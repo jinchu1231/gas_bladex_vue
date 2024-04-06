@@ -9,7 +9,7 @@
       <el-col :span="24">
         <basic-container>
           <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V4.0.0-green.svg" alt="Downloads"/>
+            <img src="https://img.shields.io/badge/Release-V4.0.1-green.svg" alt="Downloads"/>
             <img src="https://img.shields.io/badge/JDK-17+-green.svg" alt="Build Status"/>
             <img src="https://img.shields.io/badge/Spring%20Cloud-2023-blue.svg" alt="Coverage Status"/>
             <img src="https://img.shields.io/badge/Spring%20Boot-3.2-blue.svg" alt="Downloads"/>
@@ -139,10 +139,19 @@
         <el-row>
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
-              <el-collapse-item
-                title="4.0.0.RELEASE发布，全面升级支持Java17、SpringBoot3、SpringCloud2023"
-                name="35"
-              >
+              <el-collapse-item title="4.0.1.RELEASE发布，拆分租户数据库隔离模块 多组件适配优化" name="36">
+                <div>1.[新增]租户数据库隔离依赖分离可按需引入</div>
+                <div>2.[优化]适配shardingsphere在springboot3的兼容性</div>
+                <div>3.[优化]适配shardingsphere在dynamic-datasource的兼容性</div>
+                <div>4.[优化]ShardingDS注解支持类与方法声明</div>
+                <div>5.[优化]用户注册格式校验逻辑</div>
+                <div>6.[优化]用户注册的密码设置md5传输</div>
+                <div>7.[优化]代码生成模版，避免jdk17反射模块的问题</div>
+                <div>8.[优化]指定easyexcel依赖的poi版本避免版本冲突导致报错</div>
+                <div>9.[优化]完善secure安全框架的路径放行策略</div>
+                <div>10.[优化]放开granter认证功能，用户可自由定义</div>
+              </el-collapse-item>
+              <el-collapse-item title="4.0.0.RELEASE发布，全面升级支持Java17、SpringBoot3、SpringCloud2023" name="35">
                 <div>1.[升级]JDK 至 Java17</div>
                 <div>2.[升级]SpringBoot 至 3.2.4</div>
                 <div>3.[升级]SpringBootAdmin 至 3.2.3</div>
@@ -978,7 +987,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['35']
+        logActiveNames: ['36']
       };
     },
     computed: {

@@ -37,7 +37,7 @@ Vue.use(Element, {
 Vue.use(window.AVUE, {
   size: 'small',
   tableSize: 'small',
-  calcHeight: 65,
+  calcHeight: 0,
   i18n: (key, value) => i18n.t(key, value)
 });
 // 注册全局容器

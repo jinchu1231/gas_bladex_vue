@@ -22,11 +22,11 @@ module.exports = {
   },
   //开发模式反向代理配置，生产模式请使用Nginx部署并配置反向代理
   devServer: {
-    port: 1888,
+    port: 8094,
     proxy: {
       '/api': {
         //本地服务接口地址
-        target: 'http://localhost',
+        target: 'http://localhost:8093',
         //远程演示服务地址,可用于直接启动项目
         //target: 'https://saber.bladex.cn/api',
         ws: true,

@@ -47,5 +47,5 @@ export default {
   // 单点登录系统认证(blade-auth服务的地)
   ssoUrl: 'http://localhost:8100/oauth/authorize?client_id=saber&response_type=code&redirect_uri=',
   // 单点登录回调地址(Saber服务的地址)
-  redirectUri: 'http://localhost:1888',
+  redirectUri: 'http://localhost:8093',
 }
